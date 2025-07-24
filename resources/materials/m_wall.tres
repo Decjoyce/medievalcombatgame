@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://lxkffuir1h5d"]
+
+[ext_resource type="Texture2D" uid="uid://dpy1bc6e48q44" path="res://assets/wall_bricks_old_64.png" id="1_xbu24"]
+
+[resource]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("1_xbu24")
+roughness = 0.0
+emission = Color(0.165656, 0.165656, 0.165656, 1)
+rim_tint = 0.88
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+grow_amount = 0.323

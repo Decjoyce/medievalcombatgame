@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=2 format=3 uid="uid://dgif1o6o8hlls"]
+
+[ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="1_slyci"]
+
+[resource]
+script = ExtResource("1_slyci")
+equipment_name = "John"
+offense_rating = 6
+defense_rating = 3
+num_slots_down = 0
+num_slots_up = 0
+restrict_slots_by_hand = Array[String](["11111111", "11111111"])
+metadata/_custom_type_script = "uid://bni40py7vl8cw"
