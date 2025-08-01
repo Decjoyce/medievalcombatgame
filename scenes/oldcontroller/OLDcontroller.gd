@@ -1,6 +1,8 @@
 class_name OLDController
 extends Node2D
 
+## This was before the kcd style system. The intial idea was that you could position your equipment anywhere on the screen
+
 @export var hands: Array[StaticBody2D]
 
 enum yo {dododo, pooo}

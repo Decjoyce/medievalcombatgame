@@ -11,20 +11,17 @@ var con_right_hand: bool
 @onready var l_hand_pivot: Control = $_graphics/left_hand
 @onready var r_hand_pivot: Control = $_graphics/right_hand
 
-@export var starting_equipment: Equipment
-
-@export var stuff: Array[Equipment]
-@export var sword_art_l: Control
-@export var shield_art_l: Control
-@export var sword_art_r: Control
-@export var shield_art_r: Control
-
 @onready var cam: Camera3D = $Camera3D
+
+## Compass - is parented to just a Node (not Node3D). This allows it to be rotated independently of the player.
+## By having it as node3d, it gives access to functions and info like its relative x and z directions (basis.x, basis.z)
+## Its rotation is the target rotation of the player.
 @onready var compass: Node3D = $Node/Compass
-@onready var ray_north: RayCast3D = $Node/Compass/North
-@onready var ray_east: RayCast3D = $Node/Compass/East
-@onready var ray_south: RayCast3D = $Node/Compass/South
-@onready var ray_west: RayCast3D = $Node/Compass/West
+
+@onready var ray_north: RayCast3D = $Node/Compass/North ## Checks if player can move forward and also temporary interact
+@onready var ray_east: RayCast3D = $Node/Compass/East ## Checks if player can move right
+@onready var ray_south: RayCast3D = $Node/Compass/South ## Checks if player can move back
+@onready var ray_west: RayCast3D = $Node/Compass/West ## Checks if player can move left
 
 @export var is_moving: bool
 @export var target_pos: Vector3
@@ -45,6 +42,7 @@ var current_interact: Interactable
 func _ready() -> void:
 	ray_north.collide_with_areas = true
 
+## Controls the which slots to occupy
 func joystick_movement() -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
 	var r_motion := Input.get_vector("r_joystick_left", "r_joystick_right", "r_joystick_down", "r_joystick_up")
@@ -58,17 +56,21 @@ func joystick_movement() -> void:
 			if stance.occupy_slot(current_slots[0], 0): 
 				set_graphics(true)
 
+## This is a really headbob formula. It doesn't return to center. It does look weird without it tho 
 func _headbob(time: float) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ/2) * BOB_AMP
 	return pos
 
+## Movement
+## I did this some backass way tbh
 func movement(delta: float) -> void:
-	target_pos.round()
-	if position.distance_to(target_pos) > 0.001:
-		#var lerped_position: Vector3
-		t_bob += delta * (target_pos - position).length() * speed
+	target_pos.round() 
+	if position.distance_to(target_pos) > 0.001: ## This is conditioned so we can know if player is moving, to stop them from being able to attack while moving
+		t_bob += delta * (target_pos - position).length() * speed ## some headbobbing formula i used before. Its really bad.
+		
+		## Its really jarring just snapping to position
 		position.x = lerpf(position.x, target_pos.x, speed * delta)
 		position.z = lerpf(position.z, target_pos.z, speed * delta)
 		#print(lerped_position)
@@ -77,12 +79,15 @@ func movement(delta: float) -> void:
 		#move_and_collide(lerped_position)
 	else:
 		is_moving = false
-		position = target_pos
+		position = target_pos ## lerping never reaches the target, so we snap player to it slightly once in range
 	
 	
-	
-	#if is_turning: return
+	## The Compass is used to get the desired direction the player should move in. The players rotation is lerped so its not always at a quater angle (0, 90, 180, 360).
+	## The Compass is independent of the players rotation and it's rotation is equal to target rotation which allows player to move and rotate while still keeping to the grid.
 	var move_dir: Vector3
+	## The ray is used to check if something is in the way. 
+	## The reason why u can phase through walls if you spam in a dir is bc the ray is only 1 unit long and if you're inbetween and move, it wont detect the wall bc the ray ain't long enough
+	## Should be super easy to fix
 	if Input.is_action_just_pressed("walk_left") and !ray_west.is_colliding():
 		target_pos = target_pos - compass.basis.x * Vector3.ONE
 		
@@ -90,19 +95,22 @@ func movement(delta: float) -> void:
 		target_pos = target_pos + compass.basis.x * Vector3.ONE
 		
 	if Input.is_action_just_pressed("walk_up") and !ray_north.is_colliding():
+		
 		target_pos = target_pos - compass.basis.z * Vector3.ONE
 		
 	if Input.is_action_just_pressed("walk_down")and !ray_south.is_colliding():
 		target_pos = target_pos + compass.basis.z * Vector3.ONE
 		
-	target_pos.round()
+	target_pos.round() ## I cant remember why I round
 	#is_moving = true
 	
 
+## Player Rotation. 
 func turn(delta: float) -> void:
 	if Input.is_action_just_pressed("turn_left"):
-		target_rotation = target_rotation + 1.5708
-		compass.global_rotation.y = target_rotation
+		target_rotation = target_rotation + 1.5708 ## I used radians for some odd reason
+		## The compass' rotation is independent of player and is used as a way to get the direction of the target rotation. 
+		compass.global_rotation.y = target_rotation 
 	if Input.is_action_just_pressed("turn_right"):
 		target_rotation = target_rotation - 1.5708
 		compass.global_rotation.y = target_rotation
@@ -116,23 +124,23 @@ func turn(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	compass.position = position
-	if Input.is_action_just_pressed("equipped_action"):
+	if Input.is_action_just_pressed("equipped_action"): ## This was for mouse controls and is now obselete
 		if con_left_hand:
 			stance.attack_opponent(1)
 		if con_right_hand:
 			stance.attack_opponent(0)
 	
-	if !is_moving and Input.is_action_just_pressed("equipped_action_left"):
+	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
 		stance.attack_opponent(1)
 	
-	if !is_moving and Input.is_action_just_pressed("equipped_action_right"):
+	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
 		stance.attack_opponent(0)
 	
 	if Input.is_action_just_pressed("interact") and can_interact and current_interact:
 		current_interact.interact(self)
 		interact_text.text = ""
 	
-	if Input.is_action_just_pressed("reset"):
+	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
 
 func _physics_process(delta: float) -> void:
@@ -140,40 +148,23 @@ func _physics_process(delta: float) -> void:
 	movement(delta)
 	turn(delta) 
 
+## Calculates the stance slot from the joystick position. Link to explaination : https://cdn.discordapp.com/attachments/1359852606922424510/1400788747712466995/stanceslot_calculation.png?ex=688de9ae&is=688c982e&hm=5fb4efc8bb20ca3642d9afa7c608a74fe520c4cdda1591bf06aae84a41c07d39&
 func get_stance_angle(hand: int, dir: Vector2) -> bool:
-	current_angles[hand] = rad_to_deg(atan2(dir.y, -dir.x))
-	var _slot = floorf((current_angles[hand] + 22.5)/45) + 4
+	current_angles[hand] = rad_to_deg(atan2(dir.y, -dir.x)) ## Does the unit circle thingy
+	var _slot = floorf((current_angles[hand] + 22.5)/45) + 4 ## This turns that angle into a 0-7 integer that corresponds to the stance slots. Better explaination in image above
+	#print(_slot)
 	if _slot >= 8:
 		_slot = 0
-	if _slot == current_slots[hand]: return false
+	if _slot == current_slots[hand]: return false ## This stops it from going through all the calculations of occupying a slot and graphics if the player is holding the joystick in the same direction
 	else:
-		current_slots[hand] = int(_slot)
-		return true
-	#print(current_angle)
+		current_slots[hand] = int(_slot) ## Cant remember why i had to cast it and not just floorf_i() earlier, idk if this is required or not
+		return true ## This allows it to go through all the occupying slot calculations
 
-func get_stance_angle0(dir: Vector2) -> bool:
-	current_angles[0] = rad_to_deg(atan2(dir.y, -dir.x))
-	var _slot = floorf((current_angles[0] + 22.5)/45) + 4
-	if _slot >= 8:
-		_slot = 0
-	if _slot == current_slots[0]: return false
-	else:
-		current_slots[0] = int(_slot)
-		return true
-
-func get_stance_angle1(dir: Vector2) -> bool:
-	current_angles[1] = rad_to_deg(atan2(dir.y, -dir.x))
-	var _slot = floorf((current_angles[1] + 22.5)/45) + 4
-	if _slot >= 8:
-		_slot = 0
-	if _slot == current_slots[1]: return false
-	else:
-		current_slots[1] = int(_slot)
-		return true
-
+## This just rotates the item graphics to match where 
+## use_mouse is obselete, i should get rid of it but cba
 func set_graphics(r_hand: bool, use_mouse: bool = false) -> void:
 	if !r_hand:
-		l_hand_pivot.rotation_degrees = 45 * (current_slots[1] + 4)
+		l_hand_pivot.rotation_degrees = 45 * (current_slots[1] + 4) ## Reverts the slot back to an angle
 		if use_mouse:
 			stance.set_slot_active_display(1)
 	else:
@@ -181,31 +172,7 @@ func set_graphics(r_hand: bool, use_mouse: bool = false) -> void:
 		if use_mouse:
 			stance.set_slot_active_display(0)
 
-var yo_l: int = 2
-var yo_r: int = 0
-func _on_button_pressed() -> void:
-	yo_l = wrapi(yo_l +1, 0, 3)
-	stance.hands[1] = stuff[yo_l]
-	#print()
-	if yo_l == 2:
-		sword_art_l.visible = false
-		shield_art_l.visible = true
-	else:
-		sword_art_l.visible = true
-		shield_art_l.visible = false
-	stance.set_slot_display()
-
-func _on_button_2_pressed() -> void:
-	yo_r = wrapi(yo_r +1, 0, 3)
-	stance.hands[1] = stuff[yo_r]
-	if yo_r == 2:
-		sword_art_r.visible = false
-		shield_art_r.visible = true
-	else:
-		sword_art_r.visible = true
-		shield_art_r.visible = false
-	stance.set_slot_display()
-
+## Used for interacting
 func on_raycast_enter(obj: Object) -> void:
 	if obj is Interactable:
 		var interactable: Interactable = obj as Interactable

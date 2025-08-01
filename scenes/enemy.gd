@@ -12,14 +12,16 @@ var enemy: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	## This needs to be redone, if player goes behind them than the wont detect the player.
 	stance.enemy_entered_range.connect(enemy_entered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if enemy:
-		look_at(enemy.position)
+		look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
 
+## Just rotates to face player and stores them as their enemy
 func enemy_entered(_new_enemy: Entity) -> void:
 	stance_graphic.visible = true
 	enemy = _new_enemy as Player
@@ -28,7 +30,9 @@ func enemy_entered(_new_enemy: Entity) -> void:
 	else:
 		stance_graphic.visible = false
 
+
 var rng: RandomNumberGenerator
+## This timer is change hand positions (which slots to occupy)
 func _on_timer_timeout() -> void:
 	if disabled: return
 	var rng := RandomNumberGenerator.new()
@@ -36,7 +40,7 @@ func _on_timer_timeout() -> void:
 	timer.wait_time = rng.randf_range(0.5, 2.0)
 	timer.start()
 
-
+## This timer is to attack
 func _on_timer_2_timeout() -> void:
 	if disabled: return
 	var rng := RandomNumberGenerator.new()

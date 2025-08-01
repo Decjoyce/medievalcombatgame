@@ -1,10 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://enmoeaumacog"]
+[gd_scene load_steps=20 format=3 uid="uid://enmoeaumacog"]
 
 [ext_resource type="Script" uid="uid://cti3uncuqhvuc" path="res://scenes/player.gd" id="1_qfm1y"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="2_fulsm"]
 [ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_4r5pv"]
-[ext_resource type="Resource" uid="uid://c3ss1hyy88c8f" path="res://resources/equipment/test_twohandsword.tres" id="4_60mlk"]
-[ext_resource type="Resource" uid="uid://31jgm06mt7ms" path="res://resources/equipment/test_shield.tres" id="5_i4ail"]
 [ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="6_a38lo"]
 [ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scenes/stats.gd" id="7_4ni07"]
 [ext_resource type="Texture2D" uid="uid://dxq7t1knkjyqg" path="res://assets/sword_sprite.png" id="8_l71n6"]
@@ -32,14 +30,9 @@ bg_color = Color(0.55, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_3v2ag"]
 radius = 0.2
 
-[node name="Player" type="StaticBody3D" node_paths=PackedStringArray("sword_art_l", "shield_art_l", "sword_art_r", "shield_art_r")]
+[node name="Player" type="StaticBody3D"]
 physics_interpolation_mode = 1
 script = ExtResource("1_qfm1y")
-stuff = Array[ExtResource("3_4r5pv")]([ExtResource("2_fulsm"), ExtResource("4_60mlk"), ExtResource("5_i4ail")])
-sword_art_l = NodePath("_graphics/left_hand/_holder/_sword")
-shield_art_l = NodePath("_graphics/left_hand/_holder/_Shield")
-sword_art_r = NodePath("_graphics/right_hand/_holder/_sword")
-shield_art_r = NodePath("_graphics/right_hand/_holder/_Shield")
 metadata/_custom_type_script = "uid://cti3uncuqhvuc"
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -218,7 +211,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("6_a38lo")
 slots = Array[int]([0, -1, -1, -1, 1, -1, -1, -1])
-hands = Array[ExtResource("3_4r5pv")]([ExtResource("4_60mlk"), ExtResource("5_i4ail")])
+hands = Array[ExtResource("3_4r5pv")]([ExtResource("2_fulsm"), ExtResource("2_fulsm")])
 stats = NodePath("../Stats")
 temp_timer_stam = NodePath("../Stats/Timer_Stam")
 temp_octagon_display = [NodePath("../Camera3D/_ui_stance/R"), NodePath("../Camera3D/_ui_stance/BR"), NodePath("../Camera3D/_ui_stance/B"), NodePath("../Camera3D/_ui_stance/BL"), NodePath("../Camera3D/_ui_stance/L"), NodePath("../Camera3D/_ui_stance/TL"), NodePath("../Camera3D/_ui_stance/T"), NodePath("../Camera3D/_ui_stance/TR")]
