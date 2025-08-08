@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://djfw40idmjem8"]
+
+[ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="1_hpvv5"]
+[ext_resource type="Script" uid="uid://vaydwqdfitxt" path="res://scenes/door.gd" id="1_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_83dcw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5f452"]
+size = Vector3(1.75, 1.6, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5f452"]
+material = ExtResource("1_hpvv5")
+size = Vector3(2, 1.6, 0.1)
+
+[node name="Door" type="Area3D"]
+script = ExtResource("1_uvdjg")
+prompt_sprite = ExtResource("2_83dcw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5f452")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_5f452")
+skeleton = NodePath("../..")

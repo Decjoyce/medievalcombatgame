@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds5rps673cu3k"]
+
+[ext_resource type="Script" uid="uid://clq56e5qb5p87" path="res://scenes/lever.gd" id="1_4kwec"]
+[ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="2_ncfea"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_neyqp"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neyqp"]
+albedo_color = Color(0.159172, 0.213758, 0.215697, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_neyqp"]
+material = SubResource("StandardMaterial3D_neyqp")
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kwec"]
+albedo_color = Color(0.519636, 0.378332, 2.88785e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kwec"]
+material = SubResource("StandardMaterial3D_4kwec")
+size = Vector3(0.04, 0.395, 0.04)
+
+[node name="Lever" type="Area3D"]
+script = ExtResource("1_4kwec")
+prompt_sprite = ExtResource("2_ncfea")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_neyqp")
+debug_color = Color(0.465652, 0.949946, 2.31028e-06, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_neyqp")
+skeleton = NodePath("../..")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.117493, 0.0661046)
+mesh = SubResource("BoxMesh_4kwec")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")

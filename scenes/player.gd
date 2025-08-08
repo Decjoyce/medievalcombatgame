@@ -43,18 +43,26 @@ func _ready() -> void:
 	ray_north.collide_with_areas = true
 
 ## Controls the which slots to occupy
-func joystick_movement() -> void:
+func joystick_movement(delta: float) -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
 	var r_motion := Input.get_vector("r_joystick_left", "r_joystick_right", "r_joystick_down", "r_joystick_up")
-	if l_motion:
-		if get_stance_angle(1, l_motion):
-			if stance.occupy_slot(current_slots[1], 1):
-				set_graphics(false)
 	
-	if r_motion:
-		if get_stance_angle(0, r_motion):
-			if stance.occupy_slot(current_slots[0], 0): 
-				set_graphics(true)
+	if !interacting:
+		if l_motion:
+			if get_stance_angle(1, l_motion):
+				if stance.occupy_slot(current_slots[1], 1):
+					set_graphics(false)
+		
+		if r_motion:
+			if get_stance_angle(0, r_motion):
+				if stance.occupy_slot(current_slots[0], 0): 
+					set_graphics(true)
+	else:
+		if l_motion:
+			int_move_hand(1, l_motion, delta)
+		
+		if r_motion:
+			int_move_hand(0, r_motion, delta)
 
 ## This is a really headbob formula. It doesn't return to center. It does look weird without it tho 
 func _headbob(time: float) -> Vector3:
@@ -131,20 +139,26 @@ func _process(delta: float) -> void:
 			stance.attack_opponent(0)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
-		stance.attack_opponent(1)
+		if !interacting: stance.attack_opponent(1)
+		else: int_interact(1)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
-		stance.attack_opponent(0)
+		if !interacting: stance.attack_opponent(0)
+		else: int_interact(0)
 	
-	if Input.is_action_just_pressed("interact") and can_interact and current_interact:
-		current_interact.interact(self)
-		interact_text.text = ""
+	if Input.is_action_just_pressed("interact"):
+		if !interacting: int_enter_interactmode()
+		else: int_exit_interactmode()
 	
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
+	
+	joystick_movement(delta)
 
 func _physics_process(delta: float) -> void:
-	joystick_movement()
+	#joystick_movement(delta)
+	int_interact_checker(0)
+	int_interact_checker(1)
 	movement(delta)
 	turn(delta) 
 
@@ -184,3 +198,65 @@ func on_raycast_exit(obj: Object) -> void:
 		#var interactable: Interactable = obj as Interactable
 		interact_text.text = ""
 		current_interact = null
+
+
+###### INTERACTION
+
+@export var int_hands: Array[TextureRect] 
+var interacting: bool =  true
+@export var int_hand_speed: float = 500 
+const INT_RAY_LENGTH = 1000
+@onready var int_ui_stance : Node3D = $Camera3D/_ui_stance
+var int_interactable : Array[Interactable] = [null, null]
+
+@export var temp_int_base_hand: Texture2D
+
+func int_enter_interactmode() -> void:
+	interacting = true
+	for han in int_hands:
+		han.visible = true
+	int_ui_stance.visible = false
+	l_hand_pivot.visible = false
+	r_hand_pivot.visible = false
+	cam.fov = 95
+
+func int_exit_interactmode() -> void:
+	interacting = false
+	for han in int_hands:
+		han.visible = false
+	int_ui_stance.visible = true
+	l_hand_pivot.visible = true
+	r_hand_pivot.visible = true
+	cam.fov = 90
+
+func int_move_hand(hand:int, dir: Vector2, delta: float) -> void:
+	if !interacting: return
+	int_hands[hand].position += Vector2(dir.x, -dir.y) * int_hand_speed * delta
+	var screen_size : Vector2i = get_viewport().size
+	int_hands[hand].position.x = clampf(int_hands[hand].position.x, 0, screen_size.x - int_hands[hand].size.x)
+	int_hands[hand].position.y = clampf(int_hands[hand].position.y, 0, screen_size.y - int_hands[hand].size.y)
+
+func int_interact_checker(hand:int) -> void:
+	if !interacting: return
+	var space_state = get_world_3d().direct_space_state
+
+	var origin = cam.project_ray_origin(int_hands[hand].position + int_hands[hand].size/2)
+	var end = origin + cam.project_ray_normal(int_hands[hand].position + int_hands[hand].size/2) * INT_RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_areas = true
+
+	var result = space_state.intersect_ray(query)
+	
+	if !result.collider or result.collider is not Interactable: 
+		int_hands[hand].texture = temp_int_base_hand
+		int_interactable[hand] = null
+		return
+	
+	var inter : Interactable = result.collider
+	int_interactable[hand] = inter
+	int_hands[hand].texture = int_interactable[hand].prompt_sprite
+
+func int_interact(hand: int) -> bool:
+	if !int_interactable[hand]: return false
+	int_interactable[hand].interact(self)
+	return true

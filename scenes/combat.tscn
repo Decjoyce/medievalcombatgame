@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmfy8ovuj3ycm"]
+[gd_scene load_steps=11 format=3 uid="uid://cmfy8ovuj3ycm"]
 
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/enemy.tscn" id="2_yxda2"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="3_aic3r"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="4_4l26h"]
+[ext_resource type="PackedScene" uid="uid://djfw40idmjem8" path="res://scenes/door.tscn" id="4_vcae8"]
 [ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player.tscn" id="5_p71o4"]
 [ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://scenes/health_pack.tscn" id="5_vcae8"]
+[ext_resource type="PackedScene" uid="uid://ds5rps673cu3k" path="res://scenes/lever.tscn" id="7_osi8t"]
 
 [sub_resource type="Gradient" id="Gradient_4l26h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -271,31 +273,31 @@ material = ExtResource("4_4l26h")
 [node name="Hall_End2" type="Node3D" parent="Environment"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_End2"]
+[node name="Don" type="CSGBox3D" parent="Environment/Hall_End2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
 size = Vector3(2, 0.1, 2)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall_End2"]
+[node name="Cheadle" type="CSGBox3D" parent="Environment/Hall_End2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
 size = Vector3(2, 0.1, 2)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall_End2"]
+[node name="Is" type="CSGBox3D" parent="Environment/Hall_End2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 use_collision = true
 size = Vector3(2, 1.7, 0.1)
 material = ExtResource("3_aic3r")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hall_End2"]
+[node name="My" type="CSGBox3D" parent="Environment/Hall_End2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 use_collision = true
 size = Vector3(0.1, 1.7, 2)
 material = ExtResource("3_aic3r")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Hall_End2"]
+[node name="Dad" type="CSGBox3D" parent="Environment/Hall_End2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 use_collision = true
 size = Vector3(0.1, 1.7, 2)
@@ -2573,3 +2575,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.1, -13)
 
 [node name="Area3D" parent="Enemies" groups=["healthpack"] instance=ExtResource("5_vcae8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -32)
+
+[node name="Health" parent="." groups=["healthpack"] instance=ExtResource("5_vcae8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Door" parent="." instance=ExtResource("4_vcae8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+can_interact = false
+
+[node name="Lever" parent="." instance=ExtResource("7_osi8t")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.9, 0, 0)
+
+[connection signal="on_interacted" from="Lever" to="Door" method="toggle_door"]

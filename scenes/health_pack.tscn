@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlrnt77wbvcqx"]
+[gd_scene load_steps=6 format=3 uid="uid://dlrnt77wbvcqx"]
 
 [ext_resource type="Script" uid="uid://koofbm4iskyr" path="res://scenes/health_pack.gd" id="1_sguym"]
+[ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_x1beo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bco4i"]
 radius = 0.3
@@ -17,6 +18,7 @@ size = Vector3(0.1, 0.5, 0.05)
 [node name="Health_Pack" type="Area3D"]
 script = ExtResource("1_sguym")
 prompt = "Heal?"
+prompt_sprite = ExtResource("2_x1beo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_bco4i")
