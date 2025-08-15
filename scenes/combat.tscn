@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmfy8ovuj3ycm"]
+[gd_scene load_steps=13 format=3 uid="uid://cmfy8ovuj3ycm"]
 
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/enemy.tscn" id="2_yxda2"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="3_aic3r"]
@@ -16,6 +16,17 @@ gradient = SubResource("Gradient_4l26h")
 
 [sub_resource type="Environment" id="Environment_qajva"]
 background_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_osi8t"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_4gnb8"]
+item/0/name = ""
+item/0/mesh = SubResource("BoxMesh_osi8t")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
 
 [node name="Combat" type="Node3D"]
 
@@ -2584,6 +2595,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 can_interact = false
 
 [node name="Lever" parent="." instance=ExtResource("7_osi8t")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.9, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.9, 0, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_4gnb8")
 
 [connection signal="on_interacted" from="Lever" to="Door" method="toggle_door"]

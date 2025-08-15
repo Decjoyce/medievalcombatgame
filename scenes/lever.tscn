@@ -13,12 +13,12 @@ albedo_color = Color(0.159172, 0.213758, 0.215697, 1)
 material = SubResource("StandardMaterial3D_neyqp")
 size = Vector3(0.1, 0.5, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kwec"]
-albedo_color = Color(0.519636, 0.378332, 2.88785e-07, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncfea"]
+albedo_color = Color(0.717601, 0.32311, 1.92523e-07, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4kwec"]
-material = SubResource("StandardMaterial3D_4kwec")
-size = Vector3(0.04, 0.395, 0.04)
+[sub_resource type="BoxMesh" id="BoxMesh_ncfea"]
+material = SubResource("StandardMaterial3D_ncfea")
+size = Vector3(0.04, 0.265, 0.025)
 
 [node name="Lever" type="Area3D"]
 script = ExtResource("1_4kwec")
@@ -33,9 +33,7 @@ mesh = SubResource("BoxMesh_neyqp")
 skeleton = NodePath("../..")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.117493, 0.0661046)
-mesh = SubResource("BoxMesh_4kwec")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
+transform = Transform3D(1, 0, 0, 0, 0.82095, -0.571, 0, 0.571, 0.82095, 0, 0.10525, 0.0658502)
+mesh = SubResource("BoxMesh_ncfea")

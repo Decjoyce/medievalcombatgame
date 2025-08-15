@@ -85,7 +85,7 @@ func can_occupy_slot(new_slot: stance_slots, hand: int) -> bool:
 func attack_opponent(hand:int) -> void:
 	if !opponent: return
 	if stats.current_stamina <= 0: return
-	var attacked_slots: String
+	var attacked_slots: String = ""
 	
 	for i in slots:
 		if i == hand:

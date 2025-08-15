@@ -92,7 +92,7 @@ func movement(delta: float) -> void:
 	
 	## The Compass is used to get the desired direction the player should move in. The players rotation is lerped so its not always at a quater angle (0, 90, 180, 360).
 	## The Compass is independent of the players rotation and it's rotation is equal to target rotation which allows player to move and rotate while still keeping to the grid.
-	var move_dir: Vector3
+	#var move_dir: Vector3
 	## The ray is used to check if something is in the way. 
 	## The reason why u can phase through walls if you spam in a dir is bc the ray is only 1 unit long and if you're inbetween and move, it wont detect the wall bc the ray ain't long enough
 	## Should be super easy to fix
@@ -218,7 +218,7 @@ func int_enter_interactmode() -> void:
 	int_ui_stance.visible = false
 	l_hand_pivot.visible = false
 	r_hand_pivot.visible = false
-	cam.fov = 95
+	#cam.fov = 95
 
 func int_exit_interactmode() -> void:
 	interacting = false
@@ -227,14 +227,18 @@ func int_exit_interactmode() -> void:
 	int_ui_stance.visible = true
 	l_hand_pivot.visible = true
 	r_hand_pivot.visible = true
-	cam.fov = 90
+	#cam.fov = 90
 
 func int_move_hand(hand:int, dir: Vector2, delta: float) -> void:
 	if !interacting: return
 	int_hands[hand].position += Vector2(dir.x, -dir.y) * int_hand_speed * delta
-	var screen_size : Vector2i = get_viewport().size
-	int_hands[hand].position.x = clampf(int_hands[hand].position.x, 0, screen_size.x - int_hands[hand].size.x)
-	int_hands[hand].position.y = clampf(int_hands[hand].position.y, 0, screen_size.y - int_hands[hand].size.y)
+	var screen_size : Vector2i = get_window().size
+	if hand == 0:
+		int_hands[hand].position.x = clampf(int_hands[hand].position.x, (800 / 3.0), 800 - int_hands[hand].size.x)
+	else:
+		int_hands[hand].position.x = clampf(int_hands[hand].position.x, 0, 800 - (800 / 3.0) - int_hands[hand].size.x)
+		
+	int_hands[hand].position.y = clampf(int_hands[hand].position.y, 0, 600 - int_hands[hand].size.y)
 
 func int_interact_checker(hand:int) -> void:
 	if !interacting: return

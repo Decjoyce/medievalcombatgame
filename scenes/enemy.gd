@@ -35,7 +35,7 @@ var rng: RandomNumberGenerator
 ## This timer is change hand positions (which slots to occupy)
 func _on_timer_timeout() -> void:
 	if disabled: return
-	var rng := RandomNumberGenerator.new()
+	rng = RandomNumberGenerator.new()
 	stance.occupy_slot(rng.randi_range(0, 7), rng.randi_range(0, 1))
 	timer.wait_time = rng.randf_range(0.5, 2.0)
 	timer.start()
@@ -43,7 +43,7 @@ func _on_timer_timeout() -> void:
 ## This timer is to attack
 func _on_timer_2_timeout() -> void:
 	if disabled: return
-	var rng := RandomNumberGenerator.new()
+	rng = RandomNumberGenerator.new()
 	stance.attack_opponent(rng.randi_range(0, 1))
 	timer2.wait_time = rng.randf_range(0.5, 3.0)
 	timer2.start()
