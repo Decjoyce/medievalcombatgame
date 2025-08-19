@@ -1,0 +1,272 @@
+[gd_scene load_steps=22 format=3 uid="uid://bml2137oth2xv"]
+
+[ext_resource type="Script" uid="uid://bvo3xo1podd10" path="res://ai/MIke Tree/Agent_enemy_baset.gd" id="1_6kvcs"]
+[ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="2_6kvcs"]
+[ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="3_cxh4e"]
+[ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="4_q2oo5"]
+[ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_q61ux"]
+[ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scenes/stats.gd" id="6_qwl33"]
+[ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="7_3ww8o"]
+[ext_resource type="Texture2D" uid="uid://c2u8kh2qxb21q" path="res://scenes/SkeletonIdel-ezgif.com-gif-to-sprite-converter.png" id="8_jjlkg"]
+[ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="9_33jpq"]
+[ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="10_kyahd"]
+[ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="11_q67yt"]
+[ext_resource type="Script" uid="uid://bp8um4v0uqiwa" path="res://ai/MIke Tree/idle.gd" id="12_cxh4e"]
+
+[sub_resource type="Animation" id="Animation_cxh4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("_graphics/normal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6kvcs"]
+resource_name = "idle"
+length = 1.92858
+loop_mode = 1
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("_graphics/normal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429, 0.642857, 0.714286, 0.785714, 0.857143, 0.928571, 1, 1.07143, 1.14286, 1.21429, 1.28571, 1.35714, 1.42857, 1.5, 1.57143, 1.64286, 1.71429, 1.78571, 1.85714),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2oo5"]
+_data = {
+&"RESET": SubResource("Animation_cxh4e"),
+&"idle": SubResource("Animation_6kvcs")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qyji"]
+bg_color = Color(0, 0.47, 0.2115, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3mio"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5n2y"]
+bg_color = Color(0.55, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8qclf"]
+radius = 0.236233
+height = 1.06534
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6kvcs"]
+
+[node name="Enemy" type="StaticBody3D" node_paths=PackedStringArray("state_machine", "timer", "timer2")]
+script = ExtResource("1_6kvcs")
+state_machine = NodePath("LimboHSM")
+timer = NodePath("Timer")
+timer2 = NodePath("Timer2")
+disabled = false
+metadata/_custom_type_script = "uid://y3exhbrhlsof"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q2oo5")
+}
+
+[node name="_ui_stance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.214)
+visible = false
+
+[node name="octagon" type="Sprite3D" parent="_ui_stance"]
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.0003
+texture = ExtResource("2_6kvcs")
+
+[node name="R" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, 0.117, 0.00299495, -0.000312999)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BR" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, 0.0825845, -0.078627, 0)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="B" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.000674158, -0.114318, -0.000312999)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BL" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, -0.0841064, -0.080111, -0.000312999)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="L" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, -0.117, 0.00336599, -0.000312999)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TL" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, -0.0809168, 0.084874, 0)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="T" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.12, 0)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TR" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, 0.0816879, 0.085683, -0.000312999)
+visible = false
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
+script = ExtResource("3_cxh4e")
+slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
+hands = Array[ExtResource("4_q2oo5")]([ExtResource("5_q61ux"), ExtResource("5_q61ux"), ExtResource("5_q61ux")])
+stats = NodePath("../Stats")
+temp_timer_stam = NodePath("../Stats/Timer_Stam")
+temp_octagon_display = [NodePath("../_ui_stance/R"), NodePath("../_ui_stance/BR"), NodePath("../_ui_stance/B"), NodePath("../_ui_stance/BL"), NodePath("../_ui_stance/L"), NodePath("../_ui_stance/TL"), NodePath("../_ui_stance/T"), NodePath("../_ui_stance/TR")]
+audio_player_miss = NodePath("../AudioStreamPlayer2")
+audio_player_hit = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://bhswmu2hpphn7"
+
+[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "audio_death", "stam_bar")]
+script = ExtResource("6_qwl33")
+max_health = 120
+current_health = 120
+health_bar = NodePath("ProgressBar3")
+temp_damage_indicator = NodePath("../_graphics/hit")
+audio_death = NodePath("AudioStreamPlayer")
+max_stamina = 50.0
+current_stamina = 50.0
+stam_bar = NodePath("ProgressBar2")
+base_damage = 1
+base_defence = 1
+metadata/_custom_type_script = "uid://cafxh3oene4uk"
+
+[node name="ProgressBar2" type="ProgressBar" parent="Stats"]
+anchors_preset = -1
+anchor_top = 0.955
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1856.0
+offset_top = -501.0
+offset_right = -2111.0
+offset_bottom = -501.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0qyji")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="Timer_Stam" type="Timer" parent="Stats"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ProgressBar3" type="ProgressBar" parent="Stats"]
+anchors_preset = -1
+anchor_top = 0.955
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -844.0
+offset_right = -665.498
+offset_bottom = -862.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_v3mio")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a5n2y")
+max_value = 120.0
+value = 120.0
+rounded = true
+show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Stats"]
+stream = ExtResource("7_3ww8o")
+
+[node name="_graphics" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028, -0.162, 0)
+
+[node name="normal" type="Sprite3D" parent="_graphics"]
+cast_shadow = 2
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_jjlkg")
+hframes = 7
+vframes = 4
+
+[node name="hit" type="Sprite3D" parent="_graphics"]
+visible = false
+modulate = Color(1, 0.19, 0.19, 1)
+billboard = 2
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("8_jjlkg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_33jpq")
+volume_db = 14.054
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_kyahd")
+
+[node name="_col" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141903, 0)
+shape = SubResource("CapsuleShape3D_8qclf")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1)
+script = ExtResource("11_q67yt")
+metadata/_custom_type_script = "uid://24tkivt38wsk"
+
+[node name="LimboHSM" type="LimboHSM" parent="."]
+
+[node name="Idle" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("12_cxh4e")
+animation_player = NodePath("../../AnimationPlayer")
+animation = &"Idle"
+
+[node name="Wander" type="LimboState" parent="LimboHSM"]
+
+[node name="Fight" type="LimboState" parent="LimboHSM"]
+
+[node name="Attack" type="LimboState" parent="LimboHSM"]
+
+[node name="Persue" type="LimboState" parent="LimboHSM"]
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+blackboard_plan = SubResource("BlackboardPlan_6kvcs")
+
+[connection signal="timeout" from="Stats/Timer_Stam" to="Stats" method="_on_timer_stam_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="on_body_entered" from="RayCast3D" to="Stance" method="_on_raycast_enter"]
+[connection signal="on_body_exit" from="RayCast3D" to="Stance" method="_on_raycast_exit"]

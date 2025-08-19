@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqye0ge7njobj"
-path.s3tc="res://.godot/imported/SkeletonSpriteSheet.png-789b6a86d2253588db0794a79a1cb187.s3tc.ctex"
+uid="uid://c2u8kh2qxb21q"
+path.s3tc="res://.godot/imported/SkeletonIdel-ezgif.com-gif-to-sprite-converter.png-9f88e1bcc3f83f9adf827fe8f2a14946.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/SkeletonSpriteSheet.png"
-dest_files=["res://.godot/imported/SkeletonSpriteSheet.png-789b6a86d2253588db0794a79a1cb187.s3tc.ctex"]
+source_file="res://scenes/SkeletonIdel-ezgif.com-gif-to-sprite-converter.png"
+dest_files=["res://.godot/imported/SkeletonIdel-ezgif.com-gif-to-sprite-converter.png-9f88e1bcc3f83f9adf827fe8f2a14946.s3tc.ctex"]
 
 [params]
 
