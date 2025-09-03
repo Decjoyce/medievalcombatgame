@@ -4,9 +4,9 @@ var opened: bool
 
 @onready var col: CollisionShape3D = $CollisionShape3D
 
-func interact(entity: Entity):
+func interact_begin(entity: Entity, hand: int):
 	if !can_interact: return
-	super(entity)
+	super(entity, hand)
 	toggle_door(!opened)
 
 func toggle_door(open: bool) -> void:

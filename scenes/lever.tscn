@@ -20,7 +20,7 @@ albedo_color = Color(0.717601, 0.32311, 1.92523e-07, 1)
 material = SubResource("StandardMaterial3D_ncfea")
 size = Vector3(0.04, 0.265, 0.025)
 
-[node name="Lever" type="Area3D"]
+[node name="Lever" type="StaticBody3D"]
 script = ExtResource("1_4kwec")
 prompt_sprite = ExtResource("2_ncfea")
 

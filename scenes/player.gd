@@ -35,10 +35,6 @@ const BOB_FREQ = 5
 const BOB_AMP = 0.03
 var t_bob = 0.0
 
-var can_interact: bool = true
-var current_interact: Interactable
-@onready var interact_text: Label = $label_interact
-
 func _ready() -> void:
 	ray_north.collide_with_areas = true
 
@@ -49,20 +45,14 @@ func joystick_movement(delta: float) -> void:
 	
 	if !interacting:
 		if l_motion:
-			if get_stance_angle(1, l_motion):
-				if stance.occupy_slot(current_slots[1], 1):
+			if get_stance_angle(0, l_motion):
+				if stance.occupy_slot(current_slots[0], 0):
 					set_graphics(false)
 		
 		if r_motion:
-			if get_stance_angle(0, r_motion):
-				if stance.occupy_slot(current_slots[0], 0): 
+			if get_stance_angle(1, r_motion):
+				if stance.occupy_slot(current_slots[1], 1): 
 					set_graphics(true)
-	else:
-		if l_motion:
-			int_move_hand(1, l_motion, delta)
-		
-		if r_motion:
-			int_move_hand(0, r_motion, delta)
 
 ## This is a really headbob formula. It doesn't return to center. It does look weird without it tho 
 func _headbob(time: float) -> Vector3:
@@ -134,17 +124,15 @@ func _process(delta: float) -> void:
 	compass.position = position
 	if Input.is_action_just_pressed("equipped_action"): ## This was for mouse controls and is now obselete
 		if con_left_hand:
-			stance.attack_opponent(1)
-		if con_right_hand:
 			stance.attack_opponent(0)
+		if con_right_hand:
+			stance.attack_opponent(1)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
-		if !interacting: stance.attack_opponent(1)
-		else: int_interact(1)
+		if !interacting: stance.attack_opponent(0)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
-		if !interacting: stance.attack_opponent(0)
-		else: int_interact(0)
+		if !interacting: stance.attack_opponent(1)
 	
 	if Input.is_action_just_pressed("interact"):
 		if !interacting: int_enter_interactmode()
@@ -156,11 +144,8 @@ func _process(delta: float) -> void:
 	joystick_movement(delta)
 
 func _physics_process(delta: float) -> void:
-	#joystick_movement(delta)
-	int_interact_checker(0)
-	int_interact_checker(1)
 	movement(delta)
-	turn(delta) 
+	turn(delta)
 
 ## Calculates the stance slot from the joystick position. Link to explaination : https://cdn.discordapp.com/attachments/1359852606922424510/1400788747712466995/stanceslot_calculation.png?ex=688de9ae&is=688c982e&hm=5fb4efc8bb20ca3642d9afa7c608a74fe520c4cdda1591bf06aae84a41c07d39&
 func get_stance_angle(hand: int, dir: Vector2) -> bool:
@@ -178,89 +163,32 @@ func get_stance_angle(hand: int, dir: Vector2) -> bool:
 ## use_mouse is obselete, i should get rid of it but cba
 func set_graphics(r_hand: bool, use_mouse: bool = false) -> void:
 	if !r_hand:
-		l_hand_pivot.rotation_degrees = 45 * (current_slots[1] + 4) ## Reverts the slot back to an angle
-		if use_mouse:
-			stance.set_slot_active_display(1)
-	else:
-		r_hand_pivot.rotation_degrees = 45 * current_slots[0]
+		l_hand_pivot.rotation_degrees = 45 * (current_slots[0] + 4) ## Reverts the slot back to an angle
 		if use_mouse:
 			stance.set_slot_active_display(0)
-
-## Used for interacting
-func on_raycast_enter(obj: Object) -> void:
-	if obj is Interactable:
-		var interactable: Interactable = obj as Interactable
-		interact_text.text = interactable.prompt
-		current_interact = interactable
-
-func on_raycast_exit(obj: Object) -> void:
-	if obj is Interactable:
-		#var interactable: Interactable = obj as Interactable
-		interact_text.text = ""
-		current_interact = null
-
+	else:
+		r_hand_pivot.rotation_degrees = 45 * current_slots[1]
+		if use_mouse:
+			stance.set_slot_active_display(1)
 
 ###### INTERACTION
 
-@export var int_hands: Array[TextureRect] 
-var interacting: bool =  true
-@export var int_hand_speed: float = 500 
-const INT_RAY_LENGTH = 1000
-@onready var int_ui_stance : Node3D = $Camera3D/_ui_stance
-var int_interactable : Array[Interactable] = [null, null]
-
-@export var temp_int_base_hand: Texture2D
+var interacting: bool = true
+@onready var ui_int : Control = $Interaction
+@onready var ui_stance : Node3D = $Camera3D/_ui_stance
 
 func int_enter_interactmode() -> void:
 	interacting = true
-	for han in int_hands:
-		han.visible = true
-	int_ui_stance.visible = false
+	ui_int.visible = true
+	ui_stance.visible = false
 	l_hand_pivot.visible = false
 	r_hand_pivot.visible = false
 	#cam.fov = 95
 
 func int_exit_interactmode() -> void:
 	interacting = false
-	for han in int_hands:
-		han.visible = false
-	int_ui_stance.visible = true
+	ui_int.visible = false
+	ui_stance.visible = true
 	l_hand_pivot.visible = true
 	r_hand_pivot.visible = true
 	#cam.fov = 90
-
-func int_move_hand(hand:int, dir: Vector2, delta: float) -> void:
-	if !interacting: return
-	int_hands[hand].position += Vector2(dir.x, -dir.y) * int_hand_speed * delta
-	var screen_size : Vector2i = get_window().size
-	if hand == 0:
-		int_hands[hand].position.x = clampf(int_hands[hand].position.x, (800 / 3.0), 800 - int_hands[hand].size.x)
-	else:
-		int_hands[hand].position.x = clampf(int_hands[hand].position.x, 0, 800 - (800 / 3.0) - int_hands[hand].size.x)
-		
-	int_hands[hand].position.y = clampf(int_hands[hand].position.y, 0, 600 - int_hands[hand].size.y)
-
-func int_interact_checker(hand:int) -> void:
-	if !interacting: return
-	var space_state = get_world_3d().direct_space_state
-
-	var origin = cam.project_ray_origin(int_hands[hand].position + int_hands[hand].size/2)
-	var end = origin + cam.project_ray_normal(int_hands[hand].position + int_hands[hand].size/2) * INT_RAY_LENGTH
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-	query.collide_with_areas = true
-
-	var result = space_state.intersect_ray(query)
-	
-	if !result.collider or result.collider is not Interactable: 
-		int_hands[hand].texture = temp_int_base_hand
-		int_interactable[hand] = null
-		return
-	
-	var inter : Interactable = result.collider
-	int_interactable[hand] = inter
-	int_hands[hand].texture = int_interactable[hand].prompt_sprite
-
-func int_interact(hand: int) -> bool:
-	if !int_interactable[hand]: return false
-	int_interactable[hand].interact(self)
-	return true

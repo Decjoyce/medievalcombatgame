@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnsmall0ublyv"]
+
+[ext_resource type="Script" uid="uid://bol603jub5sj5" path="res://donkeykong.gd" id="1_0p1se"]
+[ext_resource type="Texture2D" uid="uid://b67mxsk4i3agg" path="res://icon.svg" id="2_cx5kg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cx5kg"]
+
+[node name="DonkeyKong" type="Control" node_paths=PackedStringArray("thekong", "thedonkey")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0p1se")
+thekong = NodePath("TextureRect")
+thedonkey = NodePath("Control/HFlowContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -100.0
+offset_right = 356.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Panel" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel2" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel3" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel4" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel5" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel6" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="Panel7" type="TextureRect" parent="Control/HFlowContainer"]
+layout_mode = 2
+texture = ExtResource("2_cx5kg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.067
+offset_bottom = -0.200001
+texture = SubResource("CanvasTexture_cx5kg")

@@ -1,7 +1,7 @@
 extends Interactable
 
-func interact(entity: Entity):
+func interact_begin(entity: Entity, hand: int):
 	if !can_interact: return
-	super(entity)
+	super(entity, hand)
 	entity.stance.stats.heal(500)
 	queue_free()

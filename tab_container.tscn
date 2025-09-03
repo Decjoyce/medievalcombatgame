@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ioc1o4m67bro"]
+
+[node name="TabContainer" type="TabContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "ijiij"
+metadata/_tab_index = 0
+
+[node name="Dog" type="Button" parent="."]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Node2D" type="Node2D" parent="Dog"]
+
+[node name="Button3" type="Button" parent="."]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

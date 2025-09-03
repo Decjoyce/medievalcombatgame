@@ -2,6 +2,7 @@ class_name Entity
 extends StaticBody3D
 
 @onready var stance: Stance = $Stance 
+@export var interaction: PlayerInteraction
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

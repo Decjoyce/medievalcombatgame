@@ -28,8 +28,8 @@ enum stance_slots {RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT, TOP
 signal enemy_entered_range(enemy: Entity)
 
 func _ready() -> void:
-	occupy_slot(0, 0)
-	occupy_slot(4, 1) 
+	occupy_slot(4, 0)
+	occupy_slot(0, 1) 
 	set_slot_display() 
 
 ## 
