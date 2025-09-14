@@ -104,8 +104,8 @@ metadata/_custom_type_script = "uid://bhswmu2hpphn7"
 
 [node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "audio_death", "stam_bar")]
 script = ExtResource("6_g0wcc")
-max_health = 120
-current_health = 120
+max_health = 50
+current_health = 50
 health_bar = NodePath("ProgressBar3")
 temp_damage_indicator = NodePath("../_graphics/hit")
 audio_death = NodePath("AudioStreamPlayer")
@@ -162,6 +162,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028, -0.162, 0)
 
 [node name="normal" type="Sprite3D" parent="_graphics"]
 cast_shadow = 2
+visibility_range_end = 4.0
+visibility_range_fade_mode = 1
 billboard = 2
 texture_filter = 0
 texture = ExtResource("7_s1ycm")

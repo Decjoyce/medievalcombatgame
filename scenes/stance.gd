@@ -28,8 +28,8 @@ enum stance_slots {RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT, TOP
 signal enemy_entered_range(enemy: Entity)
 
 func _ready() -> void:
-	occupy_slot(0, 0)
-	occupy_slot(4, 1) 
+	occupy_slot(4, 0)
+	occupy_slot(0, 1) 
 	set_slot_display() 
 
 ## 
@@ -85,7 +85,7 @@ func can_occupy_slot(new_slot: stance_slots, hand: int) -> bool:
 func attack_opponent(hand:int) -> void:
 	if !opponent: return
 	if stats.current_stamina <= 0: return
-	var attacked_slots: String
+	var attacked_slots: String = ""
 	
 	for i in slots:
 		if i == hand:

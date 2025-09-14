@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://enmoeaumacog"]
+[gd_scene load_steps=23 format=3 uid="uid://enmoeaumacog"]
 
 [ext_resource type="Script" uid="uid://cti3uncuqhvuc" path="res://scenes/player.gd" id="1_qfm1y"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="2_fulsm"]
@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dxq7t1knkjyqg" path="res://assets/sword_sprite.png" id="8_l71n6"]
 [ext_resource type="AudioStream" uid="uid://dpnrs5viwr7jj" path="res://assets/death_yoda.mp3" id="9_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://4ba3q6b0g4ls" path="res://assets/shield2.png" id="9_ke2ow"]
+[ext_resource type="Resource" uid="uid://31jgm06mt7ms" path="res://resources/equipment/test_shield.tres" id="10_oprun"]
 [ext_resource type="Texture2D" uid="uid://bd3ppe7x3vomr" path="res://assets/fpshands/hand_s.png" id="10_ujl30"]
+[ext_resource type="Texture2D" uid="uid://b5ibaced03c8j" path="res://assets/fpshands/hand_t.png" id="14_f1ej7"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="15_oprun"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="15_wnwbv"]
+[ext_resource type="Script" uid="uid://c2rkykmady508" path="res://scenes/player/interact/player_interact.gd" id="16_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="16_gl8cc"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="17_487ah"]
 
@@ -30,16 +33,19 @@ bg_color = Color(0.55, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_3v2ag"]
 radius = 0.2
 
-[node name="Player" type="StaticBody3D"]
+[node name="Player" type="StaticBody3D" node_paths=PackedStringArray("interaction")]
 physics_interpolation_mode = 1
 script = ExtResource("1_qfm1y")
+interaction = NodePath("Interaction")
 metadata/_custom_type_script = "uid://cti3uncuqhvuc"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
+fov = 90.0
 
 [node name="_ui_stance" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.222)
+visible = false
 
 [node name="octagon" type="Sprite3D" parent="Camera3D/_ui_stance"]
 modulate = Color(0, 0, 0, 1)
@@ -49,6 +55,7 @@ texture = ExtResource("15_wnwbv")
 [node name="R" type="Sprite3D" parent="Camera3D/_ui_stance"]
 transform = Transform3D(0.75, 0, 0, 0, 9.5, 0, 0, 0, 1, 0.117, 0.003, 0)
 visible = false
+modulate = Color(0.300582, 0.587029, 0.615453, 1)
 render_priority = 2
 texture = SubResource("CanvasTexture_qfm1y")
 
@@ -103,6 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="left_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,6 +163,7 @@ flip_h = true
 metadata/_edit_use_anchors_ = true
 
 [node name="right_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -210,8 +219,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("6_a38lo")
-slots = Array[int]([0, -1, -1, -1, 1, -1, -1, -1])
-hands = Array[ExtResource("3_4r5pv")]([ExtResource("2_fulsm"), ExtResource("2_fulsm")])
+slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
+hands = Array[ExtResource("3_4r5pv")]([ExtResource("10_oprun"), ExtResource("2_fulsm")])
 stats = NodePath("../Stats")
 temp_timer_stam = NodePath("../Stats/Timer_Stam")
 temp_octagon_display = [NodePath("../Camera3D/_ui_stance/R"), NodePath("../Camera3D/_ui_stance/BR"), NodePath("../Camera3D/_ui_stance/B"), NodePath("../Camera3D/_ui_stance/BL"), NodePath("../Camera3D/_ui_stance/L"), NodePath("../Camera3D/_ui_stance/TL"), NodePath("../Camera3D/_ui_stance/T"), NodePath("../Camera3D/_ui_stance/TR")]
@@ -250,12 +259,10 @@ anchor_left = 0.164
 anchor_top = 0.877
 anchor_right = 0.845
 anchor_bottom = 0.899
-offset_left = 9.8
-offset_top = -0.200012
-offset_right = 10.0
-offset_bottom = 0.0999756
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = -103.2
+offset_top = -510.2
+offset_right = -549.0
+offset_bottom = -516.4
 theme_override_styles/background = SubResource("StyleBoxFlat_v3mio")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0qyji")
 value = 100.0
@@ -269,12 +276,10 @@ anchor_left = 0.164
 anchor_top = 0.898
 anchor_right = 0.845
 anchor_bottom = 0.943
-offset_left = 9.8
-offset_top = 0.199951
-offset_right = 10.0
-offset_bottom = 0.200012
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = -103.2
+offset_top = -515.8
+offset_right = -538.0
+offset_bottom = -534.8
 theme_override_styles/background = SubResource("StyleBoxFlat_v3mio")
 theme_override_styles/fill = SubResource("StyleBoxFlat_a5n2y")
 value = 100.0
@@ -313,38 +318,97 @@ shape = SubResource("SphereShape3D_3v2ag")
 
 [node name="North" type="RayCast3D" parent="Node/Compass"]
 target_position = Vector3(0, 0, -1.5)
+collide_with_areas = true
 debug_shape_custom_color = Color(0.393975, 0.469026, 1, 1)
 script = ExtResource("15_oprun")
 
 [node name="East" type="RayCast3D" parent="Node/Compass"]
 target_position = Vector3(1.5, 0, 0)
+collide_with_areas = true
 debug_shape_custom_color = Color(0.764111, 0.166593, 1, 1)
 script = ExtResource("15_oprun")
 
 [node name="South" type="RayCast3D" parent="Node/Compass"]
 target_position = Vector3(0, 0, 1.5)
+collide_with_areas = true
 script = ExtResource("15_oprun")
 
 [node name="West" type="RayCast3D" parent="Node/Compass"]
 target_position = Vector3(-1.5, 0, 0)
+collide_with_areas = true
 script = ExtResource("15_oprun")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 
-[node name="label_interact" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.475
-anchor_top = 0.480833
-anchor_right = 0.525
-anchor_bottom = 0.519167
-offset_top = 75.5
-offset_right = 3.05176e-05
-offset_bottom = 75.5
+[node name="Interaction" type="Control" parent="." node_paths=PackedStringArray("hands")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("16_a8ls1")
+hands = [NodePath("Interact_hand_L"), NodePath("Interact_hand_R")]
+base_hand_sprite = ExtResource("14_f1ej7")
 metadata/_edit_use_anchors_ = true
 
+[node name="Interact_hand_L" type="Control" parent="Interaction"]
+layout_mode = 1
+anchor_left = 0.335
+anchor_top = 0.381667
+anchor_right = 0.46
+anchor_bottom = 0.548333
+metadata/_edit_use_anchors_ = true
+
+[node name="_item_sprite_L" type="TextureRect" parent="Interaction/Interact_hand_L"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="_hand_sprite_L" type="TextureRect" parent="Interaction/Interact_hand_L"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_f1ej7")
+expand_mode = 1
+
+[node name="Interact_hand_R" type="Control" parent="Interaction"]
+layout_mode = 1
+anchor_left = 0.5875
+anchor_top = 0.385
+anchor_right = 0.7125
+anchor_bottom = 0.551667
+offset_right = 6.10352e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="_item_sprite_R" type="TextureRect" parent="Interaction/Interact_hand_R"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+flip_h = true
+
+[node name="_hand_sprite_R" type="TextureRect" parent="Interaction/Interact_hand_R"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_f1ej7")
+expand_mode = 1
+flip_h = true
+
 [connection signal="timeout" from="Stats/Timer_Stam" to="Stats" method="_on_timer_stam_timeout"]
-[connection signal="on_body_entered" from="Node/Compass/North" to="." method="on_raycast_enter"]
 [connection signal="on_body_entered" from="Node/Compass/North" to="Stance" method="_on_raycast_enter"]
 [connection signal="on_body_exit" from="Node/Compass/North" to="Stance" method="_on_raycast_exit"]

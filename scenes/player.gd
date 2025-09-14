@@ -35,26 +35,24 @@ const BOB_FREQ = 5
 const BOB_AMP = 0.03
 var t_bob = 0.0
 
-var can_interact: bool = true
-var current_interact: Interactable
-@onready var interact_text: Label = $label_interact
-
 func _ready() -> void:
 	ray_north.collide_with_areas = true
 
 ## Controls the which slots to occupy
-func joystick_movement() -> void:
+func joystick_movement(delta: float) -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
 	var r_motion := Input.get_vector("r_joystick_left", "r_joystick_right", "r_joystick_down", "r_joystick_up")
-	if l_motion:
-		if get_stance_angle(1, l_motion):
-			if stance.occupy_slot(current_slots[1], 1):
-				set_graphics(false)
 	
-	if r_motion:
-		if get_stance_angle(0, r_motion):
-			if stance.occupy_slot(current_slots[0], 0): 
-				set_graphics(true)
+	if !interacting:
+		if l_motion:
+			if get_stance_angle(0, l_motion):
+				if stance.occupy_slot(current_slots[0], 0):
+					set_graphics(false)
+		
+		if r_motion:
+			if get_stance_angle(1, r_motion):
+				if stance.occupy_slot(current_slots[1], 1): 
+					set_graphics(true)
 
 ## This is a really headbob formula. It doesn't return to center. It does look weird without it tho 
 func _headbob(time: float) -> Vector3:
@@ -84,7 +82,7 @@ func movement(delta: float) -> void:
 	
 	## The Compass is used to get the desired direction the player should move in. The players rotation is lerped so its not always at a quater angle (0, 90, 180, 360).
 	## The Compass is independent of the players rotation and it's rotation is equal to target rotation which allows player to move and rotate while still keeping to the grid.
-	var move_dir: Vector3
+	#var move_dir: Vector3
 	## The ray is used to check if something is in the way. 
 	## The reason why u can phase through walls if you spam in a dir is bc the ray is only 1 unit long and if you're inbetween and move, it wont detect the wall bc the ray ain't long enough
 	## Should be super easy to fix
@@ -126,27 +124,28 @@ func _process(delta: float) -> void:
 	compass.position = position
 	if Input.is_action_just_pressed("equipped_action"): ## This was for mouse controls and is now obselete
 		if con_left_hand:
-			stance.attack_opponent(1)
-		if con_right_hand:
 			stance.attack_opponent(0)
+		if con_right_hand:
+			stance.attack_opponent(1)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
-		stance.attack_opponent(1)
+		if !interacting: stance.attack_opponent(0)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
-		stance.attack_opponent(0)
+		if !interacting: stance.attack_opponent(1)
 	
-	if Input.is_action_just_pressed("interact") and can_interact and current_interact:
-		current_interact.interact(self)
-		interact_text.text = ""
+	if Input.is_action_just_pressed("interact"):
+		if !interacting: int_enter_interactmode()
+		else: int_exit_interactmode()
 	
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
+	
+	joystick_movement(delta)
 
 func _physics_process(delta: float) -> void:
-	joystick_movement()
 	movement(delta)
-	turn(delta) 
+	turn(delta)
 
 ## Calculates the stance slot from the joystick position. Link to explaination : https://cdn.discordapp.com/attachments/1359852606922424510/1400788747712466995/stanceslot_calculation.png?ex=688de9ae&is=688c982e&hm=5fb4efc8bb20ca3642d9afa7c608a74fe520c4cdda1591bf06aae84a41c07d39&
 func get_stance_angle(hand: int, dir: Vector2) -> bool:
@@ -164,23 +163,32 @@ func get_stance_angle(hand: int, dir: Vector2) -> bool:
 ## use_mouse is obselete, i should get rid of it but cba
 func set_graphics(r_hand: bool, use_mouse: bool = false) -> void:
 	if !r_hand:
-		l_hand_pivot.rotation_degrees = 45 * (current_slots[1] + 4) ## Reverts the slot back to an angle
-		if use_mouse:
-			stance.set_slot_active_display(1)
-	else:
-		r_hand_pivot.rotation_degrees = 45 * current_slots[0]
+		l_hand_pivot.rotation_degrees = 45 * (current_slots[0] + 4) ## Reverts the slot back to an angle
 		if use_mouse:
 			stance.set_slot_active_display(0)
+	else:
+		r_hand_pivot.rotation_degrees = 45 * current_slots[1]
+		if use_mouse:
+			stance.set_slot_active_display(1)
 
-## Used for interacting
-func on_raycast_enter(obj: Object) -> void:
-	if obj is Interactable:
-		var interactable: Interactable = obj as Interactable
-		interact_text.text = interactable.prompt
-		current_interact = interactable
+###### INTERACTION
 
-func on_raycast_exit(obj: Object) -> void:
-	if obj is Interactable:
-		#var interactable: Interactable = obj as Interactable
-		interact_text.text = ""
-		current_interact = null
+var interacting: bool = true
+@onready var ui_int : Control = $Interaction
+@onready var ui_stance : Node3D = $Camera3D/_ui_stance
+
+func int_enter_interactmode() -> void:
+	interacting = true
+	ui_int.visible = true
+	ui_stance.visible = false
+	l_hand_pivot.visible = false
+	r_hand_pivot.visible = false
+	#cam.fov = 95
+
+func int_exit_interactmode() -> void:
+	interacting = false
+	ui_int.visible = false
+	ui_stance.visible = true
+	l_hand_pivot.visible = true
+	r_hand_pivot.visible = true
+	#cam.fov = 90
