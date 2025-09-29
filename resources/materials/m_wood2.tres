@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bcagckqlmlk0"]
+
+[ext_resource type="Texture2D" uid="uid://b1t4v04tlchdy" path="res://assets/2d540e30bc59ac867ba381948321b5a5.jpg" id="1_kygk5"]
+
+[resource]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("1_kygk5")
+roughness = 0.65
+emission = Color(0.165656, 0.165656, 0.165656, 1)
+rim_tint = 0.88
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+grow_amount = 0.323

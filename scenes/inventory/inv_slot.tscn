@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cedjeduib67e7"]
+
+[ext_resource type="Script" uid="uid://daj4kc1jeajss" path="res://scenes/inventory/inv_slot.gd" id="1_je04x"]
+[ext_resource type="Texture2D" uid="uid://b6fg5apbvrq0r" path="res://assets/TEMP_inv_slot.png" id="1_raikb"]
+
+[node name="Slot" type="TextureRect"]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.116
+offset_right = -34.88
+offset_bottom = -35.168
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_raikb")
+expand_mode = 1
+script = ExtResource("1_je04x")
+
+[node name="StatusFilter" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)

@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cq1a443pqx5pf"]
+
+[resource]
+transparency = 1
+diffuse_mode = 2
+specular_mode = 1
+albedo_color = Color(1, 1, 1, 0)
+roughness = 0.0
+emission = Color(0.165656, 0.165656, 0.165656, 1)
+rim_tint = 0.88
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+grow_amount = 0.323

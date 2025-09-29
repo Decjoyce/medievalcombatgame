@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://q16dlt14vne3"]
+
+[ext_resource type="Script" uid="uid://d2np8r2k6cfpb" path="res://inventory.gd" id="1_msrby"]
+[ext_resource type="PackedScene" uid="uid://cedjeduib67e7" path="res://scenes/inventory/inv_slot.tscn" id="2_4axmw"]
+
+[node name="Inventory" type="Control"]
+custom_minimum_size = Vector2(689.215, 235.165)
+layout_mode = 3
+anchor_left = 0.200862
+anchor_top = 0.691358
+anchor_right = 0.799138
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_msrby")
+slot_scene = ExtResource("2_4axmw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09, 0.087525, 0.0855, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 33.305)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/bold_font_size = 23
+bbcode_enabled = true
+text = "[u][b]INVENTORY[/b][/u]"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 10

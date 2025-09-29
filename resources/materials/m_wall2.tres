@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bulafnio48yeo"]
+
+[ext_resource type="Texture2D" uid="uid://bornv0alnoh4r" path="res://assets/imdges.jpg" id="1_jq5rq"]
+
+[resource]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("1_jq5rq")
+roughness = 0.0
+emission = Color(0.165656, 0.165656, 0.165656, 1)
+rim_tint = 0.88
+uv1_scale = Vector3(0.14, 0.14, 0.14)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+grow_amount = 0.323

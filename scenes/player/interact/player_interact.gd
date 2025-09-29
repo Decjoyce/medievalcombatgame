@@ -90,12 +90,11 @@ func interact_checker(hand:int) -> void:
 
 	var result = space_state.intersect_ray(query)
 	
-	if !result or !result.collider: 
+	if !result or !result.collider or result.collider is not Interactable: 
 		hand_sprites[hand].texture = base_hand_sprite
 		interactables[hand] = null
 		return
 	
-	if result.collider is not Interactable: return
 	
 	var inter : Interactable = result.collider
 	interactables[hand] = inter

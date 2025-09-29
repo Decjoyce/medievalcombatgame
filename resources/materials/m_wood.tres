@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://coypsko3nmxnm"]
+
+[ext_resource type="Texture2D" uid="uid://b48ffjn8v06mu" path="res://assets/WoodPlanksOld0151_18_350.jpg" id="1_3gtja"]
+
+[resource]
+diffuse_mode = 2
+specular_mode = 1
+albedo_color = Color(0.564512, 0.473257, 0.188649, 1)
+albedo_texture = ExtResource("1_3gtja")
+roughness = 0.65
+emission = Color(0.165656, 0.165656, 0.165656, 1)
+rim_tint = 0.88
+uv1_scale = Vector3(0.185, 0.185, 0.185)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+grow_amount = 0.323

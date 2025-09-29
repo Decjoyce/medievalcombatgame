@@ -23,7 +23,10 @@ var con_right_hand: bool
 @onready var ray_south: RayCast3D = $Node/Compass/South ## Checks if player can move back
 @onready var ray_west: RayCast3D = $Node/Compass/West ## Checks if player can move left
 
+@onready var floor_detector: RayCast3D = $FloorDetector
+
 @export var is_moving: bool
+@export var prev_pos: Vector3
 @export var target_pos: Vector3
 var speed: float = 4
 var turn_speed: float = 8
@@ -37,6 +40,7 @@ var t_bob = 0.0
 
 func _ready() -> void:
 	ray_north.collide_with_areas = true
+	target_pos = position
 
 ## Controls the which slots to occupy
 func joystick_movement(delta: float) -> void:
@@ -73,6 +77,10 @@ func movement(delta: float) -> void:
 		position.z = lerpf(position.z, target_pos.z, speed * delta)
 		#print(lerped_position)
 		cam.transform.origin = _headbob(t_bob)
+		
+		if floor_detector.get_collision_point():
+			position.y = floor_detector.get_collision_point().y + 0.75
+		
 		is_moving = true
 		#move_and_collide(lerped_position)
 	else:
@@ -122,6 +130,7 @@ func turn(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	compass.position = position
+		
 	if Input.is_action_just_pressed("equipped_action"): ## This was for mouse controls and is now obselete
 		if con_left_hand:
 			stance.attack_opponent(0)
@@ -142,6 +151,8 @@ func _process(delta: float) -> void:
 		get_tree().reload_current_scene()
 	
 	joystick_movement(delta)
+	
+	prev_pos = position
 
 func _physics_process(delta: float) -> void:
 	movement(delta)

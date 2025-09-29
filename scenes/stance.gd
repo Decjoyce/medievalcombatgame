@@ -81,7 +81,7 @@ func can_occupy_slot(new_slot: stance_slots, hand: int) -> bool:
 		return true
 
 ## If you are attacking. Deffo needs redoing.
-## Essentially, you which hand your attacking with and the slots that that hand occupies in binary string format (same used as restricted slots)
+## Essentially, you send which hand your attacking with and the slots that that hand occupies in binary string format (same used as restricted slots)
 func attack_opponent(hand:int) -> void:
 	if !opponent: return
 	if stats.current_stamina <= 0: return
