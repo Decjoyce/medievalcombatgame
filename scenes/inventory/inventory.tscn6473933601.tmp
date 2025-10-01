@@ -5,16 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://bwwraxwbxfy33" path="res://scenes/inventory/inv_item.tscn" id="3_el5y6"]
 
 [node name="Inventory" type="Control"]
+custom_minimum_size = Vector2(689.215, 235.165)
 layout_mode = 3
-anchor_left = 0.275
-anchor_top = 0.74
-anchor_right = 0.725
+anchor_left = 0.200862
+anchor_top = 0.691358
+anchor_right = 0.799138
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_udcch")
 slot_scene = ExtResource("2_trpke")
 item_scene = ExtResource("3_el5y6")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -61,19 +63,8 @@ text = "[u][b]INVENTORY[/b][/u]"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="GridHolder" type="Control" parent="ColorRect/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer/GridHolder"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 4
 columns = 10
 

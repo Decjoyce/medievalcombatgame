@@ -38,6 +38,9 @@ const BOB_FREQ = 5
 const BOB_AMP = 0.03
 var t_bob = 0.0
 
+## Inventory
+@onready var inventory: Inventory = $Inventory
+
 func _ready() -> void:
 	ray_north.collide_with_areas = true
 	target_pos = position
@@ -106,7 +109,7 @@ func movement(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("walk_down")and !ray_south.is_colliding():
 		target_pos = target_pos + compass.basis.z * Vector3.ONE
-		
+	
 	target_pos.round() ## I cant remember why I round
 	#is_moving = true
 	
@@ -149,6 +152,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
+	
+	if Input.is_action_just_pressed("inv_toggle"):
+		inventory.toggle_inventory()
 	
 	joystick_movement(delta)
 	

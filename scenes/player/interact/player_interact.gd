@@ -7,7 +7,7 @@ var cam: Camera3D
 
 @export var hands: Array[Control] 
 var hand_sprites: Array[Control] 
-var item_sprites: Array[Control]
+var item_sprites: Array[TextureRect]
 
 @export var hand_speed: Array[float] = [500, 500] 
 const INT_RAY_LENGTH = 1.5
@@ -15,6 +15,8 @@ const INT_RAY_LENGTH = 1.5
 var interactables : Array[Interactable] = [null, null]
 
 @export var base_hand_sprite: Texture2D
+
+var is_interacting: Array[bool] = [false, false]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,22 +61,18 @@ func move_hand(hand:int, dir: Vector2, delta: float) -> void:
 
 func _input_handle():
 	if Input.is_action_just_pressed("equipped_action_left"):
-		begin_interact(0)
+		if !is_interacting[0]: begin_interact(0)
+		else: finish_interact(0)
 	
-	if Input.is_action_pressed("equipped_action_left"):
+	if is_interacting[0]:
 		interacting(0)
 	
-	if Input.is_action_just_released("equipped_action_left"):
-		finish_interact(0)
-	
 	if Input.is_action_just_pressed("equipped_action_right"):
-		begin_interact(1)
+		if !is_interacting[1]: begin_interact(1)
+		else: finish_interact(1)
 	
-	if Input.is_action_pressed("equipped_action_right"):
+	if is_interacting[1]:
 		interacting(1)
-	
-	if Input.is_action_just_released("equipped_action_right"):
-		finish_interact(1)
 
 ## Interaction
 
@@ -103,6 +101,7 @@ func interact_checker(hand:int) -> void:
 func begin_interact(hand: int) -> bool:
 	if !interactables[hand]: return false
 	interactables[hand].interact_begin(player, hand)
+	is_interacting[hand] = true
 	return true
 
 func interacting(hand: int) -> bool:
@@ -113,6 +112,7 @@ func interacting(hand: int) -> bool:
 func finish_interact(hand: int) -> bool:
 	if !interactables[hand]: return false
 	interactables[hand].interact_finish(player, hand)
+	is_interacting[hand] = false
 	return true
 
 
@@ -123,17 +123,22 @@ func finish_interact(hand: int) -> bool:
 func begin_grab(_grabbed_object: InteractableObj, _hand: int) -> void:
 	# item_sprites[hand].texture = grabbed_object.item.grabbed_sprite
 	grabbed_objs[_hand] = _grabbed_object
+	var tex_path = Inv_DataHandler.item_data[str(_grabbed_object.item_ID)]["Sprite_Path"]
+	if tex_path:
+		item_sprites[_hand].texture = load(tex_path)
 	pass
 
 func grabbing():
-	for i in 2:
-		if grabbed_objs[i] == null: continue
-		var origin = cam.project_ray_origin(hands[i].get_screen_position() + hands[i].size/2)
-		var end = origin + cam.project_ray_normal(hands[i].position + hands[i].size/2) * grab_distance
-		grabbed_objs[i].position = end
-		grabbed_objs[i].rotation = player.rotation
+	pass
+	#for i in 2:
+	#	if grabbed_objs[i] == null: continue
+		#var origin = cam.project_ray_origin(hands[i].get_screen_position() + hands[i].size/2)
+		#var end = origin + cam.project_ray_normal(hands[i].position + hands[i].size/2) * grab_distance
+		#grabbed_objs[i].position = end
+		#grabbed_objs[i].rotation = player.rotation
 
 func end_grab(_grabbed_object: InteractableObj, _hand: int):
 	grabbed_objs[_hand] = null
+	item_sprites[_hand].texture = null
 	if hands[_hand].get_screen_position().y <= size.y / 2.8:
 		_grabbed_object.throw(player.transform)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://enmoeaumacog"]
+[gd_scene load_steps=24 format=3 uid="uid://enmoeaumacog"]
 
 [ext_resource type="Script" uid="uid://cti3uncuqhvuc" path="res://scenes/player.gd" id="1_qfm1y"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="2_fulsm"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://c2rkykmady508" path="res://scenes/player/interact/player_interact.gd" id="16_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="16_gl8cc"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="17_487ah"]
+[ext_resource type="PackedScene" uid="uid://q16dlt14vne3" path="res://scenes/inventory/inventory.tscn" id="17_qfm1y"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qfm1y"]
 
@@ -109,6 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="left_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,6 +163,7 @@ flip_h = true
 metadata/_edit_use_anchors_ = true
 
 [node name="right_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,7 +245,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Control" type="Control" parent="Stats"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,6 +347,14 @@ collide_with_areas = true
 script = ExtResource("15_oprun")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+
+[node name="Inventory" parent="." node_paths=PackedStringArray("hand_left", "hand_right") instance=ExtResource("17_qfm1y")]
+visible = false
+offset_left = -0.000518799
+offset_top = -35.1649
+offset_right = 0.000549316
+hand_left = NodePath("../Interaction/Interact_hand_L")
+hand_right = NodePath("../Interaction/Interact_hand_R")
 
 [node name="Interaction" type="Control" parent="." node_paths=PackedStringArray("hands")]
 layout_mode = 3

@@ -20,6 +20,7 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
 script = ExtResource("1_5e87f")
+item_ID = 1
 rb = NodePath(".")
 prompt_sprite = ExtResource("2_epu43")
 

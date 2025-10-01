@@ -1,10 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwwraxwbxfy33"]
 
-[ext_resource type="Script" uid="uid://dkf13gru4ujtr" path="res://inv_item.gd" id="1_gwupl"]
+[ext_resource type="Script" uid="uid://dkf13gru4ujtr" path="res://scenes/inventory/inv_item.gd" id="1_gwupl"]
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_gwupl")
 
 [node name="icon" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

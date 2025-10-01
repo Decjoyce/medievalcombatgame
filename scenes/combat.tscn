@@ -2608,7 +2608,6 @@ mesh_library = SubResource("MeshLibrary_4gnb8")
 
 [node name="TestInteractable" parent="." instance=ExtResource("6_4gnb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.9)
-item = ExtResource("9_8we11")
 
 [node name="TestInteractable2" parent="." instance=ExtResource("6_4gnb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -6)

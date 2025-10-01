@@ -10,7 +10,7 @@ extends Interactable
 var is_held: bool
 
 @export_group("Item")
-@export var item: Equipment
+@export var item_ID: int
 var current_trig: ObjectTrigger
 
 ## Physics Properties
@@ -42,5 +42,5 @@ func throw(_trans: Transform3D):
 	#move_and_collide((_trans.basis.z * 1 * mass))
 	
 	print((_trans.basis.z * 3 * mass))
-	var jumpforce = sqrt(3 * -2 * rb.get_gravity().y)
-	rb.apply_central_impulse(-basis.z * jumpforce * mass)
+	var throughforce = sqrt(3 * -2 * rb.get_gravity().y)
+	rb.apply_central_impulse(-basis.z * throughforce * mass)
