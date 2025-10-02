@@ -20,8 +20,15 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
 script = ExtResource("1_5e87f")
+can_break = null
+num_hands_required_to_lift = null
 item_ID = 1
+gravity = null
 rb = NodePath(".")
+can_interact = null
+interact_type = null
+allow_npc_interaction = null
+prompt = null
 prompt_sprite = ExtResource("2_epu43")
 
 [node name="_col" type="CollisionShape3D" parent="."]

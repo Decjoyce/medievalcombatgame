@@ -3,6 +3,8 @@ extends Control
 
 @onready var player: Player = get_parent()
 
+@export var inventory: Inventory
+
 var cam: Camera3D
 
 @export var hands: Array[Control] 
@@ -100,8 +102,16 @@ func interact_checker(hand:int) -> void:
 
 func begin_interact(hand: int) -> bool:
 	if !interactables[hand]: return false
+	
+	match interactables[hand]:
+		InteractableObj.InteractionTypes.INSTANT: 
+			print("ass")
+		InteractableObj.InteractionTypes.ACTIVE: 
+			is_interacting[hand] = true
+		InteractableObj.InteractionTypes.HOLD:
+			pass
+	
 	interactables[hand].interact_begin(player, hand)
-	is_interacting[hand] = true
 	return true
 
 func interacting(hand: int) -> bool:
@@ -110,7 +120,6 @@ func interacting(hand: int) -> bool:
 	return true
 
 func finish_interact(hand: int) -> bool:
-	if !interactables[hand]: return false
 	interactables[hand].interact_finish(player, hand)
 	is_interacting[hand] = false
 	return true
@@ -126,6 +135,9 @@ func begin_grab(_grabbed_object: InteractableObj, _hand: int) -> void:
 	var tex_path = Inv_DataHandler.item_data[str(_grabbed_object.item_ID)]["Sprite_Path"]
 	if tex_path:
 		item_sprites[_hand].texture = load(tex_path)
+	
+	#inventory.item_held[_hand] = _grabbed_object.item_ID
+	
 	pass
 
 func grabbing():
@@ -139,6 +151,7 @@ func grabbing():
 
 func end_grab(_grabbed_object: InteractableObj, _hand: int):
 	grabbed_objs[_hand] = null
+	print("WO")
 	item_sprites[_hand].texture = null
 	if hands[_hand].get_screen_position().y <= size.y / 2.8:
 		_grabbed_object.throw(player.transform)
