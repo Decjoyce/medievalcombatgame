@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhqg75kbqm864"]
+
+[ext_resource type="Script" uid="uid://cltxrh7skqaip" path="res://scenes/inventory/inventory.gd" id="1_4axmw"]
+[ext_resource type="Texture2D" uid="uid://cx43sh7n2g05h" path="res://assets/h1kqXb2.png" id="1_msrby"]
+[ext_resource type="Script" uid="uid://bpnunje2xyph1" path="res://scenes/inventory/equipment_slots.gd" id="2_el5y6"]
+[ext_resource type="Script" uid="uid://desarn7h8s17x" path="res://scenes/inventory/inv_grid.gd" id="4_tvok8"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = 67.0
+offset_right = -223.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4axmw")
+
+[node name="BG" type="Panel" parent="."]
+modulate = Color(0.0941176, 0.0941176, 0.0941176, 1)
+layout_mode = 0
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 669.0
+offset_bottom = 257.0
+
+[node name="EquipmentSlots" type="Panel" parent="."]
+modulate = Color(0.0923971, 0.0923971, 0.0923971, 1)
+layout_mode = 0
+offset_left = 491.0
+offset_top = 2.0
+offset_right = 638.0
+offset_bottom = 257.0
+script = ExtResource("2_el5y6")
+
+[node name="HEAD" type="Panel" parent="EquipmentSlots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482993
+anchor_top = 0.0588235
+anchor_right = 0.482993
+anchor_bottom = 0.0588235
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CHEST" type="Panel" parent="EquipmentSlots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482993
+anchor_top = 0.27451
+anchor_right = 0.482993
+anchor_bottom = 0.439216
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LEGS" type="Panel" parent="EquipmentSlots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.489796
+anchor_top = 0.639216
+anchor_right = 0.489796
+anchor_bottom = 0.803922
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="WEAPON" type="Panel" parent="EquipmentSlots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0680272
+anchor_top = 0.262745
+anchor_right = 0.0680272
+anchor_bottom = 0.427451
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="GridSlots" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_msrby")
+script = ExtResource("4_tvok8")

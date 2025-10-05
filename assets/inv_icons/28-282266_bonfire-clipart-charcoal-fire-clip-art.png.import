@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpkt7gabtnyqy"
-path.s3tc="res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-14079134ef2bcad035c4cdada301015c.s3tc.ctex"
+path.s3tc="res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-4f3df870dff068d6f5c15a27e45ffcbd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/28-282266_bonfire-clipart-charcoal-fire-clip-art.png"
-dest_files=["res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-14079134ef2bcad035c4cdada301015c.s3tc.ctex"]
+source_file="res://assets/inv_icons/28-282266_bonfire-clipart-charcoal-fire-clip-art.png"
+dest_files=["res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-4f3df870dff068d6f5c15a27e45ffcbd.s3tc.ctex"]
 
 [params]
 
