@@ -32,6 +32,7 @@ func insert_item(item):
 func grab_item(pos):
 	var item = get_item_under_pos(pos)
 	if item == null:
+		print("o")
 		return null
  
 	var item_pos = item.global_position + Vector2(cell_size / 2, cell_size / 2)
@@ -74,6 +75,7 @@ func set_grid_space(x, y, w, h, state):
  
 func get_item_under_pos(pos):
 	for item in items:
+		print(item)
 		if item.get_global_rect().has_point(pos):
 			return item
 	return null

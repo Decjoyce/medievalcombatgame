@@ -82,7 +82,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="GridSlots" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 448.0
+offset_bottom = 256.0
 texture = ExtResource("1_msrby")
+expand_mode = 1
 script = ExtResource("4_tvok8")
