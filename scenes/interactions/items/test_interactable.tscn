@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwom3t0n1alr8"]
 
-[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://scenes/items/interactable_obj.gd" id="1_5e87f"]
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://scenes/interactions/items/interactable_obj.gd" id="1_5e87f"]
 [ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_epu43"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Inv_DataHandler="*res://scenes/inventory/inv_data_handler.gd"
+Inv_DataHandler="*res://scenes/OBSELETE_inventory/OLD_inv_data_handler.gd"
 
 [display]
 

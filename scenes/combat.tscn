@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://cmfy8ovuj3ycm"]
 
-[ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/enemy.tscn" id="2_yxda2"]
+[ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/entities/enemies/enemy.tscn" id="2_yxda2"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="3_aic3r"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="4_4l26h"]
-[ext_resource type="PackedScene" uid="uid://djfw40idmjem8" path="res://scenes/door.tscn" id="4_vcae8"]
-[ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player.tscn" id="5_p71o4"]
-[ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://scenes/health_pack.tscn" id="5_vcae8"]
-[ext_resource type="PackedScene" uid="uid://dwom3t0n1alr8" path="res://scenes/items/test_interactable.tscn" id="6_4gnb8"]
-[ext_resource type="PackedScene" uid="uid://ds5rps673cu3k" path="res://scenes/lever.tscn" id="7_osi8t"]
+[ext_resource type="PackedScene" uid="uid://djfw40idmjem8" path="res://scenes/interactions/door.tscn" id="4_vcae8"]
+[ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player/player.tscn" id="5_p71o4"]
+[ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://scenes/interactions/health_pack.tscn" id="5_vcae8"]
+[ext_resource type="PackedScene" uid="uid://dwom3t0n1alr8" path="res://scenes/interactions/items/test_interactable.tscn" id="6_4gnb8"]
+[ext_resource type="PackedScene" uid="uid://ds5rps673cu3k" path="res://scenes/interactions/lever.tscn" id="7_osi8t"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="9_8we11"]
-[ext_resource type="PackedScene" uid="uid://mxnuah6wha20" path="res://scenes/lock.tscn" id="9_sa5k0"]
+[ext_resource type="PackedScene" uid="uid://mxnuah6wha20" path="res://scenes/interactions/lock.tscn" id="9_sa5k0"]
 
 [sub_resource type="Gradient" id="Gradient_4l26h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

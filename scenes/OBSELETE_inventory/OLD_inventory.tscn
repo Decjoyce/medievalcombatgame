@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://q16dlt14vne3"]
 
-[ext_resource type="Script" uid="uid://d2np8r2k6cfpb" path="res://inventory.gd" id="1_msrby"]
-[ext_resource type="PackedScene" uid="uid://cedjeduib67e7" path="res://scenes/inventory/inv_slot.tscn" id="2_4axmw"]
+[ext_resource type="Script" uid="uid://d2np8r2k6cfpb" path="res://scenes/OBSELETE_inventory/OLD_inventory.gd" id="1_u484a"]
+[ext_resource type="PackedScene" uid="uid://cedjeduib67e7" path="res://scenes/OBSELETE_inventory/OLD_inv_slot.tscn" id="2_tspf6"]
 
 [node name="Inventory" type="Control"]
 custom_minimum_size = Vector2(689.215, 235.165)
@@ -12,8 +12,8 @@ anchor_right = 0.799138
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_msrby")
-slot_scene = ExtResource("2_4axmw")
+script = ExtResource("1_u484a")
+slot_scene = ExtResource("2_tspf6")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

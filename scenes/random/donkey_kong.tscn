@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnsmall0ublyv"]
 
-[ext_resource type="Script" uid="uid://bol603jub5sj5" path="res://donkeykong.gd" id="1_0p1se"]
+[ext_resource type="Script" uid="uid://bol603jub5sj5" path="res://scenes/random/donkeykong.gd" id="1_0p1se"]
 [ext_resource type="Texture2D" uid="uid://b67mxsk4i3agg" path="res://icon.svg" id="2_cx5kg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cx5kg"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cedjeduib67e7"]
 
-[ext_resource type="Script" uid="uid://daj4kc1jeajss" path="res://scenes/inventory/inv_slot.gd" id="1_je04x"]
+[ext_resource type="Script" uid="uid://daj4kc1jeajss" path="res://scenes/OBSELETE_inventory/OLD_inv_slot.gd" id="1_je04x"]
 [ext_resource type="Texture2D" uid="uid://b6fg5apbvrq0r" path="res://assets/TEMP_inv_slot.png" id="1_raikb"]
 
 [node name="Slot" type="TextureRect"]

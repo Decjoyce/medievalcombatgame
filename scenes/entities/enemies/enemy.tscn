@@ -1,16 +1,16 @@
 [gd_scene load_steps=17 format=3 uid="uid://cfk63cv4shlt6"]
 
-[ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/enemy.gd" id="1_8qclf"]
-[ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="2_w8i8w"]
-[ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_otmr2"]
+[ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/entities/enemies/enemy.gd" id="1_8qclf"]
+[ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scripts/stance.gd" id="2_w8i8w"]
+[ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://scripts/equipment.gd" id="3_otmr2"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_j0cyh"]
-[ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scenes/stats.gd" id="6_g0wcc"]
+[ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scripts/stats.gd" id="6_g0wcc"]
 [ext_resource type="Texture2D" uid="uid://cv4oo67ib3kr7" path="res://assets/skel_idle.png" id="7_s1ycm"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="8_shcg2"]
 [ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="8_w8i8w"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="9_ile5s"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="10_1x4g4"]
-[ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="12_otmr2"]
+[ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scripts/deco_ray_cast_3d.gd" id="12_otmr2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwwraxwbxfy33"]
 
-[ext_resource type="Script" uid="uid://dkf13gru4ujtr" path="res://inv_item.gd" id="1_gwupl"]
+[ext_resource type="Script" uid="uid://dkf13gru4ujtr" path="res://scenes/OBSELETE_inventory/OLD_inv_item.gd" id="1_pq447"]
 
 [node name="Item" type="Node2D"]
-script = ExtResource("1_gwupl")
+script = ExtResource("1_pq447")
 
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
