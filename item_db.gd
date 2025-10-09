@@ -14,6 +14,10 @@ const ITEMS = {
 		"icon": ICON_PATH + "potato.png",
 		"slot": "NONE"
 	},
+	"apple":{
+		"icon": ICON_PATH + "apple.png",
+		"slot": "NONE"
+	},
 	"_error":{
 		"icon": ICON_PATH + "error.png",
 		"slot": "NONE"

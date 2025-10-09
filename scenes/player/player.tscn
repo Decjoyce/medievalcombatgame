@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://enmoeaumacog"]
+[gd_scene load_steps=28 format=3 uid="uid://enmoeaumacog"]
 
 [ext_resource type="Script" uid="uid://cti3uncuqhvuc" path="res://scenes/player/player.gd" id="1_myrg7"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="2_kvlxm"]
@@ -15,7 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="13_28m0y"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scripts/deco_ray_cast_3d.gd" id="14_uniwh"]
 [ext_resource type="Script" uid="uid://c2rkykmady508" path="res://scenes/player/interact/player_interact.gd" id="15_iqsei"]
+[ext_resource type="PackedScene" uid="uid://bhqg75kbqm864" path="res://scenes/inventory/inventory.tscn" id="15_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://b5ibaced03c8j" path="res://assets/fpshands/hand_t.png" id="16_tffgl"]
+[ext_resource type="Texture2D" uid="uid://dbv3ov73s3a6o" path="res://assets/zbQ3rh.png" id="17_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="18_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://6eduqaxo0hjw" path="res://assets/apple.png" id="20_3j4b4"]
+[ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="21_yj68g"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qfm1y"]
 
@@ -123,10 +128,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 171.0
-offset_top = -15.0
-offset_right = 171.0
-offset_bottom = -15.0
+offset_left = 37.0
+offset_top = -46.0
+offset_right = 37.0
+offset_bottom = -46.0
 grow_vertical = 2
 
 [node name="_sword" type="TextureRect" parent="_graphics/left_hand/_holder"]
@@ -178,9 +183,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -265.0
+offset_left = -189.0
 offset_top = -16.0
-offset_right = -265.0
+offset_right = -189.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -346,9 +351,16 @@ target_position = Vector3(-1.5, 0, 0)
 collide_with_areas = true
 script = ExtResource("14_uniwh")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Inventory" parent="." instance=ExtResource("15_lgqa7")]
 
-[node name="Interaction" type="Control" parent="." node_paths=PackedStringArray("hands")]
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.481789, 0.481789, 0.481789, 1)
+light_energy = 0.407
+light_indirect_energy = 0.0
+distance_fade_enabled = true
+omni_range = 3.67272
+
+[node name="Interaction" type="Control" parent="." node_paths=PackedStringArray("hands", "inv")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -358,6 +370,7 @@ grow_vertical = 2
 script = ExtResource("15_iqsei")
 hands = [NodePath("Interact_hand_L"), NodePath("Interact_hand_R")]
 base_hand_sprite = ExtResource("16_tffgl")
+inv = NodePath("../Inventory")
 metadata/_edit_use_anchors_ = true
 
 [node name="Interact_hand_L" type="Control" parent="Interaction"]
@@ -369,13 +382,22 @@ anchor_bottom = 0.548333
 metadata/_edit_use_anchors_ = true
 
 [node name="_item_sprite_L" type="TextureRect" parent="Interaction/Interact_hand_L"]
+visible = false
+custom_minimum_size = Vector2(226.5, 226.5)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.83
+anchor_top = -0.850005
+anchor_right = 2.07308
+anchor_bottom = 0.503728
+offset_right = -63.808
+offset_bottom = 91.1272
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.349066
+texture = ExtResource("17_uf5tr")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="_hand_sprite_L" type="TextureRect" parent="Interaction/Interact_hand_L"]
 layout_mode = 1
@@ -384,7 +406,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_tffgl")
+texture = ExtResource("18_lgqa7")
 expand_mode = 1
 
 [node name="Interact_hand_R" type="Control" parent="Interaction"]
@@ -397,12 +419,18 @@ offset_right = 6.10352e-05
 metadata/_edit_use_anchors_ = true
 
 [node name="_item_sprite_R" type="TextureRect" parent="Interaction/Interact_hand_R"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.99997
+offset_top = -31.0
+offset_right = -5.99997
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("20_3j4b4")
 expand_mode = 1
 flip_h = true
 
@@ -413,7 +441,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_tffgl")
+texture = ExtResource("21_yj68g")
 expand_mode = 1
 flip_h = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmfy8ovuj3ycm"]
+[gd_scene load_steps=18 format=3 uid="uid://cmfy8ovuj3ycm"]
 
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/entities/enemies/enemy.tscn" id="2_yxda2"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="3_aic3r"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dwom3t0n1alr8" path="res://scenes/interactions/items/test_interactable.tscn" id="6_4gnb8"]
 [ext_resource type="PackedScene" uid="uid://ds5rps673cu3k" path="res://scenes/interactions/lever.tscn" id="7_osi8t"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="9_8we11"]
-[ext_resource type="PackedScene" uid="uid://mxnuah6wha20" path="res://scenes/interactions/lock.tscn" id="9_sa5k0"]
+[ext_resource type="PackedScene" uid="uid://biuatcy75i026" path="res://scenes/interactions/items/fordemopurposesitem.tscn" id="10_8we11"]
+[ext_resource type="PackedScene" uid="uid://wlo7ao8rtr7a" path="res://scenes/interactions/items/fordemopurposesitem2.tscn" id="11_hrcy2"]
 
 [sub_resource type="Gradient" id="Gradient_4l26h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -30,6 +31,10 @@ item/0/mesh_cast_shadow = 1
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
+rough = true
+absorbent = true
 
 [node name="Combat" type="Node3D"]
 
@@ -513,6 +518,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
+collision_layer = 2
+collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall7"]
@@ -540,6 +547,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
+collision_layer = 2
+collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall8"]
@@ -549,15 +558,15 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 use_collision = true
-size = Vector3(0.1, 1.7, 2)
+size = Vector3(0.1, 1.7, 4)
 material = ExtResource("3_aic3r")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hall8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 use_collision = true
-size = Vector3(0.1, 1.7, 2)
+size = Vector3(0.1, 1.7, 4)
 material = ExtResource("3_aic3r")
 
 [node name="Hall_J3" type="Node3D" parent="Environment"]
@@ -663,6 +672,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
+collision_layer = 2
+collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall_M2"]
@@ -678,6 +689,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -16)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
+collision_layer = 2
+collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall_M6"]
@@ -2607,18 +2620,15 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.9, 
 mesh_library = SubResource("MeshLibrary_4gnb8")
 
 [node name="TestInteractable" parent="." instance=ExtResource("6_4gnb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 1.19623)
 item = ExtResource("9_8we11")
 
-[node name="TestInteractable2" parent="." instance=ExtResource("6_4gnb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -6)
+[node name="TestInteractable2" parent="." instance=ExtResource("10_8we11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.5, -10.3099)
+physics_material_override = SubResource("PhysicsMaterial_epu43")
 
-[node name="lock" parent="." node_paths=PackedStringArray("key") instance=ExtResource("9_sa5k0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.1, -1)
-key = NodePath("../TestInteractable2")
-use_item = true
-item_key = ExtResource("9_8we11")
+[node name="TestInteractable3" parent="." instance=ExtResource("11_hrcy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.59975, -0.649784, -10.1535)
 
 [connection signal="on_interact_begin" from="Lever" to="Door" method="toggle_door"]
 [connection signal="on_interact_begin" from="Lever2" to="Door" method="toggle_door"]
-[connection signal="activated" from="lock" to="Door" method="open_door"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://biuatcy75i026"]
+
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://scenes/interactions/items/interactable_obj.gd" id="1_eiaeq"]
+[ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="2_whsel"]
+[ext_resource type="Texture2D" uid="uid://dbv3ov73s3a6o" path="res://assets/zbQ3rh.png" id="3_whsel"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
+rough = true
+absorbent = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_whsel"]
+radius = 0.2
+
+[node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
+collision_layer = 2
+collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_epu43")
+gravity_scale = 0.112
+script = ExtResource("1_eiaeq")
+mass = 2.0
+rb = NodePath(".")
+bs = true
+bs2 = true
+prompt_sprite = ExtResource("2_whsel")
+
+[node name="_col" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_whsel")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.63, 0.357, 0, 1)
+light_energy = 1.888
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.002
+billboard = 1
+texture = ExtResource("3_whsel")

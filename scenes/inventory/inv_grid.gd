@@ -43,6 +43,21 @@ func grab_item(pos):
 	items.remove_at(items.find(item))
 	return item
  
+func force_grab_item(index: Control):
+	var item = index
+	if item == null:
+		print("o")
+		return null
+ 
+	var item_pos = item.global_position + Vector2(cell_size / 2, cell_size / 2)
+	var g_pos = pos_to_grid_coord(item_pos)
+	var item_size = get_grid_size(item)
+	set_grid_space(g_pos.x, g_pos.y, item_size.x, item_size.y, false)
+ 
+	items.remove_at(items.find(item))
+	print("me")
+	return item
+
 func pos_to_grid_coord(pos):
 	var local_pos = pos - global_position
 	var results = {}

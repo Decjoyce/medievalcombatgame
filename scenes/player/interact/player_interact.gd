@@ -16,6 +16,10 @@ var interactables : Array[Interactable] = [null, null]
 
 @export var base_hand_sprite: Texture2D
 
+@export var inv: Inventory
+
+var no: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for han in hands:
@@ -26,6 +30,7 @@ func _ready() -> void:
 				item_sprites.append(i)
 	await player.ready
 	cam = player.cam
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,6 +44,21 @@ func _process(delta: float) -> void:
 	interact_checker(1)
 	
 	grabbing()
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		no = !no
+	
+	if no:
+		warp_mouse(hands[1].position)
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if inv.meactive:
+		if hands[1].global_position.y > 430:
+			hands[1].scale = Vector2.ONE * 0.6
+		else:
+			hands[1].scale = Vector2.ONE
 
 func joystick_movement(delta: float) -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
@@ -123,6 +143,8 @@ func finish_interact(hand: int) -> bool:
 func begin_grab(_grabbed_object: InteractableObj, _hand: int) -> void:
 	# item_sprites[hand].texture = grabbed_object.item.grabbed_sprite
 	grabbed_objs[_hand] = _grabbed_object
+	if grabbed_objs[_hand].bs2:
+		item_sprites[_hand].visible = true
 	pass
 
 func grabbing():
@@ -130,10 +152,12 @@ func grabbing():
 		if grabbed_objs[i] == null: continue
 		var origin = cam.project_ray_origin(hands[i].get_screen_position() + hands[i].size/2)
 		var end = origin + cam.project_ray_normal(hands[i].position + hands[i].size/2) * grab_distance
-		grabbed_objs[i].position = end
+		grabbed_objs[i].position = end + (Vector3.UP * 0.1) 
 		grabbed_objs[i].rotation = player.rotation
 
 func end_grab(_grabbed_object: InteractableObj, _hand: int):
+	if grabbed_objs[_hand].bs2:
+		item_sprites[_hand].visible = false
 	grabbed_objs[_hand] = null
 	if hands[_hand].get_screen_position().y <= size.y / 2.8:
 		_grabbed_object.throw(player.transform)

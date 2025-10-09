@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://wlo7ao8rtr7a"]
+
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://scenes/interactions/items/interactable_obj.gd" id="1_tsaa4"]
+[ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_tsaa4"]
+[ext_resource type="Texture2D" uid="uid://6eduqaxo0hjw" path="res://assets/apple.png" id="3_tsaa4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
+rough = true
+absorbent = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_whsel"]
+radius = 0.1
+
+[node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
+collision_layer = 2
+collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_epu43")
+gravity_scale = 0.112
+script = ExtResource("1_tsaa4")
+rb = NodePath(".")
+bs = true
+bs2 = true
+bs3 = true
+prompt_sprite = ExtResource("2_tsaa4")
+
+[node name="_col" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_whsel")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0008
+billboard = 1
+texture = ExtResource("3_tsaa4")

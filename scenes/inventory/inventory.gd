@@ -1,3 +1,4 @@
+class_name Inventory
 extends Control
  
 
@@ -25,10 +26,28 @@ func _ready():
 	pickup_item("sword")
 	pickup_item("breastplate")
 	pickup_item("breastplate")
-	pickup_item("khfdd")
+	pickup_item("apple")
+	force_grab(1, 9)
  
+var meactive := false 
+func open_me():
+	visible = true
+	meactive = true
  
+func close_me():
+	visible = false
+	meactive = false
+
+func toggle_me():
+	meactive = !meactive
+	if meactive: open_me()
+	else: close_me()
+
 func _process(delta):
+	
+	if Input.is_action_just_pressed("inv_openme"):
+		toggle_me()
+	
 	var cursor_pos = get_global_mouse_position()
 	if Input.is_action_just_pressed("left_hand_control"):
 		grab(0, cursor_pos)
@@ -37,10 +56,12 @@ func _process(delta):
 	if item_held[0] != null:
 		item_held[0].global_position = cursor_pos + item_offset[0]
 		
-	if Input.is_action_just_pressed("right_hand_control"):
-		grab(1, cursor_pos)
-	if Input.is_action_just_released("right_hand_control"):
-		release(1, cursor_pos)
+	#if Input.is_action_just_pressed("right_hand_control"):
+	#	grab(1, cursor_pos)
+	if meactive:
+		if Input.is_action_just_released("equipped_action_right"):
+			print("o")
+			release(1, cursor_pos)
 	if item_held[1] != null:
 		item_held[1].global_position = cursor_pos + item_offset[1]
  
@@ -55,10 +76,24 @@ func grab(hand:int, cursor_pos):
 			move_child(item_held[hand], get_child_count())
 			#item_held[hand].mouse_filter = Control.MOUSE_FILTER_IGNORE ## SOLUTION
  
+func force_grab(hand:int, index: int):
+	var c = get_child(index)
+	print(get_child(index))
+	if c != null:
+		item_held[hand] = grid_bkpk.force_grab_item(c)
+		if item_held[hand] != null:
+			last_container[hand] = grid_bkpk
+			last_pos[hand] = item_held[hand].global_position
+			item_offset[hand] = Vector2.RIGHT * 0.2
+			move_child(item_held[hand], get_child_count())
+			c.visible = false
+		print("print")
+
 func release(hand:int, cursor_pos):
 	if item_held[hand] == null:
 		return
 	var c = get_container_under_cursor(cursor_pos)
+	item_held[hand].visible = true
 	if c == null:
 		drop_item(hand)
 	elif c.has_method("insert_item"):
