@@ -100,8 +100,10 @@ func _on_recovery_end() -> void:
 	windup()
 	for i in attack_queue[current_attack_index].hand_attack_strings.size():
 		var dog = uiattack[attack_queue[current_attack_index].hand_attack_strings[i]]
+		print(dog)
 		var tween = get_tree().create_tween()
-		tween.tween_property(dog, "scale", Vector2(), 1.0).set_trans(Tween.TRANS_BOUNCE)
+		print(tween)
+		tween.tween_property(dog, "scale", Vector3(), 1.0).set_trans(Tween.TRANS_BOUNCE)
 	timer_windup.start()
 
 #Attack Begin

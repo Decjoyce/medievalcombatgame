@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://cfk63cv4shlt6"]
+[gd_scene load_steps=28 format=3 uid="uid://cfk63cv4shlt6"]
 
 [ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/enemy.gd" id="1_8qclf"]
-[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="2_g0wcc"]
+[ext_resource type="Script" path="res://attackdata.gd" id="2_g0wcc"]
 [ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="2_w8i8w"]
 [ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_otmr2"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_j0cyh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cv4oo67ib3kr7" path="res://assets/skel_idle.png" id="7_s1ycm"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="8_shcg2"]
 [ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="8_w8i8w"]
+[ext_resource type="Texture2D" uid="uid://facya755qgwh" path="res://bellybog/BellyWalk_n.png" id="9_g0wcc"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="9_ile5s"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="10_1x4g4"]
 [ext_resource type="Script" uid="uid://dr6ogkwaipmyy" path="res://extras_sprites/scripts/sprite_3D_billboard.gd" id="10_g0wcc"]
@@ -38,7 +39,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5n2y"]
 bg_color = Color(0.55, 0, 0, 1)
 
-[sub_resource type="Shader" id="Shader_j0cyh"]
+[sub_resource type="Shader" id="Shader_s1ycm"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -115,24 +116,26 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0wcc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shcg2"]
 render_priority = 0
-shader = SubResource("Shader_j0cyh")
+shader = SubResource("Shader_s1ycm")
 shader_parameter/rows = 4.0
 shader_parameter/columns = 8.0
 shader_parameter/frame = 0.0
 shader_parameter/invert_rows_columns = false
 shader_parameter/sprite = ExtResource("11_j0cyh")
 shader_parameter/mode = 0
+shader_parameter/Normal = ExtResource("9_g0wcc")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_s1ycm"]
-material = SubResource("ShaderMaterial_g0wcc")
+[sub_resource type="PlaneMesh" id="PlaneMesh_ile5s"]
+material = SubResource("ShaderMaterial_shcg2")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
-[sub_resource type="Resource" id="Resource_shcg2"]
+[sub_resource type="Resource" id="Resource_1x4g4"]
 script = ExtResource("11_s1ycm")
 sprite = ExtResource("11_j0cyh")
+texture_normal = ExtResource("9_g0wcc")
 rows = 4.0
 columns = 8.0
 
@@ -145,7 +148,7 @@ script = ExtResource("1_8qclf")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 disabled = false
-attack_queue = Array[ExtResource("2_g0wcc")]([SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc")])
+attack_queue = Array[ExtResource("2_g0wcc")]([SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc"), SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc")])
 uiattack = [NodePath("_ui_stance/R/R2"), NodePath("_ui_stance/BR/BR2"), NodePath("_ui_stance/B/B2"), NodePath("_ui_stance/BL/BL2"), NodePath("_ui_stance/L/L2"), NodePath("_ui_stance/TL/TL2"), NodePath("_ui_stance/T/T2"), NodePath("_ui_stance/TR/TR2")]
 metadata/_custom_type_script = "uid://y3exhbrhlsof"
 
@@ -332,9 +335,9 @@ texture = ExtResource("7_s1ycm")
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="_graphics"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.15703505, 0)
 visible = false
-mesh = SubResource("PlaneMesh_s1ycm")
+mesh = SubResource("PlaneMesh_ile5s")
 script = ExtResource("10_g0wcc")
-animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_shcg2")])
+animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_1x4g4")])
 animation = 0
 frame = 0.0
 sprite_scale = 0.001
@@ -359,15 +362,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141903, 0)
 shape = SubResource("CapsuleShape3D_8qclf")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -2)
 script = ExtResource("12_otmr2")
 metadata/_custom_type_script = "uid://24tkivt38wsk"
 
 [node name="Timer_Recovery" type="Timer" parent="."]
+one_shot = true
 
 [node name="Timer_Windup" type="Timer" parent="."]
+one_shot = true
 
 [node name="Timer_Attack" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Stats/Timer_Stam" to="Stats" method="_on_timer_stam_timeout"]
 [connection signal="on_body_entered" from="RayCast3D" to="Stance" method="_on_raycast_enter"]
