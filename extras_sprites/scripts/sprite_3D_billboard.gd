@@ -155,6 +155,7 @@ func clone_animation_data(source:AnimationData)-> AnimationData:
 	clone.columns = source.columns
 	clone.invert_rows_columns = source.invert_rows_columns
 	clone.mode = source.mode
+	clone.texture_normal = source.texture_normal
 	clone.texture_detail_normal = source.texture_detail_normal
 	return clone
 
