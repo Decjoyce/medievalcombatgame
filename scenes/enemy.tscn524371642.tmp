@@ -140,17 +140,17 @@ columns = 8.0
 radius = 0.236233
 height = 1.06534
 
-[node name="Enemy" type="StaticBody3D" node_paths=PackedStringArray("timer", "timer2", "uiattack")]
+[node name="Enemy" type="StaticBody3D" node_paths=PackedStringArray("timer", "timer2")]
 script = ExtResource("1_8qclf")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 disabled = false
 attack_queue = Array[ExtResource("2_g0wcc")]([SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc")])
-uiattack = [NodePath("_ui_stance/R/R2"), NodePath("_ui_stance/BR/BR2"), NodePath("_ui_stance/B/B2"), NodePath("_ui_stance/BL/BL2"), NodePath("_ui_stance/L/L2"), NodePath("_ui_stance/TL/TL2"), NodePath("_ui_stance/T/T2"), NodePath("_ui_stance/TR/TR2")]
 metadata/_custom_type_script = "uid://y3exhbrhlsof"
 
 [node name="_ui_stance" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.214)
+visible = false
 
 [node name="octagon" type="Sprite3D" parent="_ui_stance"]
 modulate = Color(0, 0, 0, 1)
@@ -159,89 +159,49 @@ texture = ExtResource("8_shcg2")
 
 [node name="R" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, 0.117, 0.00299495, -0.000312999)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="R2" type="Sprite3D" parent="_ui_stance/R"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="BR" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, 0.0825845, -0.078627, 0)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="BR2" type="Sprite3D" parent="_ui_stance/BR"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="B" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.000674158, -0.114318, -0.000312999)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="B2" type="Sprite3D" parent="_ui_stance/B"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="BL" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, -0.0841064, -0.080111, -0.000312999)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="BL2" type="Sprite3D" parent="_ui_stance/BL"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="L" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, -0.117, 0.00336599, -0.000312999)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="L2" type="Sprite3D" parent="_ui_stance/L"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="TL" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, -0.0809168, 0.084874, 0)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="TL2" type="Sprite3D" parent="_ui_stance/TL"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="T" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.12, 0)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="T2" type="Sprite3D" parent="_ui_stance/T"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="TR" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, 0.0816879, 0.085683, -0.000312999)
-render_priority = 1
-texture = SubResource("CanvasTexture_8qclf")
-
-[node name="TR2" type="Sprite3D" parent="_ui_stance/TR"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-modulate = Color(1, 0, 0, 1)
+visible = false
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 

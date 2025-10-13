@@ -21,7 +21,7 @@ background_mode = 1
 ambient_light_source = 1
 reflected_light_source = 1
 
-[sub_resource type="Shader" id="Shader_m0t0m"]
+[sub_resource type="Shader" id="Shader_47vgy"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -98,26 +98,24 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yb6aq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_toxmr"]
 render_priority = 0
-shader = SubResource("Shader_m0t0m")
+shader = SubResource("Shader_47vgy")
 shader_parameter/rows = 4.0
 shader_parameter/columns = 8.0
 shader_parameter/frame = 0.0
 shader_parameter/invert_rows_columns = false
 shader_parameter/sprite = ExtResource("8_klc8k")
 shader_parameter/mode = 0
-shader_parameter/Normal = ExtResource("9_jie3d")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_h4333"]
-material = SubResource("ShaderMaterial_yb6aq")
+[sub_resource type="PlaneMesh" id="PlaneMesh_ebo3n"]
+material = SubResource("ShaderMaterial_toxmr")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
-[sub_resource type="Resource" id="Resource_eqtu8"]
+[sub_resource type="Resource" id="Resource_3rk4h"]
 script = ExtResource("7_3rk4h")
 sprite = ExtResource("8_klc8k")
-texture_normal = ExtResource("9_jie3d")
 texture_detail_normal = ExtResource("9_jie3d")
 rows = 4.0
 columns = 8.0
@@ -2786,9 +2784,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="Enemies/Enemy"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.313904e-09, 0, 0.049345016)
-mesh = SubResource("PlaneMesh_h4333")
+mesh = SubResource("PlaneMesh_ebo3n")
 script = ExtResource("6_ebo3n")
-animations_array = Array[ExtResource("7_3rk4h")]([SubResource("Resource_eqtu8")])
+animations_array = Array[ExtResource("7_3rk4h")]([SubResource("Resource_3rk4h")])
 animation = 0
 frame = 0.0
 sprite_scale = 0.001
