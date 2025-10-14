@@ -18,18 +18,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if enemy:
-		look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
+	pass
+	#if enemy:
+	#	look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
 
 ## Just rotates to face player and stores them as their enemy
 func enemy_entered(_new_enemy: Entity) -> void:
 	stance_graphic.visible = true
 	enemy = _new_enemy as Player
 	first_attack()
-	if enemy:
-		look_at(enemy.position)
-	else:
-		stance_graphic.visible = false
+	#if enemy:
+		#look_at(enemy.position)
+	#else:
+	#	stance_graphic.visible = false
 
 
 var rng: RandomNumberGenerator
@@ -82,6 +83,7 @@ func windup() -> void:
 	is_attacking = true
 	for i in attack_queue[current_attack_index].hand_attack_strings.size():
 		stance.occupy_slot(attack_queue[current_attack_index].hand_attack_strings[i], i)
+	timer_windup.start()
 	
 
 @export var attack_queue: Array[AttackData]
@@ -90,6 +92,7 @@ func windup() -> void:
 func attack_q() -> void:
 	for i in attack_queue[current_attack_index].hand_attacking.size():
 		stance.attack_opponent(i)
+	timer_attack.start()
 	#sprite changing thing
 
 @export var uiattack : Array[Sprite3D]
@@ -98,19 +101,11 @@ func attack_q() -> void:
 func _on_recovery_end() -> void:
 	print("John")
 	windup()
-	for i in attack_queue[current_attack_index].hand_attack_strings.size():
-		var dog = uiattack[attack_queue[current_attack_index].hand_attack_strings[i]]
-		print(dog)
-		var tween = get_tree().create_tween()
-		print(tween)
-		tween.tween_property(dog, "scale", Vector3(), 1.0).set_trans(Tween.TRANS_BOUNCE)
-	timer_windup.start()
 
 #Attack Begin
 func _on_wind_up_end() -> void:
 	print("Cena")
 	attack_q()
-	timer_attack.start()
 
 #Recovery Begin
 func _on_attack_end() -> void:

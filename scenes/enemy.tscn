@@ -1,12 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://cfk63cv4shlt6"]
+[gd_scene load_steps=29 format=3 uid="uid://cfk63cv4shlt6"]
 
 [ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/enemy.gd" id="1_8qclf"]
-[ext_resource type="Script" path="res://attackdata.gd" id="2_g0wcc"]
+[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="2_g0wcc"]
 [ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="2_w8i8w"]
 [ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_otmr2"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_j0cyh"]
 [ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scenes/stats.gd" id="6_g0wcc"]
 [ext_resource type="Texture2D" uid="uid://cv4oo67ib3kr7" path="res://assets/skel_idle.png" id="7_s1ycm"]
+[ext_resource type="Resource" uid="uid://31jgm06mt7ms" path="res://resources/equipment/test_shield.tres" id="7_shcg2"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="8_shcg2"]
 [ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="8_w8i8w"]
 [ext_resource type="Texture2D" uid="uid://facya755qgwh" path="res://bellybog/BellyWalk_n.png" id="9_g0wcc"]
@@ -21,11 +22,18 @@
 script = ExtResource("2_g0wcc")
 hand_attack_strings = Array[int]([4, 6])
 hand_attacking = Array[int]([0, 0])
+recovery_time = 1.0
+wind_up_time = 1.0
+attack_time = 1.0
 metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
 
 [sub_resource type="Resource" id="Resource_g0wcc"]
 script = ExtResource("2_g0wcc")
 hand_attack_strings = Array[int]([5, 7])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 1.0
+wind_up_time = 1.0
+attack_time = 1.0
 metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
@@ -251,7 +259,7 @@ texture = SubResource("CanvasTexture_8qclf")
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("2_w8i8w")
 slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
-hands = Array[ExtResource("3_otmr2")]([ExtResource("5_j0cyh"), ExtResource("5_j0cyh"), ExtResource("5_j0cyh")])
+hands = Array[ExtResource("3_otmr2")]([ExtResource("5_j0cyh"), ExtResource("7_shcg2")])
 stats = NodePath("../Stats")
 temp_timer_stam = NodePath("../Stats/Timer_Stam")
 temp_octagon_display = [NodePath("../_ui_stance/R"), NodePath("../_ui_stance/BR"), NodePath("../_ui_stance/B"), NodePath("../_ui_stance/BL"), NodePath("../_ui_stance/L"), NodePath("../_ui_stance/TL"), NodePath("../_ui_stance/T"), NodePath("../_ui_stance/TR")]
