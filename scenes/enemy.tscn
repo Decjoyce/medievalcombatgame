@@ -47,7 +47,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5n2y"]
 bg_color = Color(0.55, 0, 0, 1)
 
-[sub_resource type="Shader" id="Shader_s1ycm"]
+[sub_resource type="Shader" id="Shader_shcg2"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -124,9 +124,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_shcg2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ile5s"]
 render_priority = 0
-shader = SubResource("Shader_s1ycm")
+shader = SubResource("Shader_shcg2")
 shader_parameter/rows = 4.0
 shader_parameter/columns = 8.0
 shader_parameter/frame = 0.0
@@ -135,12 +135,12 @@ shader_parameter/sprite = ExtResource("11_j0cyh")
 shader_parameter/mode = 0
 shader_parameter/Normal = ExtResource("9_g0wcc")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ile5s"]
-material = SubResource("ShaderMaterial_shcg2")
+[sub_resource type="PlaneMesh" id="PlaneMesh_1x4g4"]
+material = SubResource("ShaderMaterial_ile5s")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
-[sub_resource type="Resource" id="Resource_1x4g4"]
+[sub_resource type="Resource" id="Resource_2pwtc"]
 script = ExtResource("11_s1ycm")
 sprite = ExtResource("11_j0cyh")
 texture_normal = ExtResource("9_g0wcc")
@@ -343,9 +343,9 @@ texture = ExtResource("7_s1ycm")
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="_graphics"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.15703505, 0)
 visible = false
-mesh = SubResource("PlaneMesh_ile5s")
+mesh = SubResource("PlaneMesh_1x4g4")
 script = ExtResource("10_g0wcc")
-animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_1x4g4")])
+animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_2pwtc")])
 animation = 0
 frame = 0.0
 sprite_scale = 0.001
@@ -370,7 +370,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141903, 0)
 shape = SubResource("CapsuleShape3D_8qclf")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -1)
 script = ExtResource("12_otmr2")
 metadata/_custom_type_script = "uid://24tkivt38wsk"
 
