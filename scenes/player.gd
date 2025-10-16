@@ -46,12 +46,12 @@ func _ready() -> void:
 func joystick_movement() -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
 	var r_motion := Input.get_vector("r_joystick_left", "r_joystick_right", "r_joystick_down", "r_joystick_up")
-	if l_motion:
+	if l_motion and !is_attacking[1]:
 		if get_stance_angle(1, l_motion):
 			if stance.occupy_slot(current_slots[1], 1):
 				set_graphics(false)
 	
-	if r_motion:
+	if r_motion and !is_attacking[0]:
 		if get_stance_angle(0, r_motion):
 			if stance.occupy_slot(current_slots[0], 0): 
 				set_graphics(true)
@@ -131,10 +131,10 @@ func _process(delta: float) -> void:
 			stance.attack_opponent(0)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
-		stance.attack_opponent(1)
+		begin_attack(1)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
-		stance.attack_opponent(0)
+		begin_attack(0)
 	
 	if Input.is_action_just_pressed("interact") and can_interact and current_interact:
 		current_interact.interact(self)
@@ -147,6 +147,35 @@ func _physics_process(delta: float) -> void:
 	joystick_movement()
 	movement(delta)
 	turn(delta) 
+
+@onready var attack_timers := [$Timer2, $Timer]
+@onready var recover_timers := [$Recover2, $Recover]
+
+@onready var attack_anims := [$_graphics/right_hand/AnimationPlayer, $_graphics/left_hand/AnimationPlayer]
+
+var is_attacking: Array[bool] = [false, false]
+
+func begin_attack(hand:int) -> void:
+	if is_attacking[hand]:
+		return
+	
+	is_attacking[hand] = true
+	attack_anims[hand].play(str(hand))
+	attack_anims[hand].speed_scale = 2
+	attack_timers[hand].wait_time = (attack_anims[hand].current_animation_length/2) / 2
+	attack_timers[hand].start()
+	await attack_timers[hand].timeout
+	attack(hand)
+
+func attack(hand: int) -> void:
+	stance.attack_opponent(hand)
+	recover_timers[hand].wait_time = (attack_anims[hand].current_animation_length/2) / 2
+	recover_timers[hand].start()
+	await recover_timers[hand].timeout
+	end_attack(hand)
+
+func end_attack(hand: int) -> void:
+	is_attacking[hand] = false
 
 ## Calculates the stance slot from the joystick position. Link to explaination : https://cdn.discordapp.com/attachments/1359852606922424510/1400788747712466995/stanceslot_calculation.png?ex=688de9ae&is=688c982e&hm=5fb4efc8bb20ca3642d9afa7c608a74fe520c4cdda1591bf06aae84a41c07d39&
 func get_stance_angle(hand: int, dir: Vector2) -> bool:
