@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="AttackList" load_steps=5 format=3 uid="uid://mqfyivk5np0r"]
+
+[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="1_76gbk"]
+[ext_resource type="Script" uid="uid://brrck6msfdli" path="res://attacklist.gd" id="2_rnvd3"]
+
+[sub_resource type="Resource" id="Resource_76gbk"]
+script = ExtResource("1_76gbk")
+s_name = "H"
+hand_attack_strings = Array[int]([3, 7])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 1.0
+wind_up_time = 2.0
+attack_time = 1.0
+metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
+
+[sub_resource type="Resource" id="Resource_rnvd3"]
+script = ExtResource("1_76gbk")
+s_name = "dsds"
+hand_attack_strings = Array[int]([6, 2])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 2.0
+wind_up_time = 1.0
+attack_time = 1.0
+metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
+
+[resource]
+script = ExtResource("2_rnvd3")
+a_name = "SECOND"
+attacks_queue = Array[ExtResource("1_76gbk")]([SubResource("Resource_76gbk"), SubResource("Resource_rnvd3")])
+metadata/_custom_type_script = "uid://brrck6msfdli"

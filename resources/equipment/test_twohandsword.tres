@@ -8,6 +8,5 @@ equipment_name = "TwoHandSword"
 offense_rating = 10
 defense_rating = 2
 num_slots_down = 1
-num_slots_up = 0
 restrict_slots_by_hand = Array[String](["11100011", "00111110"])
 metadata/_custom_type_script = "uid://bni40py7vl8cw"

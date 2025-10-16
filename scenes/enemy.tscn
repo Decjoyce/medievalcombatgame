@@ -1,15 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://cfk63cv4shlt6"]
+[gd_scene load_steps=28 format=3 uid="uid://cfk63cv4shlt6"]
 
 [ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/enemy.gd" id="1_8qclf"]
-[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="2_g0wcc"]
 [ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="2_w8i8w"]
 [ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_otmr2"]
 [ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_j0cyh"]
 [ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scenes/stats.gd" id="6_g0wcc"]
 [ext_resource type="Texture2D" uid="uid://cv4oo67ib3kr7" path="res://assets/skel_idle.png" id="7_s1ycm"]
-[ext_resource type="Resource" uid="uid://31jgm06mt7ms" path="res://resources/equipment/test_shield.tres" id="7_shcg2"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="8_shcg2"]
 [ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="8_w8i8w"]
+[ext_resource type="PackedScene" uid="uid://b717nt53cgw0o" path="res://scenes/deathaudioer.tscn" id="9_1x4g4"]
 [ext_resource type="Texture2D" uid="uid://facya755qgwh" path="res://bellybog/BellyWalk_n.png" id="9_g0wcc"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="9_ile5s"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="10_1x4g4"]
@@ -17,24 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dmq4upalrs5fp" path="res://BellyWalk.png" id="11_j0cyh"]
 [ext_resource type="Script" uid="uid://drmno8omsxbbk" path="res://extras_sprites/scripts/animatio_data.gd" id="11_s1ycm"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="12_otmr2"]
-
-[sub_resource type="Resource" id="Resource_s1ycm"]
-script = ExtResource("2_g0wcc")
-hand_attack_strings = Array[int]([4, 6])
-hand_attacking = Array[int]([0, 0])
-recovery_time = 1.0
-wind_up_time = 1.0
-attack_time = 1.0
-metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
-
-[sub_resource type="Resource" id="Resource_g0wcc"]
-script = ExtResource("2_g0wcc")
-hand_attack_strings = Array[int]([5, 7])
-hand_attacking = Array[int]([0, 0])
-recovery_time = 1.0
-wind_up_time = 1.0
-attack_time = 1.0
-metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
 
@@ -147,6 +128,18 @@ texture_normal = ExtResource("9_g0wcc")
 rows = 4.0
 columns = 8.0
 
+[sub_resource type="QuadMesh" id="QuadMesh_ile5s"]
+size = Vector2(1.34, 1.79)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ile5s"]
+transparency = 1
+diffuse_mode = 3
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("11_j0cyh")
+emission_enabled = true
+uv1_scale = Vector3(0.263, 0.18, 0.263)
+uv1_offset = Vector3(-1, -1.025, 0)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8qclf"]
 radius = 0.236233
 height = 1.06534
@@ -156,12 +149,11 @@ script = ExtResource("1_8qclf")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 disabled = false
-attack_queue = Array[ExtResource("2_g0wcc")]([SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc"), SubResource("Resource_s1ycm"), SubResource("Resource_g0wcc")])
 uiattack = [NodePath("_ui_stance/R/R2"), NodePath("_ui_stance/BR/BR2"), NodePath("_ui_stance/B/B2"), NodePath("_ui_stance/BL/BL2"), NodePath("_ui_stance/L/L2"), NodePath("_ui_stance/TL/TL2"), NodePath("_ui_stance/T/T2"), NodePath("_ui_stance/TR/TR2")]
 metadata/_custom_type_script = "uid://y3exhbrhlsof"
 
 [node name="_ui_stance" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.214)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.214)
 
 [node name="octagon" type="Sprite3D" parent="_ui_stance"]
 modulate = Color(0, 0, 0, 1)
@@ -174,7 +166,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="R2" type="Sprite3D" parent="_ui_stance/R"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -185,7 +177,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="BR2" type="Sprite3D" parent="_ui_stance/BR"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -196,7 +188,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="B2" type="Sprite3D" parent="_ui_stance/B"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -207,7 +199,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="BL2" type="Sprite3D" parent="_ui_stance/BL"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -218,7 +210,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="L2" type="Sprite3D" parent="_ui_stance/L"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -229,7 +221,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="TL2" type="Sprite3D" parent="_ui_stance/TL"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -240,7 +232,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="T2" type="Sprite3D" parent="_ui_stance/T"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -251,7 +243,7 @@ render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
 [node name="TR2" type="Sprite3D" parent="_ui_stance/TR"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
 modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
@@ -259,7 +251,7 @@ texture = SubResource("CanvasTexture_8qclf")
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("2_w8i8w")
 slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
-hands = Array[ExtResource("3_otmr2")]([ExtResource("5_j0cyh"), ExtResource("7_shcg2")])
+hands = Array[ExtResource("3_otmr2")]([ExtResource("5_j0cyh"), ExtResource("5_j0cyh")])
 stats = NodePath("../Stats")
 temp_timer_stam = NodePath("../Stats/Timer_Stam")
 temp_octagon_display = [NodePath("../_ui_stance/R"), NodePath("../_ui_stance/BR"), NodePath("../_ui_stance/B"), NodePath("../_ui_stance/BL"), NodePath("../_ui_stance/L"), NodePath("../_ui_stance/TL"), NodePath("../_ui_stance/T"), NodePath("../_ui_stance/TR")]
@@ -267,13 +259,13 @@ audio_player_miss = NodePath("../AudioStreamPlayer2")
 audio_player_hit = NodePath("../AudioStreamPlayer")
 metadata/_custom_type_script = "uid://bhswmu2hpphn7"
 
-[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "audio_death", "stam_bar")]
+[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "stam_bar")]
 script = ExtResource("6_g0wcc")
 max_health = 120
 current_health = 120
 health_bar = NodePath("ProgressBar3")
-temp_damage_indicator = NodePath("../_graphics/hit")
-audio_death = NodePath("AudioStreamPlayer")
+temp_damage_indicator = NodePath("../_graphics/MeshInstance3D")
+audio_death = ExtResource("9_1x4g4")
 max_stamina = 50.0
 current_stamina = 50.0
 stam_bar = NodePath("ProgressBar2")
@@ -335,10 +327,10 @@ texture = ExtResource("7_s1ycm")
 [node name="hit" type="Sprite3D" parent="_graphics"]
 visible = false
 modulate = Color(1, 0.19, 0.19, 1)
+pixel_size = 0.006
 billboard = 2
 texture_filter = 0
 render_priority = 1
-texture = ExtResource("7_s1ycm")
 
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="_graphics"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.15703505, 0)
@@ -351,6 +343,13 @@ frame = 0.0
 sprite_scale = 0.001
 metadata/_custom_type_script = "uid://dr6ogkwaipmyy"
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="_graphics"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7075488e-08, 0, -0.19532081)
+visible = false
+cast_shadow = 0
+mesh = SubResource("QuadMesh_ile5s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ile5s")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
@@ -361,9 +360,11 @@ autostart = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ile5s")
 volume_db = 14.054
+max_polyphony = 4
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1x4g4")
+max_polyphony = 4
 
 [node name="_col" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141903, 0)

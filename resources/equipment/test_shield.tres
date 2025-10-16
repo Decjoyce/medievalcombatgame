@@ -9,5 +9,5 @@ offense_rating = 1
 defense_rating = 8
 num_slots_down = 1
 num_slots_up = 1
-restrict_slots_by_hand = Array[String](["11100011", "00111110"])
+restrict_slots_by_hand = Array[String](["11111111", "11111111"])
 metadata/_custom_type_script = "uid://bni40py7vl8cw"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="AttackList" load_steps=6 format=3 uid="uid://fclbklij6v3x"]
+
+[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="1_eveji"]
+[ext_resource type="Script" uid="uid://brrck6msfdli" path="res://attacklist.gd" id="2_rj0b7"]
+
+[sub_resource type="Resource" id="Resource_rj0b7"]
+script = ExtResource("1_eveji")
+s_name = "Tim"
+hand_attack_strings = Array[int]([0, 4])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 0.4
+wind_up_time = 1.0
+attack_time = 0.3
+metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
+
+[sub_resource type="Resource" id="Resource_eveji"]
+script = ExtResource("1_eveji")
+s_name = "FRED"
+hand_attack_strings = Array[int]([1, 3])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 0.5
+wind_up_time = 1.0
+attack_time = 0.43
+metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
+
+[sub_resource type="Resource" id="Resource_m0t58"]
+script = ExtResource("1_eveji")
+s_name = "DURSTY"
+hand_attack_strings = Array[int]([0, 5])
+hand_attacking = Array[int]([0, 0])
+recovery_time = 0.2
+wind_up_time = 0.3
+attack_time = 0.2
+metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
+
+[resource]
+script = ExtResource("2_rj0b7")
+a_name = "FIRST"
+attacks_queue = Array[ExtResource("1_eveji")]([SubResource("Resource_rj0b7"), SubResource("Resource_eveji"), SubResource("Resource_m0t58")])
+metadata/_custom_type_script = "uid://brrck6msfdli"

@@ -1,13 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://c6c41r8xo6rte"]
+[gd_scene load_steps=21 format=3 uid="uid://c6c41r8xo6rte"]
 
 [ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player.tscn" id="1_g47mb"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="2_cxco5"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="3_3fx3o"]
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/enemy.tscn" id="4_ykvmm"]
 [ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://scenes/health_pack.tscn" id="5_47vgy"]
-[ext_resource type="Script" uid="uid://bwlrsq0ex53q1" path="res://attackdata.gd" id="5_toxmr"]
+[ext_resource type="Script" uid="uid://brrck6msfdli" path="res://attacklist.gd" id="5_klc8k"]
 [ext_resource type="Script" uid="uid://dr6ogkwaipmyy" path="res://extras_sprites/scripts/sprite_3D_billboard.gd" id="6_ebo3n"]
+[ext_resource type="Resource" uid="uid://fclbklij6v3x" path="res://resources/attack_pattern_1.tres" id="6_jie3d"]
 [ext_resource type="Script" uid="uid://drmno8omsxbbk" path="res://extras_sprites/scripts/animatio_data.gd" id="7_3rk4h"]
+[ext_resource type="Resource" uid="uid://mqfyivk5np0r" path="res://resources/attack_pattern_2.tres" id="7_m0t0m"]
+[ext_resource type="Resource" uid="uid://mg05w3lfqsv8" path="res://resources/attack_pattern_3.tres" id="8_jie3d"]
 [ext_resource type="Texture2D" uid="uid://dmq4upalrs5fp" path="res://BellyWalk.png" id="8_klc8k"]
 [ext_resource type="Texture2D" uid="uid://facya755qgwh" path="res://bellybog/BellyWalk_n.png" id="9_jie3d"]
 
@@ -22,25 +25,7 @@ background_mode = 1
 ambient_light_source = 1
 reflected_light_source = 1
 
-[sub_resource type="Resource" id="Resource_ebo3n"]
-script = ExtResource("5_toxmr")
-hand_attack_strings = Array[int]([6, 2])
-hand_attacking = Array[int]([0, 0])
-recovery_time = 1.0
-wind_up_time = 2.0
-attack_time = 1.0
-metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
-
-[sub_resource type="Resource" id="Resource_klc8k"]
-script = ExtResource("5_toxmr")
-hand_attack_strings = Array[int]([2, 4])
-hand_attacking = Array[int]([2])
-recovery_time = 1.0
-wind_up_time = 2.0
-attack_time = 1.0
-metadata/_custom_type_script = "uid://bwlrsq0ex53q1"
-
-[sub_resource type="Shader" id="Shader_toxmr"]
+[sub_resource type="Shader" id="Shader_klc8k"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -117,9 +102,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebo3n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jie3d"]
 render_priority = 0
-shader = SubResource("Shader_toxmr")
+shader = SubResource("Shader_klc8k")
 shader_parameter/rows = 4.0
 shader_parameter/columns = 8.0
 shader_parameter/frame = 0.0
@@ -128,12 +113,12 @@ shader_parameter/sprite = ExtResource("8_klc8k")
 shader_parameter/mode = 0
 shader_parameter/Normal = ExtResource("9_jie3d")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3rk4h"]
-material = SubResource("ShaderMaterial_ebo3n")
+[sub_resource type="PlaneMesh" id="PlaneMesh_m0t0m"]
+material = SubResource("ShaderMaterial_jie3d")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
-[sub_resource type="Resource" id="Resource_jie3d"]
+[sub_resource type="Resource" id="Resource_yb6aq"]
 script = ExtResource("7_3rk4h")
 sprite = ExtResource("8_klc8k")
 texture_normal = ExtResource("9_jie3d")
@@ -2799,14 +2784,14 @@ material = ExtResource("3_3fx3o")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("4_ykvmm")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.1959024, -8)
-attack_queue = Array[ExtResource("5_toxmr")]([SubResource("Resource_ebo3n"), SubResource("Resource_klc8k"), SubResource("Resource_ebo3n"), SubResource("Resource_klc8k")])
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.03800103, -8)
+potential_attacks = Array[ExtResource("5_klc8k")]([ExtResource("6_jie3d"), ExtResource("7_m0t0m"), ExtResource("8_jie3d")])
 
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="Enemies/Enemy"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.8291538e-09, 0, 0.032361984)
-mesh = SubResource("PlaneMesh_3rk4h")
+transform = Transform3D(-1, 0, -1.5099582e-07, 0, 1, 0, 1.5099582e-07, 0, -1, -2.8291538e-09, -0.09000847, 0.032361984)
+mesh = SubResource("PlaneMesh_m0t0m")
 script = ExtResource("6_ebo3n")
-animations_array = Array[ExtResource("7_3rk4h")]([SubResource("Resource_jie3d")])
+animations_array = Array[ExtResource("7_3rk4h")]([SubResource("Resource_yb6aq")])
 animation = 0
 frame = 0.0
 sprite_scale = 0.001

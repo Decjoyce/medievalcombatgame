@@ -95,6 +95,7 @@ func attack_opponent(hand:int) -> void:
 	stats.current_stamina -= 10
 	temp_timer_stam.start()
 	opponent.on_attacked(attacked_slots, hands[hand])
+	print(hand)
 
 ## If you are being attacked
 func on_attacked(attack_dirs: String, equipment: Equipment) -> void:

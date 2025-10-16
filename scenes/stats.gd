@@ -10,7 +10,7 @@ extends Node
 
 @export var temp_damage_indicator: Node
 
-@export var audio_death: AudioStreamPlayer
+@export var audio_death: PackedScene
 
 func take_damage(amount: int) -> bool:
 	current_health -= amount
@@ -29,7 +29,9 @@ func heal(amount: int) -> void:
 		current_health = max_health
 
 func die() -> void:
-	audio_death.play()
+	var d = audio_death.instantiate()
+	get_parent().get_parent().add_child(d)
+	d.global_position = get_parent().global_position
 	get_parent().queue_free()
 
 func temp_flash() -> void:

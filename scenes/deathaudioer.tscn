@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b717nt53cgw0o"]
+
+[ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="1_3sguq"]
+[ext_resource type="Script" uid="uid://bto01juenystt" path="res://deathaudioer.gd" id="2_fcm6v"]
+
+[node name="deathaudioer" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_3sguq")
+autoplay = true
+script = ExtResource("2_fcm6v")
