@@ -10,6 +10,10 @@ extends Entity
 
 var enemy: Player
 
+@onready var bar: Sprite3D = $_ui_stance/Node3D/HealthBar3
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	## This needs to be redone, if player goes behind them than the wont detect the player.
@@ -18,7 +22,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	bar.scale.x = float(stance.stats.current_health) / stance.stats.max_health
+	print(stance.stats.current_health / stance.stats.max_health)
 	#if enemy:
 	#	look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
 

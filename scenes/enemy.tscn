@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cfk63cv4shlt6"]
+[gd_scene load_steps=29 format=3 uid="uid://cfk63cv4shlt6"]
 
 [ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/enemy.gd" id="1_8qclf"]
 [ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scenes/stance.gd" id="2_w8i8w"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://dmq4upalrs5fp" path="res://BellyWalk.png" id="11_j0cyh"]
 [ext_resource type="Script" uid="uid://drmno8omsxbbk" path="res://extras_sprites/scripts/animatio_data.gd" id="11_s1ycm"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="12_otmr2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s1ycm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
 
@@ -155,6 +157,15 @@ metadata/_custom_type_script = "uid://y3exhbrhlsof"
 [node name="_ui_stance" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.214)
 
+[node name="HealthBar" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(24.87, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26169267, -0.20449015)
+cast_shadow = 0
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.03
+billboard = 1
+texture = SubResource("CanvasTexture_s1ycm")
+
 [node name="octagon" type="Sprite3D" parent="_ui_stance"]
 modulate = Color(0, 0, 0, 1)
 pixel_size = 0.0003
@@ -248,6 +259,18 @@ modulate = Color(1, 0, 0, 1)
 render_priority = 1
 texture = SubResource("CanvasTexture_8qclf")
 
+[node name="Node3D" type="Node3D" parent="_ui_stance"]
+transform = Transform3D(22.383, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+
+[node name="HealthBar3" type="Sprite3D" parent="_ui_stance/Node3D"]
+transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.28968403, -0.20066835)
+cast_shadow = 0
+modulate = Color(4.781319, 0, 0, 1)
+pixel_size = 0.03
+billboard = 1
+transparent = false
+texture = SubResource("CanvasTexture_s1ycm")
+
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("2_w8i8w")
 slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
@@ -261,8 +284,8 @@ metadata/_custom_type_script = "uid://bhswmu2hpphn7"
 
 [node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "stam_bar")]
 script = ExtResource("6_g0wcc")
-max_health = 120
-current_health = 120
+max_health = 50
+current_health = 50
 health_bar = NodePath("ProgressBar3")
 temp_damage_indicator = NodePath("../_graphics/MeshInstance3D")
 audio_death = ExtResource("9_1x4g4")
