@@ -518,8 +518,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
-collision_layer = 2
-collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall7"]
@@ -547,8 +545,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
-collision_layer = 2
-collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall8"]
@@ -672,8 +668,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
-collision_layer = 2
-collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Hall_M2"]
@@ -689,7 +683,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -16)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 material_override = ExtResource("3_aic3r")
 use_collision = true
-collision_layer = 2
 collision_mask = 3
 size = Vector3(2, 0.1, 2)
 

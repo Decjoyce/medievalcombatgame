@@ -12,8 +12,6 @@ absorbent = true
 radius = 0.2
 
 [node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
-collision_layer = 2
-collision_mask = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
