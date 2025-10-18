@@ -380,8 +380,8 @@ audio_player_hit = NodePath("../AudioStreamPlayer")
 
 [node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "stam_bar")]
 script = ExtResource("7_4ni07")
-max_health = 500
-current_health = 500
+max_health = 100
+current_health = 100
 health_bar = NodePath("Control/ProgressBar2")
 temp_damage_indicator = NodePath("../temp_hit_effect")
 audio_death = ExtResource("11_oprun")

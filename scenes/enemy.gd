@@ -23,7 +23,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	bar.scale.x = float(stance.stats.current_health) / stance.stats.max_health
-	print(stance.stats.current_health / stance.stats.max_health)
 	#if enemy:
 	#	look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
 
