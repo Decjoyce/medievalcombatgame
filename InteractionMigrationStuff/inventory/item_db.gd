@@ -1,6 +1,6 @@
 extends Node
 
-const ICON_PATH = "res://assets/inv_icons/" 	# Change to export
+const ICON_PATH = "res://InteractionMigrationStuff/inventory/inv_icons/" 	# Change to export
 const ITEMS = {
 	"sword": {
 		"icon": ICON_PATH + "sword.png",

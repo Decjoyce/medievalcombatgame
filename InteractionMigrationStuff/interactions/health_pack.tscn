@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlrnt77wbvcqx"]
 
-[ext_resource type="Script" uid="uid://koofbm4iskyr" path="res://scenes/interactions/health_pack.gd" id="1_sguym"]
+[ext_resource type="Script" uid="uid://koofbm4iskyr" path="res://InteractionMigrationStuff/interactions/health_pack.gd" id="1_sguym"]
 [ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_x1beo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bco4i"]

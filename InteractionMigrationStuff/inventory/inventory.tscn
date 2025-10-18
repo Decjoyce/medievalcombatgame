@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhqg75kbqm864"]
 
-[ext_resource type="Script" uid="uid://cltxrh7skqaip" path="res://scenes/inventory/inventory.gd" id="1_4axmw"]
+[ext_resource type="Script" uid="uid://cltxrh7skqaip" path="res://InteractionMigrationStuff/inventory/inventory.gd" id="1_4axmw"]
 [ext_resource type="Texture2D" uid="uid://cx43sh7n2g05h" path="res://assets/h1kqXb2.png" id="1_msrby"]
-[ext_resource type="Script" uid="uid://bpnunje2xyph1" path="res://scenes/inventory/equipment_slots.gd" id="2_el5y6"]
-[ext_resource type="Script" uid="uid://desarn7h8s17x" path="res://scenes/inventory/inv_grid.gd" id="4_tvok8"]
+[ext_resource type="Script" uid="uid://bpnunje2xyph1" path="res://InteractionMigrationStuff/inventory/equipment_slots.gd" id="2_el5y6"]
+[ext_resource type="Script" uid="uid://desarn7h8s17x" path="res://InteractionMigrationStuff/inventory/inv_grid.gd" id="4_tvok8"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3

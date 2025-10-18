@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6fg5apbvrq0r"
-path="res://.godot/imported/TEMP_inv_slot.png-9919cb9a3a4d96396faf6c86e1efc24a.ctex"
+uid="uid://b5w4b4xqcddgk"
+path="res://.godot/imported/error.png-a870b72f65895855c81c09e88e033211.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TEMP_inv_slot.png"
-dest_files=["res://.godot/imported/TEMP_inv_slot.png-9919cb9a3a4d96396faf6c86e1efc24a.ctex"]
+source_file="res://InteractionMigrationStuff/inventory/inv_icons/error.png"
+dest_files=["res://.godot/imported/error.png-a870b72f65895855c81c09e88e033211.ctex"]
 
 [params]
 

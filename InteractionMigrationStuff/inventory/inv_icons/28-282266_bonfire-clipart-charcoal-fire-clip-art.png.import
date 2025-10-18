@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpkt7gabtnyqy"
-path.s3tc="res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-4f3df870dff068d6f5c15a27e45ffcbd.s3tc.ctex"
+path.s3tc="res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-324e82297225d5680152a8db8968f9df.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,14 +11,16 @@ metadata={
 
 [deps]
 
-source_file="res://assets/inv_icons/28-282266_bonfire-clipart-charcoal-fire-clip-art.png"
-dest_files=["res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-4f3df870dff068d6f5c15a27e45ffcbd.s3tc.ctex"]
+source_file="res://InteractionMigrationStuff/inventory/inv_icons/28-282266_bonfire-clipart-charcoal-fire-clip-art.png"
+dest_files=["res://.godot/imported/28-282266_bonfire-clipart-charcoal-fire-clip-art.png-324e82297225d5680152a8db8968f9df.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -26,6 +28,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

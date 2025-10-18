@@ -7,7 +7,7 @@ extends Control
 #### Fix: if player picks up 2 items, keep picked up items' old grid positions as occupied until player puts an item down
 ###
 
-const item_base = preload("res://scenes/inventory/item_base.tscn")
+const item_base = preload("res://InteractionMigrationStuff/inventory/item_base.tscn")
  
 @onready var inv_base = $BG
 @onready var grid_bkpk = $GridSlots
