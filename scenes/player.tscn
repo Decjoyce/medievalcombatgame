@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://enmoeaumacog"]
+[gd_scene load_steps=29 format=3 uid="uid://enmoeaumacog"]
 
 [ext_resource type="Script" uid="uid://cti3uncuqhvuc" path="res://scenes/player.gd" id="1_qfm1y"]
 [ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://equipment.gd" id="3_4r5pv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b717nt53cgw0o" path="res://scenes/deathaudioer.tscn" id="11_oprun"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scenes/deco_ray_cast_3d.gd" id="15_oprun"]
 [ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="15_wnwbv"]
+[ext_resource type="PackedScene" uid="uid://b4q7fkyuyeeau" path="res://sdsds/InteractionMigrationStuff/interaction.tscn" id="16_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="16_gl8cc"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="17_487ah"]
 
@@ -178,9 +179,10 @@ bg_color = Color(0.55, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_3v2ag"]
 radius = 0.2
 
-[node name="Player" type="StaticBody3D"]
+[node name="Player" type="StaticBody3D" node_paths=PackedStringArray("interaction")]
 physics_interpolation_mode = 1
 script = ExtResource("1_qfm1y")
+interaction = NodePath("Interaction")
 metadata/_custom_type_script = "uid://cti3uncuqhvuc"
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -243,6 +245,7 @@ render_priority = 2
 texture = SubResource("CanvasTexture_qfm1y")
 
 [node name="_graphics" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -521,6 +524,8 @@ one_shot = true
 [node name="Recover2" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Interaction" parent="." instance=ExtResource("16_a8ls1")]
 
 [connection signal="timeout" from="Stats/Timer_Stam" to="Stats" method="_on_timer_stam_timeout"]
 [connection signal="on_body_entered" from="Node/Compass/North" to="." method="on_raycast_enter"]

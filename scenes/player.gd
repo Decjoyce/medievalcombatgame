@@ -46,6 +46,7 @@ func _ready() -> void:
 func joystick_movement() -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
 	var r_motion := Input.get_vector("r_joystick_left", "r_joystick_right", "r_joystick_down", "r_joystick_up")
+	if interacting: return
 	if l_motion and !is_attacking[1]:
 		if get_stance_angle(1, l_motion):
 			if stance.occupy_slot(current_slots[1], 1):
@@ -131,14 +132,14 @@ func _process(delta: float) -> void:
 			stance.attack_opponent(0)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_left"): ## Left Trigger
-		begin_attack(1)
+		if !interacting: begin_attack(1)
 	
 	if !is_moving and Input.is_action_just_pressed("equipped_action_right"): ## Right Trigger
-		begin_attack(0)
+		if !interacting: begin_attack(0)
 	
-	if Input.is_action_just_pressed("interact") and can_interact and current_interact:
-		current_interact.interact(self)
-		interact_text.text = ""
+	if Input.is_action_just_pressed("interact"):
+		if !interacting: int_enter_interactmode()
+		else: int_exit_interactmode()
 	
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
@@ -201,15 +202,26 @@ func set_graphics(r_hand: bool, use_mouse: bool = false) -> void:
 		if use_mouse:
 			stance.set_slot_active_display(0)
 
-## Used for interacting
-func on_raycast_enter(obj: Object) -> void:
-	if obj is Interactable:
-		var interactable: Interactable = obj as Interactable
-		interact_text.text = interactable.prompt
-		current_interact = interactable
+###### INTERACTION
 
-func on_raycast_exit(obj: Object) -> void:
-	if obj is Interactable:
-		#var interactable: Interactable = obj as Interactable
-		interact_text.text = ""
-		current_interact = null
+var interacting: bool = true
+@onready var ui_int : Control = $Interaction
+@onready var ui_stance : Node3D = $Camera3D/_ui_stance
+
+func int_enter_interactmode() -> void:
+	interacting = true
+	ui_int.visible = true
+	ui_stance.visible = false
+	l_hand_pivot.visible = false
+	r_hand_pivot.visible = false
+	#cam.fov = 95
+
+func int_exit_interactmode() -> void:
+	interacting = false
+	ui_int.visible = false
+	ui_stance.visible = true
+	l_hand_pivot.visible = true
+	r_hand_pivot.visible = true
+	interaction.finish_interact(0)
+	interaction.finish_interact(1)
+	#cam.fov = 90

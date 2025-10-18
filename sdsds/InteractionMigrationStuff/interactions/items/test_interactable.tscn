@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwom3t0n1alr8"]
+
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_5e87f"]
+[ext_resource type="Texture2D" uid="uid://cjtpld6lheytp" path="res://assets/fpshands/hand_ct.png" id="2_epu43"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
+rough = true
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epu43"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_br7jk"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_epu43")
+gravity_scale = 0.112
+script = ExtResource("1_5e87f")
+mass = 0.5
+rb = NodePath(".")
+active_interaction = true
+prompt_sprite = ExtResource("2_epu43")
+
+[node name="_col" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_epu43")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="_col"]
+mesh = SubResource("BoxMesh_br7jk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4q7fkyuyeeau"]
+
+[ext_resource type="Script" uid="uid://c2rkykmady508" path="res://sdsds/InteractionMigrationStuff/interact/player_interact.gd" id="1_ts5ag"]
+[ext_resource type="Texture2D" uid="uid://b5ibaced03c8j" path="res://assets/fpshands/hand_t.png" id="2_1tvpt"]
+
+[node name="Interaction" type="Control" node_paths=PackedStringArray("hands")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ts5ag")
+hands = [NodePath("Interact_hand_L"), NodePath("Interact_hand_R")]
+base_hand_sprite = ExtResource("2_1tvpt")
+grab_distance = 0.9
+metadata/_edit_use_anchors_ = true
+
+[node name="Interact_hand_L" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.335
+anchor_top = 0.381667
+anchor_right = 0.46
+anchor_bottom = 0.548333
+metadata/_edit_use_anchors_ = true
+
+[node name="_item_sprite_L" type="TextureRect" parent="Interact_hand_L"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="_hand_sprite_L" type="TextureRect" parent="Interact_hand_L"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1tvpt")
+expand_mode = 1
+
+[node name="Interact_hand_R" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5875
+anchor_top = 0.385
+anchor_right = 0.7125
+anchor_bottom = 0.551667
+offset_right = 6.10352e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="_item_sprite_R" type="TextureRect" parent="Interact_hand_R"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+flip_h = true
+
+[node name="_hand_sprite_R" type="TextureRect" parent="Interact_hand_R"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1tvpt")
+expand_mode = 1
+flip_h = true
