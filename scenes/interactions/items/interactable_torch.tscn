@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://y2iyvssfm2gu"]
+
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://scenes/interactions/items/interactable_obj.gd" id="1_xnfw6"]
+[ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="2_nl0vm"]
+[ext_resource type="Texture2D" uid="uid://pp77g7c0gw2c" path="res://assets/torch.png" id="3_nl0vm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
+rough = true
+absorbent = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nl0vm"]
+radius = 0.1743164
+height = 0.7080078
+
+[node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_epu43")
+gravity_scale = 0.112
+script = ExtResource("1_xnfw6")
+can_break = null
+num_hands_required_to_lift = null
+gravity = null
+mass = 0.5
+rb = NodePath(".")
+can_interact = null
+allow_npc_interaction = null
+active_interaction = true
+prompt = null
+prompt_sprite = ExtResource("2_nl0vm")
+
+[node name="_col" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.165, 0)
+shape = SubResource("CapsuleShape3D_nl0vm")
+
+[node name="Sprite3D" type="Sprite3D" parent="_col"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+flip_h = true
+billboard = 2
+texture = ExtResource("3_nl0vm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.8876558, 0.46660283, 0, 1)
+
+[node name="GrabbedArt" type="Node3D" parent="."]

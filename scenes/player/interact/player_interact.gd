@@ -16,6 +16,8 @@ var interactables : Array[Interactable] = [null, null]
 
 @export var base_hand_sprite: Texture2D
 
+var current_interactables: Array[Interactable] = [null, null]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for han in hands:
@@ -58,28 +60,34 @@ func move_hand(hand:int, dir: Vector2, delta: float) -> void:
 	hands[hand].position.y = clampf(hands[hand].position.y, 0 - hands[hand].size.y/2, size.y - hands[hand].size.y)
 
 func _input_handle():
-	if Input.is_action_just_pressed("equipped_action_left"):
-		begin_interact(0)
 	
-	if Input.is_action_pressed("equipped_action_left"):
+	if interactables[0]:
+		if Input.is_action_just_pressed("equipped_action_left"):
+			begin_interact(0)
+	else:
+		if current_interactables[0] and current_interactables[0].active_interaction:
+			if Input.is_action_just_pressed("equipped_action_left"):
+				finish_interact(0)
+			
+	
+	if current_interactables[0]:
 		interacting(0)
 	
-	if Input.is_action_just_released("equipped_action_left"):
-		finish_interact(0)
+	if interactables[1]:
+		if Input.is_action_just_pressed("equipped_action_right"):
+			begin_interact(1)
+	else:
+		if current_interactables[1] and current_interactables[1].active_interaction:
+			if Input.is_action_just_pressed("equipped_action_right"):
+				finish_interact(1)
 	
-	if Input.is_action_just_pressed("equipped_action_right"):
-		begin_interact(1)
-	
-	if Input.is_action_pressed("equipped_action_right"):
+	if current_interactables[1]:
 		interacting(1)
-	
-	if Input.is_action_just_released("equipped_action_right"):
-		finish_interact(1)
 
 ## Interaction
 
 func interact_checker(hand:int) -> void:
-	if !player.interacting: return
+	if !player.interacting or current_interactables[hand]: return
 	var space_state = cam.get_world_3d().direct_space_state
 	
 	var origin = cam.project_ray_origin(hands[hand].get_screen_position() + hands[hand].size/2)
@@ -102,17 +110,33 @@ func interact_checker(hand:int) -> void:
 
 func begin_interact(hand: int) -> bool:
 	if !interactables[hand]: return false
-	interactables[hand].interact_begin(player, hand)
+	
+	var other_hand : int = absi(hand - 1)
+	print(other_hand)
+	if current_interactables[other_hand] == interactables[hand]:
+		prints("yo", other_hand)
+		interactables[other_hand] = null
+		current_interactables[other_hand] = null
+		grabbed_objs[other_hand] = null
+	
+	current_interactables[hand] = interactables[hand]
+	interactables[hand] = null
+	current_interactables[hand].interact_begin(player, hand)
+	
+	if !current_interactables[hand].active_interaction:
+		call_deferred("finish_interact", hand)
 	return true
 
 func interacting(hand: int) -> bool:
-	if !interactables[hand]: return false
-	interactables[hand].interacting(player, hand)
+	if !current_interactables[hand]: return false
+	current_interactables[hand].interacting(player, hand)
 	return true
 
 func finish_interact(hand: int) -> bool:
-	if !interactables[hand]: return false
-	interactables[hand].interact_finish(player, hand)
+	if !current_interactables[hand]: return false
+	current_interactables[hand].interact_finish(player, hand)
+	current_interactables[hand] = null
+	hand_sprites[hand].texture = base_hand_sprite
 	return true
 
 
@@ -122,6 +146,7 @@ func finish_interact(hand: int) -> bool:
 
 func begin_grab(_grabbed_object: InteractableObj, _hand: int) -> void:
 	# item_sprites[hand].texture = grabbed_object.item.grabbed_sprite
+	
 	grabbed_objs[_hand] = _grabbed_object
 	pass
 

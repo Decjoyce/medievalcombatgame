@@ -347,6 +347,8 @@ collide_with_areas = true
 script = ExtResource("14_uniwh")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.045
+omni_range = 1.91
 
 [node name="Interaction" type="Control" parent="." node_paths=PackedStringArray("hands")]
 layout_mode = 3
@@ -358,6 +360,7 @@ grow_vertical = 2
 script = ExtResource("15_iqsei")
 hands = [NodePath("Interact_hand_L"), NodePath("Interact_hand_R")]
 base_hand_sprite = ExtResource("16_tffgl")
+grab_distance = 0.9
 metadata/_edit_use_anchors_ = true
 
 [node name="Interact_hand_L" type="Control" parent="Interaction"]

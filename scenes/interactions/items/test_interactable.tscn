@@ -17,10 +17,13 @@ size = Vector3(0.2, 0.2, 0.2)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
 script = ExtResource("1_5e87f")
+mass = 0.5
 rb = NodePath(".")
+active_interaction = true
 prompt_sprite = ExtResource("2_epu43")
 
 [node name="_col" type="CollisionShape3D" parent="."]

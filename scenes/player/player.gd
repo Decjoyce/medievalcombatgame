@@ -202,4 +202,6 @@ func int_exit_interactmode() -> void:
 	ui_stance.visible = true
 	l_hand_pivot.visible = true
 	r_hand_pivot.visible = true
+	interaction.finish_interact(0)
+	interaction.finish_interact(1)
 	#cam.fov = 90

@@ -8,6 +8,8 @@ signal on_interact_finished(y: bool)
 @export var can_interact: bool = true
 @export var allow_npc_interaction: bool = false
 
+@export var active_interaction: bool = false
+
 @export var prompt: String
 @export var prompt_sprite: Texture2D
 

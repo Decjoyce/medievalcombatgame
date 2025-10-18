@@ -40,7 +40,7 @@ func interact_finish(entity: Entity, hand: int):
 
 func throw(_trans: Transform3D):
 	#move_and_collide((_trans.basis.z * 1 * mass))
-	
+	rb.linear_velocity = Vector3.ZERO
 	print((_trans.basis.z * 3 * mass))
 	var jumpforce = sqrt(3 * -2 * rb.get_gravity().y)
 	rb.apply_central_impulse(-basis.z * jumpforce * mass)
