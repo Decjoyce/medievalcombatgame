@@ -22,6 +22,9 @@ ItemDB="*res://item_db.gd"
 
 [display]
 
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
