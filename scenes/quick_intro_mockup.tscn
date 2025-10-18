@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="2_v44o2"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="3_6beqt"]
 [ext_resource type="Texture2D" uid="uid://dpy1bc6e48q44" path="res://assets/wall_bricks_old_64.png" id="3_7t00s"]
-[ext_resource type="Texture2D" uid="uid://cpkt7gabtnyqy" path="res://InteractionMigrationStuff/inventory/inv_icons/28-282266_bonfire-clipart-charcoal-fire-clip-art.png" id="4_dw3p2"]
+[ext_resource type="Texture2D" uid="uid://cpkt7gabtnyqy" path="res://sdsds/InteractionMigrationStuff/inventory/inv_icons/28-282266_bonfire-clipart-charcoal-fire-clip-art.png" id="4_dw3p2"]
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/entities/enemies/enemy.tscn" id="4_u6acu"]
 [ext_resource type="Texture2D" uid="uid://den3uloxwrlrm" path="res://assets/pngimg.com - pig_PNG2200.png" id="5_2trog"]
 [ext_resource type="Material" uid="uid://bcagckqlmlk0" path="res://resources/materials/m_wood2.tres" id="5_6beqt"]

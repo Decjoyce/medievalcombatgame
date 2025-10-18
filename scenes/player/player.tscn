@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="12_j4nxn"]
 [ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="13_28m0y"]
 [ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scripts/deco_ray_cast_3d.gd" id="14_uniwh"]
-[ext_resource type="Script" uid="uid://c2rkykmady508" path="res://InteractionMigrationStuff/interact/player_interact.gd" id="15_iqsei"]
+[ext_resource type="Script" uid="uid://c2rkykmady508" path="res://sdsds/InteractionMigrationStuff/interact/player_interact.gd" id="15_iqsei"]
 [ext_resource type="Texture2D" uid="uid://b5ibaced03c8j" path="res://assets/fpshands/hand_t.png" id="16_tffgl"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qfm1y"]

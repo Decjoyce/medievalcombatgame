@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvl4fp382ct4l"
-path="res://.godot/imported/breastplate.png-a4a7ce6f27180fac7f878c7f565d3346.ctex"
+uid="uid://b6fg5apbvrq0r"
+path="res://.godot/imported/TEMP_inv_slot.png-0c00d4aecfefaabbc6e187e9e4316eb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://InteractionMigrationStuff/inventory/inv_icons/breastplate.png"
-dest_files=["res://.godot/imported/breastplate.png-a4a7ce6f27180fac7f878c7f565d3346.ctex"]
+source_file="res://sdsds/InteractionMigrationStuff/TEMP_inv_slot.png"
+dest_files=["res://.godot/imported/TEMP_inv_slot.png-0c00d4aecfefaabbc6e187e9e4316eb2.ctex"]
 
 [params]
 

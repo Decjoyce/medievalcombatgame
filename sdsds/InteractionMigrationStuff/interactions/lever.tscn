@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ds5rps673cu3k"]
 
-[ext_resource type="Script" uid="uid://clq56e5qb5p87" path="res://InteractionMigrationStuff/interactions/lever.gd" id="1_4kwec"]
+[ext_resource type="Script" uid="uid://clq56e5qb5p87" path="res://sdsds/InteractionMigrationStuff/interactions/lever.gd" id="1_4kwec"]
 [ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="2_ncfea"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_neyqp"]

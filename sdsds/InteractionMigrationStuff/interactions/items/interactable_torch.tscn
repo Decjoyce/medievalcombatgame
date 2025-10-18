@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://y2iyvssfm2gu"]
 
-[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_xnfw6"]
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_xnfw6"]
 [ext_resource type="Texture2D" uid="uid://x5a4hnm3g37i" path="res://assets/fpshands/hand_int_fliop.png" id="2_nl0vm"]
-[ext_resource type="Texture2D" uid="uid://pp77g7c0gw2c" path="res://InteractionMigrationStuff/torch.png" id="3_nl0vm"]
+[ext_resource type="Texture2D" uid="uid://pp77g7c0gw2c" path="res://sdsds/InteractionMigrationStuff/torch.png" id="3_nl0vm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
 rough = true
