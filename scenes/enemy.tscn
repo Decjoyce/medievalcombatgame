@@ -1,0 +1,393 @@
+[gd_scene load_steps=23 format=3 uid="uid://bwbx4whf01kbl"]
+
+[ext_resource type="Script" uid="uid://y3exhbrhlsof" path="res://scenes/entities/enemies/enemy.gd" id="1_8qclf"]
+[ext_resource type="Script" uid="uid://bhswmu2hpphn7" path="res://scripts/stance.gd" id="2_w8i8w"]
+[ext_resource type="Script" uid="uid://bni40py7vl8cw" path="res://scripts/equipment.gd" id="3_otmr2"]
+[ext_resource type="Resource" uid="uid://dgif1o6o8hlls" path="res://resources/equipment/test_sword.tres" id="5_j0cyh"]
+[ext_resource type="Script" uid="uid://cafxh3oene4uk" path="res://scripts/stats.gd" id="6_g0wcc"]
+[ext_resource type="Texture2D" uid="uid://cv4oo67ib3kr7" path="res://assets/skel_idle.png" id="7_s1ycm"]
+[ext_resource type="Texture2D" uid="uid://b5l61op0q8mke" path="res://assets/octagon.png" id="8_shcg2"]
+[ext_resource type="AudioStream" uid="uid://5ae883s6jdth" path="res://assets/death_fortnite.mp3" id="8_w8i8w"]
+[ext_resource type="AudioStream" uid="uid://dvrj4ht2pdiwk" path="res://assets/sword-sound-2-36274.mp3" id="9_ile5s"]
+[ext_resource type="AudioStream" uid="uid://d0w3qegtsjh55" path="res://assets/block-6839.mp3" id="10_1x4g4"]
+[ext_resource type="Script" uid="uid://24tkivt38wsk" path="res://scripts/deco_ray_cast_3d.gd" id="12_otmr2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s1ycm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8qclf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qyji"]
+bg_color = Color(0, 0.47, 0.2115, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3mio"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5n2y"]
+bg_color = Color(0.55, 0, 0, 1)
+
+[sub_resource type="Shader" id="Shader_s1ycm"]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap,cull_disabled;
+
+uniform float rows:hint_range(1.0, 100.0, 1) = 1;
+uniform float columns:hint_range(1.0, 100.0, 1) = 1;
+uniform float frame:hint_range(0.0, 100.0, 1) = 0;
+uniform bool invert_rows_columns = false;
+uniform sampler2D sprite:filter_nearest_mipmap;
+uniform int mode:hint_range(0, 1, 1) = 1;
+varying vec3 look_dir;
+uniform sampler2D Normal;
+
+
+float billboard_mode_a(vec3 CAMERA_POSITION,vec3 NODE_POSITION, mat4 MODEL_MAT,float directions){
+	vec3 direction_to_camera = normalize(CAMERA_POSITION-NODE_POSITION);
+	float angle_to_camera = atan(direction_to_camera.x,direction_to_camera.z);
+	vec4 model_direction = MODEL_MAT*vec4(1.0,0.0,0.0,0.0);
+	float y_angle = atan(model_direction.x,model_direction.z)-PI/2.0;
+	float final_angle = angle_to_camera-y_angle;
+	float int_y_angle = round((final_angle / TAU) * float(directions)) / float(directions);
+	return int_y_angle;
+}
+float billboard_mobe_b(vec3 CAMERA_POSITION,mat4 MODEL_MAT,mat4 VIEW_MAT,float directions,int ret){
+
+    vec3 ray_origin = CAMERA_POSITION;
+
+    vec3 object_origin = (MODEL_MAT * vec4(0.0,0.0,0.0,1.0)).xyz;
+    vec3 cam_dir = object_origin - ray_origin;
+    cam_dir = normalize((VIEW_MAT * vec4(cam_dir, 0.0)).xyz);
+
+    float angle = 180.0 - degrees(acos(dot(normalize(cam_dir.xz), normalize(look_dir.xz))));
+    float _direction = round(angle/180.0 * directions);
+
+    float flip = sign((look_dir.x * cam_dir.z) - (look_dir.z * cam_dir.x));
+
+    flip = mix(flip, 1.0, max(step(_direction, 0.0), step(directions, _direction)));
+	float retu = ret == 0 ? _direction : flip;
+	return retu ;
+}
+void vertex() {
+		 MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
+		look_dir = MODELVIEW_NORMAL_MATRIX * NORMAL;
+		MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	switch (mode){
+		case 0:
+			float y = invert_rows_columns == true ? billboard_mode_a(CAMERA_POSITION_WORLD,NODE_POSITION_WORLD,MODEL_MATRIX,rows) : billboard_mode_a(CAMERA_POSITION_WORLD,NODE_POSITION_WORLD,MODEL_MATRIX,columns);
+			float x = invert_rows_columns == true ? frame/columns:frame/rows;
+			UV /= vec2(rows,columns);
+			UV += invert_rows_columns == true ?vec2(y,x):vec2(x,y);
+			break;
+		case 1:
+			float x = invert_rows_columns == true ? frame/columns:frame/rows;
+			float y = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,rows,0);
+			float f = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,rows,1);
+			if (invert_rows_columns){
+				y = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,columns,0);
+				f = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,columns,1);
+			}
+			UV.y += invert_rows_columns == true ? x:y;
+			UV /=vec2(rows,columns);
+			UV.x +=  invert_rows_columns == true ? y : x;
+			UV *= invert_rows_columns == true ? vec2(1.0,f):vec2(f,1.0);
+			break;
+	};
+}
+
+void fragment() {
+	vec3 VNormal = texture(Normal,UV).rgb;
+	vec4 sprite_texture;
+	sprite_texture = texture(sprite,UV);
+	ALBEDO = sprite_texture.rgb;
+	ALPHA = sprite_texture.a;
+	NORMAL_MAP = VNormal;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shcg2"]
+render_priority = 0
+shader = SubResource("Shader_s1ycm")
+shader_parameter/rows = 4.0
+shader_parameter/columns = 8.0
+shader_parameter/frame = 0.0
+shader_parameter/invert_rows_columns = false
+shader_parameter/mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ile5s"]
+material = SubResource("ShaderMaterial_shcg2")
+size = Vector2(1.08, 1.08)
+orientation = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ile5s"]
+size = Vector2(1.34, 1.79)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ile5s"]
+transparency = 1
+diffuse_mode = 3
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+uv1_scale = Vector3(0.263, 0.18, 0.263)
+uv1_offset = Vector3(-1, -1.025, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8qclf"]
+radius = 0.236233
+height = 1.06534
+
+[node name="Enemy" type="StaticBody3D" node_paths=PackedStringArray("timer", "timer2")]
+script = ExtResource("1_8qclf")
+timer = NodePath("Timer")
+timer2 = NodePath("Timer2")
+disabled = false
+metadata/_custom_type_script = "uid://y3exhbrhlsof"
+
+[node name="_ui_stance" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.214)
+
+[node name="HealthBar" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(24.87, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26169267, -0.20449015)
+cast_shadow = 0
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.03
+billboard = 1
+texture = SubResource("CanvasTexture_s1ycm")
+
+[node name="octagon" type="Sprite3D" parent="_ui_stance"]
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.0003
+texture = ExtResource("8_shcg2")
+
+[node name="R" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, 0.117, 0.00299495, -0.000312999)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="R2" type="Sprite3D" parent="_ui_stance/R"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BR" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, 0.0825845, -0.078627, 0)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BR2" type="Sprite3D" parent="_ui_stance/BR"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="B" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.000674158, -0.114318, -0.000312999)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="B2" type="Sprite3D" parent="_ui_stance/B"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BL" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, -0.0841064, -0.080111, -0.000312999)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="BL2" type="Sprite3D" parent="_ui_stance/BL"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="L" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(1, 0, 0, 0, 9.5, 0, 0, 0, 1, -0.117, 0.00336599, -0.000312999)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="L2" type="Sprite3D" parent="_ui_stance/L"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TL" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, -0.707107, 0, 6.71751, 0.707107, 0, 0, 0, 1, -0.0809168, 0.084874, 0)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TL2" type="Sprite3D" parent="_ui_stance/TL"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="T" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(9.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.12, 0)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="T2" type="Sprite3D" parent="_ui_stance/T"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TR" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(6.71751, 0.707107, 0, -6.71751, 0.707107, 0, 0, 0, 1, 0.0816879, 0.085683, -0.000312999)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="TR2" type="Sprite3D" parent="_ui_stance/TR"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.001)
+modulate = Color(1, 0, 0, 1)
+render_priority = 1
+texture = SubResource("CanvasTexture_8qclf")
+
+[node name="Node3D" type="Node3D" parent="_ui_stance"]
+transform = Transform3D(22.383, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+
+[node name="HealthBar3" type="Sprite3D" parent="_ui_stance/Node3D"]
+transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.28968403, -0.20066835)
+cast_shadow = 0
+modulate = Color(4.781319, 0, 0, 1)
+pixel_size = 0.03
+billboard = 1
+transparent = false
+texture = SubResource("CanvasTexture_s1ycm")
+
+[node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
+script = ExtResource("2_w8i8w")
+slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
+hands = Array[ExtResource("3_otmr2")]([ExtResource("5_j0cyh"), ExtResource("5_j0cyh")])
+stats = NodePath("../Stats")
+temp_timer_stam = NodePath("../Stats/Timer_Stam")
+temp_octagon_display = [NodePath("../_ui_stance/R"), NodePath("../_ui_stance/BR"), NodePath("../_ui_stance/B"), NodePath("../_ui_stance/BL"), NodePath("../_ui_stance/L"), NodePath("../_ui_stance/TL"), NodePath("../_ui_stance/T"), NodePath("../_ui_stance/TR")]
+audio_player_miss = NodePath("../AudioStreamPlayer2")
+audio_player_hit = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://bhswmu2hpphn7"
+
+[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("health_bar", "temp_damage_indicator", "stam_bar")]
+script = ExtResource("6_g0wcc")
+max_health = 50
+current_health = 50
+health_bar = NodePath("ProgressBar3")
+temp_damage_indicator = NodePath("../_graphics/MeshInstance3D")
+max_stamina = 50.0
+current_stamina = 50.0
+stam_bar = NodePath("ProgressBar2")
+base_damage = 1
+base_defence = 1
+metadata/_custom_type_script = "uid://cafxh3oene4uk"
+
+[node name="ProgressBar2" type="ProgressBar" parent="Stats"]
+anchors_preset = -1
+anchor_top = 0.955
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1856.0
+offset_top = -501.0
+offset_right = -2111.0
+offset_bottom = -501.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0qyji")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="Timer_Stam" type="Timer" parent="Stats"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ProgressBar3" type="ProgressBar" parent="Stats"]
+anchors_preset = -1
+anchor_top = 0.955
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -844.0
+offset_right = -665.498
+offset_bottom = -862.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_v3mio")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a5n2y")
+max_value = 120.0
+value = 120.0
+rounded = true
+show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Stats"]
+stream = ExtResource("8_w8i8w")
+
+[node name="_graphics" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028, -0.162, 0)
+
+[node name="normal" type="Sprite3D" parent="_graphics"]
+visible = false
+cast_shadow = 2
+billboard = 2
+texture_filter = 0
+texture = ExtResource("7_s1ycm")
+
+[node name="hit" type="Sprite3D" parent="_graphics"]
+visible = false
+modulate = Color(1, 0.19, 0.19, 1)
+pixel_size = 0.006
+billboard = 2
+texture_filter = 0
+render_priority = 1
+
+[node name="Sprite3DBillBoard" type="MeshInstance3D" parent="_graphics"]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.15703505, 0)
+visible = false
+mesh = SubResource("PlaneMesh_ile5s")
+metadata/_custom_type_script = "uid://dr6ogkwaipmyy"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="_graphics"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7075488e-08, 0, -0.19532081)
+visible = false
+cast_shadow = 0
+mesh = SubResource("QuadMesh_ile5s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ile5s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ile5s")
+volume_db = 14.054
+max_polyphony = 4
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1x4g4")
+max_polyphony = 4
+
+[node name="_col" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141903, 0)
+shape = SubResource("CapsuleShape3D_8qclf")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1)
+script = ExtResource("12_otmr2")
+metadata/_custom_type_script = "uid://24tkivt38wsk"
+
+[node name="Timer_Recovery" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Windup" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Attack" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Stats/Timer_Stam" to="Stats" method="_on_timer_stam_timeout"]
+[connection signal="on_body_entered" from="RayCast3D" to="Stance" method="_on_raycast_enter"]
+[connection signal="on_body_exit" from="RayCast3D" to="Stance" method="_on_raycast_exit"]
+[connection signal="timeout" from="Timer_Recovery" to="." method="_on_recovery_end"]
+[connection signal="timeout" from="Timer_Windup" to="." method="_on_wind_up_end"]
+[connection signal="timeout" from="Timer_Attack" to="." method="_on_attack_end"]
