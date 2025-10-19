@@ -11,6 +11,7 @@ extends Entity
 var enemy: Player
 
 @onready var bar: Sprite3D = $_ui_stance/Node3D/HealthBar3
+@onready var bar2: Sprite3D = $_ui_stance/Node3D/HealthBar4
 
 
 
@@ -23,6 +24,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	bar.scale.x = float(stance.stats.current_health) / stance.stats.max_health
+	bar2.scale.x = float(stance.stats.current_stamina) / stance.stats.max_stamina
 	#if enemy:
 	#	look_at(enemy.position) ## This shouldn't be used bc its not grid-standardized
 

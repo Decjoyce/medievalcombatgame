@@ -103,6 +103,7 @@ func movement(delta: float) -> void:
 		target_pos = target_pos + compass.basis.z * Vector3.ONE
 		
 	target_pos.round() ## I cant remember why I round
+	compass.global_position = target_pos
 	#is_moving = true
 	
 
@@ -124,7 +125,7 @@ func turn(delta: float) -> void:
 		rotation.y = target_rotation
 
 func _process(delta: float) -> void:
-	compass.position = position
+	#compass.position = position
 	if Input.is_action_just_pressed("equipped_action"): ## This was for mouse controls and is now obselete
 		if con_left_hand:
 			stance.attack_opponent(1)
@@ -154,10 +155,12 @@ func _physics_process(delta: float) -> void:
 
 @onready var attack_anims := [$_graphics/right_hand/AnimationPlayer, $_graphics/left_hand/AnimationPlayer]
 
+@onready var stats: Stats = $Stats
+
 var is_attacking: Array[bool] = [false, false]
 
 func begin_attack(hand:int) -> void:
-	if is_attacking[hand]:
+	if is_attacking[hand] or stats.current_stamina <= 0:
 		return
 	
 	is_attacking[hand] = true

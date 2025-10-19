@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://y2iyvssfm2gu"]
+[gd_scene load_steps=7 format=3 uid="uid://ckbssta60y84b"]
 
-[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_xnfw6"]
-[ext_resource type="Texture2D" uid="uid://cigbhrclnu5op" path="res://assets/fpshands/hand_cb_flipped.png" id="2_eqg1m"]
-[ext_resource type="Texture2D" uid="uid://pp77g7c0gw2c" path="res://sdsds/InteractionMigrationStuff/torch.png" id="3_nl0vm"]
+[ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_i0teq"]
+[ext_resource type="Texture2D" uid="uid://ccikevpc2tkg1" path="res://assets/torchéd/torch.png" id="2_7dca1"]
+[ext_resource type="Texture2D" uid="uid://cigbhrclnu5op" path="res://assets/fpshands/hand_cb_flipped.png" id="2_kyn8f"]
+[ext_resource type="Texture2D" uid="uid://5dfcy06fiurr" path="res://assets/torchéd/walltorchFront.png" id="3_i0teq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
 rough = true
@@ -12,7 +13,7 @@ absorbent = true
 radius = 0.1743164
 height = 0.7080078
 
-[node name="TestInteractable" type="RigidBody3D" node_paths=PackedStringArray("rb")]
+[node name="TorchScont" type="RigidBody3D" node_paths=PackedStringArray("rb")]
 collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -20,11 +21,13 @@ axis_lock_angular_z = true
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
-script = ExtResource("1_xnfw6")
+freeze = true
+script = ExtResource("1_i0teq")
 mass = 1.5
 rb = NodePath(".")
+changed_sprite = ExtResource("2_7dca1")
 active_interaction = true
-prompt_sprite = ExtResource("2_eqg1m")
+prompt_sprite = ExtResource("2_kyn8f")
 
 [node name="_col" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.165, 0)
@@ -34,9 +37,10 @@ shape = SubResource("CapsuleShape3D_nl0vm")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 flip_h = true
 billboard = 2
-texture = ExtResource("3_nl0vm")
+texture = ExtResource("3_i0teq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31126872, 0)
 light_color = Color(0.8876558, 0.46660283, 0, 1)
 
 [node name="GrabbedArt" type="Node3D" parent="."]

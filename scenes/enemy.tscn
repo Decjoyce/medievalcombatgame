@@ -30,7 +30,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5n2y"]
 bg_color = Color(0.55, 0, 0, 1)
 
-[sub_resource type="Shader" id="Shader_shcg2"]
+[sub_resource type="Shader" id="Shader_s1ycm"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -107,9 +107,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ile5s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shcg2"]
 render_priority = 0
-shader = SubResource("Shader_shcg2")
+shader = SubResource("Shader_s1ycm")
 shader_parameter/rows = 4.0
 shader_parameter/columns = 8.0
 shader_parameter/frame = 0.0
@@ -118,12 +118,12 @@ shader_parameter/sprite = ExtResource("11_j0cyh")
 shader_parameter/mode = 0
 shader_parameter/Normal = ExtResource("9_g0wcc")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_1x4g4"]
-material = SubResource("ShaderMaterial_ile5s")
+[sub_resource type="PlaneMesh" id="PlaneMesh_ile5s"]
+material = SubResource("ShaderMaterial_shcg2")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
-[sub_resource type="Resource" id="Resource_2pwtc"]
+[sub_resource type="Resource" id="Resource_1x4g4"]
 script = ExtResource("11_s1ycm")
 sprite = ExtResource("11_j0cyh")
 texture_normal = ExtResource("9_g0wcc")
@@ -156,9 +156,19 @@ metadata/_custom_type_script = "uid://y3exhbrhlsof"
 
 [node name="_ui_stance" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.214)
+visible = false
 
 [node name="HealthBar" type="Sprite3D" parent="_ui_stance"]
 transform = Transform3D(24.87, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26169267, -0.20449015)
+cast_shadow = 0
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.03
+billboard = 1
+texture = SubResource("CanvasTexture_s1ycm")
+
+[node name="HealthBar2" type="Sprite3D" parent="_ui_stance"]
+transform = Transform3D(24.87, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29128155, -0.20449015)
 cast_shadow = 0
 gi_mode = 0
 modulate = Color(0, 0, 0, 1)
@@ -271,6 +281,15 @@ billboard = 1
 transparent = false
 texture = SubResource("CanvasTexture_s1ycm")
 
+[node name="HealthBar4" type="Sprite3D" parent="_ui_stance/Node3D"]
+transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.3196568, -0.20066835)
+cast_shadow = 0
+modulate = Color(0.22760749, 4.0936913, 0, 1)
+pixel_size = 0.03
+billboard = 1
+transparent = false
+texture = SubResource("CanvasTexture_s1ycm")
+
 [node name="Stance" type="Node" parent="." node_paths=PackedStringArray("stats", "temp_timer_stam", "temp_octagon_display", "audio_player_miss", "audio_player_hit")]
 script = ExtResource("2_w8i8w")
 slots = Array[int]([1, -1, -1, -1, 0, -1, -1, -1])
@@ -358,9 +377,9 @@ render_priority = 1
 [node name="Sprite3DBillBoard" type="MeshInstance3D" parent="_graphics"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.15703505, 0)
 visible = false
-mesh = SubResource("PlaneMesh_1x4g4")
+mesh = SubResource("PlaneMesh_ile5s")
 script = ExtResource("10_g0wcc")
-animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_2pwtc")])
+animations_array = Array[ExtResource("11_s1ycm")]([SubResource("Resource_1x4g4")])
 animation = 0
 frame = 0.0
 sprite_scale = 0.001

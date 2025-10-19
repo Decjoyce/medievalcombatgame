@@ -190,6 +190,7 @@ current = true
 
 [node name="_ui_stance" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.222)
+visible = false
 
 [node name="octagon" type="Sprite3D" parent="Camera3D/_ui_stance"]
 modulate = Color(0, 0, 0, 1)
@@ -245,7 +246,6 @@ render_priority = 2
 texture = SubResource("CanvasTexture_qfm1y")
 
 [node name="_graphics" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -254,6 +254,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="left_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,6 +313,7 @@ libraries = {
 }
 
 [node name="right_hand" type="Control" parent="_graphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -495,6 +497,7 @@ target_position = Vector3(-1, 0, 0)
 script = ExtResource("15_oprun")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.02
 
 [node name="label_interact" type="Label" parent="."]
 anchors_preset = -1
