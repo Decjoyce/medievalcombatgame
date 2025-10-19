@@ -48,6 +48,11 @@ var frame:float = 0:
 		frame = value
 		if is_node_ready():
 			material.set_shader_parameter("frame",frame)
+			
+@export var texture_normal:Texture:
+	set(value):
+		texture_normal = value
+		mesh.material.set_shader_parameter("Normal",value)
 var spr_mesh
 var material
 var total_frames
@@ -65,11 +70,13 @@ func setup_shader():
 	var shader_sprite = sprite if sprite else smiley_spr
 	var sprite_size = shader_sprite.get_size()
 	var sprite_slice = Vector2(rows,columns)
+	var normal_shader = texture_normal if texture_normal else null
 	mesh.size = (sprite_size / sprite_slice) * sprite_scale
 	if material:
 		material.set_shader_parameter("sprite",shader_sprite)
 		material.set_shader_parameter("rows",rows)
 		material.set_shader_parameter("columns",columns)
+		material.set_shader_parameter("Normal",normal_shader)
 		material.set_shader_parameter("invert_rows_columns",invert_rows_columns)
 		material.set_shader_parameter("mode",mode)
 func _get_property_list():

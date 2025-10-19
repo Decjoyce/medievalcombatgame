@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckbssta60y84b"]
+[gd_scene load_steps=13 format=3 uid="uid://ckbssta60y84b"]
 
 [ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_i0teq"]
 [ext_resource type="Texture2D" uid="uid://ccikevpc2tkg1" path="res://assets/torchéd/torch.png" id="2_7dca1"]
 [ext_resource type="Texture2D" uid="uid://cigbhrclnu5op" path="res://assets/fpshands/hand_cb_flipped.png" id="2_kyn8f"]
 [ext_resource type="Texture2D" uid="uid://5dfcy06fiurr" path="res://assets/torchéd/walltorchFront.png" id="3_i0teq"]
+[ext_resource type="Texture2D" uid="uid://rugeksstpfq8" path="res://resources/torches/torchsprite.png" id="5_dvwue"]
+[ext_resource type="Texture2D" uid="uid://dw6050f2d0t0d" path="res://resources/torches/torchsprite_n.png" id="5_ku3xn"]
+[ext_resource type="Script" uid="uid://168qy301dlqf" path="res://extras_sprites/scripts/simple_sprite_3D_billboard.gd" id="6_ku3xn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_epu43"]
 rough = true
@@ -12,6 +15,99 @@ absorbent = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nl0vm"]
 radius = 0.1743164
 height = 0.7080078
+
+[sub_resource type="Shader" id="Shader_jqr2l"]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap,cull_disabled;
+
+uniform float rows:hint_range(1.0, 100.0, 1) = 1;
+uniform float columns:hint_range(1.0, 100.0, 1) = 1;
+uniform float frame:hint_range(0.0, 100.0, 1) = 0;
+uniform bool invert_rows_columns = false;
+uniform sampler2D sprite:filter_nearest_mipmap;
+uniform int mode:hint_range(0, 1, 1) = 1;
+varying vec3 look_dir;
+uniform sampler2D Normal;
+
+
+float billboard_mode_a(vec3 CAMERA_POSITION,vec3 NODE_POSITION, mat4 MODEL_MAT,float directions){
+	vec3 direction_to_camera = normalize(CAMERA_POSITION-NODE_POSITION);
+	float angle_to_camera = atan(direction_to_camera.x,direction_to_camera.z);
+	vec4 model_direction = MODEL_MAT*vec4(1.0,0.0,0.0,0.0);
+	float y_angle = atan(model_direction.x,model_direction.z)-PI/2.0;
+	float final_angle = angle_to_camera-y_angle;
+	float int_y_angle = round((final_angle / TAU) * float(directions)) / float(directions);
+	return int_y_angle;
+}
+float billboard_mobe_b(vec3 CAMERA_POSITION,mat4 MODEL_MAT,mat4 VIEW_MAT,float directions,int ret){
+
+    vec3 ray_origin = CAMERA_POSITION;
+
+    vec3 object_origin = (MODEL_MAT * vec4(0.0,0.0,0.0,1.0)).xyz;
+    vec3 cam_dir = object_origin - ray_origin;
+    cam_dir = normalize((VIEW_MAT * vec4(cam_dir, 0.0)).xyz);
+
+    float angle = 180.0 - degrees(acos(dot(normalize(cam_dir.xz), normalize(look_dir.xz))));
+    float _direction = round(angle/180.0 * directions);
+
+    float flip = sign((look_dir.x * cam_dir.z) - (look_dir.z * cam_dir.x));
+
+    flip = mix(flip, 1.0, max(step(_direction, 0.0), step(directions, _direction)));
+	float retu = ret == 0 ? _direction : flip;
+	return retu ;
+}
+void vertex() {
+		 MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
+		look_dir = MODELVIEW_NORMAL_MATRIX * NORMAL;
+		MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	switch (mode){
+		case 0:
+			float y = invert_rows_columns == true ? billboard_mode_a(CAMERA_POSITION_WORLD,NODE_POSITION_WORLD,MODEL_MATRIX,rows) : billboard_mode_a(CAMERA_POSITION_WORLD,NODE_POSITION_WORLD,MODEL_MATRIX,columns);
+			float x = invert_rows_columns == true ? frame/columns:frame/rows;
+			UV /= vec2(rows,columns);
+			UV += invert_rows_columns == true ?vec2(y,x):vec2(x,y);
+			break;
+		case 1:
+			float x = invert_rows_columns == true ? frame/columns:frame/rows;
+			float y = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,rows,0);
+			float f = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,rows,1);
+			if (invert_rows_columns){
+				y = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,columns,0);
+				f = billboard_mobe_b(CAMERA_POSITION_WORLD,MODEL_MATRIX,VIEW_MATRIX,columns,1);
+			}
+			UV.y += invert_rows_columns == true ? x:y;
+			UV /=vec2(rows,columns);
+			UV.x +=  invert_rows_columns == true ? y : x;
+			UV *= invert_rows_columns == true ? vec2(1.0,f):vec2(f,1.0);
+			break;
+	};
+}
+
+void fragment() {
+	vec3 VNormal = texture(Normal,UV).rgb;
+	vec4 sprite_texture;
+	sprite_texture = texture(sprite,UV);
+	ALBEDO = sprite_texture.rgb;
+	ALPHA = sprite_texture.a;
+	NORMAL_MAP = VNormal;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58ktg"]
+render_priority = 0
+shader = SubResource("Shader_jqr2l")
+shader_parameter/rows = 1.0
+shader_parameter/columns = 4.0
+shader_parameter/frame = 0.0
+shader_parameter/invert_rows_columns = false
+shader_parameter/sprite = ExtResource("5_dvwue")
+shader_parameter/mode = 0
+shader_parameter/Normal = ExtResource("5_ku3xn")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vuaqf"]
+material = SubResource("ShaderMaterial_58ktg")
+size = Vector2(1.08, 1.08)
+orientation = 2
 
 [node name="TorchScont" type="RigidBody3D" node_paths=PackedStringArray("rb")]
 collision_layer = 2
@@ -35,12 +131,28 @@ shape = SubResource("CapsuleShape3D_nl0vm")
 
 [node name="Sprite3D" type="Sprite3D" parent="_col"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
 flip_h = true
 billboard = 2
 texture = ExtResource("3_i0teq")
 
+[node name="SimpleSprite3DBillboard" type="MeshInstance3D" parent="_col"]
+transform = Transform3D(0.099999994, 0, 0, 0, 0.099999994, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_vuaqf")
+skeleton = NodePath("../Sprite3D")
+script = ExtResource("6_ku3xn")
+sprite = ExtResource("5_dvwue")
+sprite_scale = 0.001
+texture_normal = ExtResource("5_ku3xn")
+rows = 1.0
+columns = 4.0
+invert_rows_columns = false
+mode = 0
+frame = 0.0
+metadata/_custom_type_script = "uid://168qy301dlqf"
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31126872, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33936518, 0)
 light_color = Color(0.8876558, 0.46660283, 0, 1)
 
 [node name="GrabbedArt" type="Node3D" parent="."]

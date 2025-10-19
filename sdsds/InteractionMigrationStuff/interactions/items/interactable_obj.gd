@@ -29,6 +29,7 @@ func interact_begin(entity: Entity, hand: int):
 	if entity.interaction:
 		if changed_sprite:
 			$_col/Sprite3D.texture = changed_sprite
+			$_col/SimpleSprite3DBillboard.visible = false
 		entity.interaction.begin_grab(self, hand)
 
 func interacting(entity: Entity, hand: int):

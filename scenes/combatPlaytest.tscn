@@ -3084,6 +3084,6 @@ light_color = Color(0.9965945, 0.47654963, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="TorchScont" parent="." instance=ExtResource("15_yb6aq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, -0.007, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.85, -0.007, 0)
 
 [connection signal="on_interact_begin" from="TorchScont" to="Door" method="toggle_door"]
