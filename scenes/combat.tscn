@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="3_aic3r"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="4_4l26h"]
 [ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player.tscn" id="5_p71o4"]
-[ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://scenes/health_pack.tscn" id="5_vcae8"]
+[ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://sdsds/InteractionMigrationStuff/interactions/health_pack.tscn" id="5_vcae8"]
 
 [sub_resource type="Gradient" id="Gradient_4l26h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
