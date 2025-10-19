@@ -272,19 +272,19 @@ texture = SubResource("CanvasTexture_8qclf")
 [node name="Node3D" type="Node3D" parent="_ui_stance"]
 transform = Transform3D(22.383, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
-[node name="HealthBar3" type="Sprite3D" parent="_ui_stance/Node3D"]
-transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.28968403, -0.20066835)
+[node name="HealthBar4" type="Sprite3D" parent="_ui_stance/Node3D"]
+transform = Transform3D(1, 0, 1.0214052e-14, 0, 1, 0, -2.2737368e-13, 0, 1, 1.7208457e-15, 0.31965682, -0.20066835)
 cast_shadow = 0
-modulate = Color(4.781319, 0, 0, 1)
+modulate = Color(0.22760749, 4.0936913, 0, 1)
 pixel_size = 0.03
 billboard = 1
 transparent = false
 texture = SubResource("CanvasTexture_s1ycm")
 
-[node name="HealthBar4" type="Sprite3D" parent="_ui_stance/Node3D"]
-transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.3196568, -0.20066835)
+[node name="HealthBar3" type="Sprite3D" parent="_ui_stance/Node3D"]
+transform = Transform3D(1, 0, 1.01583204e-14, 0, 1, 0, -1.01583204e-14, 0, 1, 1.7763568e-15, 0.28968403, -0.20066835)
 cast_shadow = 0
-modulate = Color(0.22760749, 4.0936913, 0, 1)
+modulate = Color(4.781319, 0, 0, 1)
 pixel_size = 0.03
 billboard = 1
 transparent = false
