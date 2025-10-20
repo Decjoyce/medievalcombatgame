@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6c41r8xo6rte"]
+[gd_scene load_steps=32 format=3 uid="uid://c6c41r8xo6rte"]
 
 [ext_resource type="PackedScene" uid="uid://enmoeaumacog" path="res://scenes/player.tscn" id="1_g47mb"]
 [ext_resource type="Material" uid="uid://lxkffuir1h5d" path="res://resources/materials/m_wall.tres" id="2_cxco5"]
 [ext_resource type="Material" uid="uid://cbw04q1g6pfx0" path="res://resources/materials/m_gate.tres" id="3_3fx3o"]
+[ext_resource type="PackedScene" uid="uid://ds5rps673cu3k" path="res://sdsds/InteractionMigrationStuff/interactions/lever.tscn" id="4_yb6aq"]
 [ext_resource type="PackedScene" uid="uid://cfk63cv4shlt6" path="res://scenes/enemy.tscn" id="4_ykvmm"]
 [ext_resource type="PackedScene" uid="uid://dlrnt77wbvcqx" path="res://sdsds/InteractionMigrationStuff/interactions/health_pack.tscn" id="5_47vgy"]
 [ext_resource type="Script" uid="uid://brrck6msfdli" path="res://attacklist.gd" id="5_klc8k"]
@@ -3333,7 +3334,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.84
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7945075, 0, -15.749412)
 visible = false
 
+[node name="Lever" parent="." instance=ExtResource("4_yb6aq")]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 0.01815087, 0.107660145, 0.9351842)
+
 [connection signal="on_die" from="Enemies/Enemy" to="Door2" method="toggle_door"]
 [connection signal="on_die" from="Enemies/Enemy2" to="Door2" method="toggle_door"]
 [connection signal="on_die" from="Enemies/Enemy3" to="Door2" method="toggle_door"]
-[connection signal="on_interact_begin" from="TorchScont" to="Door" method="toggle_door"]
+[connection signal="on_interact_begin" from="Lever" to="Door" method="toggle_door"]
