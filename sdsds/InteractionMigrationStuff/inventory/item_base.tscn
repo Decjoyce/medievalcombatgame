@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://x6bmoyd16gya"]
 
 [node name="ItemBase" type="TextureRect"]
+expand_mode = 1

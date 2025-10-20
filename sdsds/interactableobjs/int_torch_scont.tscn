@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://ckbssta60y84b"]
 
 [ext_resource type="Script" uid="uid://coiw2vlws6mk6" path="res://sdsds/InteractionMigrationStuff/interactions/items/interactable_obj.gd" id="1_i0teq"]
-[ext_resource type="Texture2D" uid="uid://ccikevpc2tkg1" path="res://assets/torchéd/torch.png" id="2_7dca1"]
+[ext_resource type="Texture2D" uid="uid://ccikevpc2tkg1" path="res://sdsds/InteractionMigrationStuff/inventory/inv_icons/torch.png" id="2_7dca1"]
 [ext_resource type="Texture2D" uid="uid://cigbhrclnu5op" path="res://assets/fpshands/hand_cb_flipped.png" id="2_kyn8f"]
 [ext_resource type="Texture2D" uid="uid://5dfcy06fiurr" path="res://assets/torchéd/walltorchFront.png" id="3_i0teq"]
 [ext_resource type="Texture2D" uid="uid://rugeksstpfq8" path="res://resources/torches/torchsprite.png" id="5_dvwue"]
@@ -16,7 +16,7 @@ absorbent = true
 radius = 0.1743164
 height = 0.7080078
 
-[sub_resource type="Shader" id="Shader_jqr2l"]
+[sub_resource type="Shader" id="Shader_4kqf0"]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap,cull_disabled;
 
@@ -93,9 +93,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_58ktg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d712f"]
 render_priority = 0
-shader = SubResource("Shader_jqr2l")
+shader = SubResource("Shader_4kqf0")
 shader_parameter/rows = 1.0
 shader_parameter/columns = 4.0
 shader_parameter/frame = 0.0
@@ -104,8 +104,8 @@ shader_parameter/sprite = ExtResource("5_dvwue")
 shader_parameter/mode = 0
 shader_parameter/Normal = ExtResource("5_ku3xn")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vuaqf"]
-material = SubResource("ShaderMaterial_58ktg")
+[sub_resource type="PlaneMesh" id="PlaneMesh_rjgd0"]
+material = SubResource("ShaderMaterial_d712f")
 size = Vector2(1.08, 1.08)
 orientation = 2
 
@@ -119,6 +119,7 @@ physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
 freeze = true
 script = ExtResource("1_i0teq")
+item = "torch"
 mass = 1.5
 rb = NodePath(".")
 changed_sprite = ExtResource("2_7dca1")
@@ -138,7 +139,7 @@ texture = ExtResource("3_i0teq")
 
 [node name="SimpleSprite3DBillboard" type="MeshInstance3D" parent="_col"]
 transform = Transform3D(0.099999994, 0, 0, 0, 0.099999994, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("PlaneMesh_vuaqf")
+mesh = SubResource("PlaneMesh_rjgd0")
 skeleton = NodePath("../Sprite3D")
 script = ExtResource("6_ku3xn")
 sprite = ExtResource("5_dvwue")

@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dmq4upalrs5fp" path="res://BellyWalk.png" id="8_klc8k"]
 [ext_resource type="Texture2D" uid="uid://facya755qgwh" path="res://bellybog/BellyWalk_n.png" id="9_jie3d"]
 [ext_resource type="PackedScene" uid="uid://djfw40idmjem8" path="res://sdsds/InteractionMigrationStuff/interactions/door.tscn" id="15_m0t0m"]
-[ext_resource type="PackedScene" uid="uid://ckbssta60y84b" path="res://sdsds/InteractionMigrationStuff/interactions/items/int_torch_scont.tscn" id="15_yb6aq"]
+[ext_resource type="PackedScene" uid="uid://ckbssta60y84b" path="res://sdsds/interactableobjs/int_torch_scont.tscn" id="15_yb6aq"]
 
 [sub_resource type="Gradient" id="Gradient_4l26h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -3082,6 +3082,7 @@ light_color = Color(0.9965945, 0.47654963, 0, 1)
 
 [node name="Door" parent="." instance=ExtResource("15_m0t0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+can_interact = false
 
 [node name="TorchScont" parent="." instance=ExtResource("15_yb6aq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.85, -0.007, 0)

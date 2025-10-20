@@ -10,7 +10,7 @@ extends Interactable
 var is_held: bool
 
 @export_group("Item")
-@export var item: Equipment
+@export var item: String
 var current_trig: ObjectTrigger
 
 ## Physics Properties
@@ -20,15 +20,18 @@ var current_trig: ObjectTrigger
 
 @export var changed_sprite: Texture2D
 
+@onready var graphics: Sprite3D = $_col/Sprite3D
+
 func _ready() -> void:
-	# $_col/MeshInstance3D.shape = item.graphics
+	print(get_parent())
 	pass
 
 func interact_begin(entity: Entity, hand: int):
 	super(entity, hand)
 	if entity.interaction:
 		if changed_sprite:
-			$_col/Sprite3D.texture = changed_sprite
+			graphics.texture = changed_sprite
+			graphics.visible = true
 			$_col/SimpleSprite3DBillboard.visible = false
 		entity.interaction.begin_grab(self, hand)
 

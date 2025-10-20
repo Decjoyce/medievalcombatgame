@@ -144,6 +144,12 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
+	
+	if Input.is_action_just_pressed("inv_toggle"):
+		inv.toggle_inventory()
+
+@onready var inv: Inventory = $Inventory
+
 
 func _physics_process(delta: float) -> void:
 	joystick_movement()

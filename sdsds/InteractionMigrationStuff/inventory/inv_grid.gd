@@ -18,6 +18,7 @@ func _ready():
 			grid[x][y] = false
  
 func insert_item(item):
+	print("insert")
 	var item_pos = item.global_position + Vector2(cell_size / 2, cell_size / 2)
 	var g_pos = pos_to_grid_coord(item_pos)
 	var item_size = get_grid_size(item)
@@ -75,7 +76,7 @@ func set_grid_space(x, y, w, h, state):
  
 func get_item_under_pos(pos):
 	for item in items:
-		print(item)
+		#print(item)
 		if item.get_global_rect().has_point(pos):
 			return item
 	return null

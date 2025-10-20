@@ -8,6 +8,7 @@ var cam: Camera3D
 @export var hands: Array[Control] 
 var hand_sprites: Array[Control] 
 var item_sprites: Array[Control]
+var grab_points: Array[Control]
 
 @export var hand_speed: Array[float] = [500, 500] 
 const INT_RAY_LENGTH = 1.5
@@ -18,6 +19,9 @@ var interactables : Array[Interactable] = [null, null]
 
 var current_interactables: Array[Interactable] = [null, null]
 
+@export var inventory: Inventory
+var is_over_inv: Array[bool] = [false, false]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for han in hands:
@@ -26,6 +30,8 @@ func _ready() -> void:
 				hand_sprites.append(i)
 			if i.name.contains("_item_sprite_"):
 				item_sprites.append(i)
+			if i.name.contains("_grab_point_"):
+				grab_points.append(i)
 	await player.ready
 	cam = player.cam
 
@@ -41,6 +47,35 @@ func _process(delta: float) -> void:
 	interact_checker(1)
 	
 	grabbing()
+	
+	if inventory.is_opened:
+		if inventory.grid_bkpk.get_global_rect().has_point(grab_points[0].global_position):
+			enable_is_over_inv(0)
+		else:
+			disable_is_over_inv(0)
+		if inventory.grid_bkpk.get_global_rect().has_point(grab_points[1].global_position):
+			enable_is_over_inv(1)
+		else:
+			disable_is_over_inv(1)
+	else:
+		disable_is_over_inv(0)
+		disable_is_over_inv(1)
+
+func enable_is_over_inv(hand: int) -> void:
+	if is_over_inv[hand]: return
+	is_over_inv[hand] = true
+	#print("s")
+	if grabbed_objs[hand]:
+		inventory.item_held[hand].visible = true
+		grabbed_objs[hand].graphics.visible = false
+
+func disable_is_over_inv(hand: int) -> void:
+	if !is_over_inv[hand]: return
+	is_over_inv[hand] = false
+	#print("0")
+	if grabbed_objs[hand]:
+		inventory.item_held[hand].visible = false
+		grabbed_objs[hand].graphics.visible = true
 
 func joystick_movement(delta: float) -> void:
 	var l_motion := Input.get_vector("l_joystick_left", "l_joystick_right", "l_joystick_down", "l_joystick_up")
@@ -87,7 +122,7 @@ func _input_handle():
 ## Interaction
 
 func interact_checker(hand:int) -> void:
-	if !player.interacting or current_interactables[hand]: return
+	if !player.interacting or current_interactables[hand] or is_over_inv[hand]: return
 	var space_state = cam.get_world_3d().direct_space_state
 	
 	var origin = cam.project_ray_origin(hands[hand].get_screen_position() + hands[hand].size/2)
@@ -127,6 +162,16 @@ func begin_interact(hand: int) -> bool:
 		call_deferred("finish_interact", hand)
 	return true
 
+func force_interact(hand: int, int_with: Interactable) -> bool:
+	print("yo")
+	current_interactables[hand] = int_with
+	interactables[hand] = null
+	current_interactables[hand].interact_begin(player, hand)
+	
+	if !current_interactables[hand].active_interaction:
+		call_deferred("finish_interact", hand)
+	return true
+
 func interacting(hand: int) -> bool:
 	if !current_interactables[hand]: return false
 	current_interactables[hand].interacting(player, hand)
@@ -146,7 +191,7 @@ func finish_interact(hand: int) -> bool:
 
 func begin_grab(_grabbed_object: InteractableObj, _hand: int) -> void:
 	# item_sprites[hand].texture = grabbed_object.item.grabbed_sprite
-	
+	inventory.new_pickup_item(_hand, _grabbed_object.item)
 	grabbed_objs[_hand] = _grabbed_object
 	pass
 
@@ -160,5 +205,10 @@ func grabbing():
 
 func end_grab(_grabbed_object: InteractableObj, _hand: int):
 	grabbed_objs[_hand] = null
+	if is_over_inv[_hand]:
+		print("eo")
+		_grabbed_object.queue_free()
+		return
+	
 	if hands[_hand].get_screen_position().y <= size.y / 2.8:
 		_grabbed_object.throw(player.transform)

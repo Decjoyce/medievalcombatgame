@@ -21,6 +21,7 @@ mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_epu43")
 gravity_scale = 0.112
 script = ExtResource("1_xnfw6")
+item = "torch"
 mass = 1.5
 rb = NodePath(".")
 active_interaction = true

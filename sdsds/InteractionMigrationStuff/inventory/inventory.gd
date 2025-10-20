@@ -1,3 +1,4 @@
+class_name Inventory
 extends Control
  
 
@@ -9,41 +10,57 @@ extends Control
 
 const item_base = preload("res://sdsds/InteractionMigrationStuff/inventory/item_base.tscn")
  
+var is_opened: bool
+
 @onready var inv_base = $BG
 @onready var grid_bkpk = $GridSlots
 @onready var eq_slots = $EquipmentSlots
  
+@export var hand_cursors: Array[Control]
+
 var item_held: Array[TextureRect] = [null, null]
 var item_offset: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
 var last_container: Array = [null, null]
 var last_pos: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
- 
+
+@export var interaction : PlayerInteraction
+
 func _ready():
-	pickup_item("sword")
-	pickup_item("potato")
-	pickup_item("potato")
-	pickup_item("sword")
-	pickup_item("breastplate")
-	pickup_item("breastplate")
-	pickup_item("khfdd")
+	
+	pickup_item("torch")
+	#pickup_item("potato")
+	#pickup_item("potato")
+	#pickup_item("sword")
+	#pickup_item("breastplate")
+	#pickup_item("breastplate")
+	#pickup_item("khfdd")
  
  
 func _process(delta):
-	var cursor_pos = get_global_mouse_position()
-	if Input.is_action_just_pressed("left_hand_control"):
-		grab(0, cursor_pos)
-	if Input.is_action_just_released("left_hand_control"):
-		release(0, cursor_pos)
+	if !is_opened: return
+	var cursor_pos_1 = hand_cursors[0].global_position
+	if Input.is_action_just_pressed("equipped_action_left"):
+		if !item_held[0]:
+			grab(0, cursor_pos_1)
+		else:
+				release(0, cursor_pos_1)
 	if item_held[0] != null:
-		item_held[0].global_position = cursor_pos + item_offset[0]
-		
-	if Input.is_action_just_pressed("right_hand_control"):
-		grab(1, cursor_pos)
-	if Input.is_action_just_released("right_hand_control"):
-		release(1, cursor_pos)
+		item_held[0].global_position = cursor_pos_1 + item_offset[0]
+	
+	var cursor_pos_2 = hand_cursors[1].global_position
+	if Input.is_action_just_pressed("equipped_action_right"):
+		if !item_held[1]:
+			grab(1, cursor_pos_2)
+		else:
+			release(1, cursor_pos_2)
 	if item_held[1] != null:
-		item_held[1].global_position = cursor_pos + item_offset[1]
+		item_held[1].global_position = cursor_pos_2 + item_offset[1]
  
+func toggle_inventory() -> void:
+	is_opened = !is_opened
+	if is_opened: visible = true
+	else: visible = false
+
 func grab(hand:int, cursor_pos):
 	var c = get_container_under_cursor(cursor_pos)
 	if c != null and c.has_method("grab_item"):
@@ -52,12 +69,32 @@ func grab(hand:int, cursor_pos):
 			last_container[hand] = c
 			last_pos[hand] = item_held[hand].global_position
 			item_offset[hand] = item_held[hand].global_position - cursor_pos
-			move_child(item_held[hand], get_child_count())
+			#move_child(item_held[hand], get_child_count())
+			
+			
+			var item_obj: PackedScene = load(ItemDB.get_item(item_held[hand].name)["object"])
+			item_held[hand].queue_free()
+			item_held[hand] = null
+			var new_obj = item_obj.instantiate()
+			get_parent().get_parent().add_child(new_obj)
+			new_obj.graphics.visible = false
+			interaction.hand_sprites[hand].texture = new_obj.prompt_sprite
+			await get_tree().create_timer(0.01).timeout
+			call_deferred("force_interact", hand, new_obj)
+			
 			#item_held[hand].mouse_filter = Control.MOUSE_FILTER_IGNORE ## SOLUTION
  
+func force_interact(hand: int, int_with: Interactable):
+	interaction.force_interact(hand, int_with)
+
 func release(hand:int, cursor_pos):
 	if item_held[hand] == null:
 		return
+	#if !interaction.is_over_inv:
+	#	item_held[hand].queue_free()
+	#	item_held[hand] = null
+	#	return
+	
 	var c = get_container_under_cursor(cursor_pos)
 	if c == null:
 		drop_item(hand)
@@ -84,15 +121,34 @@ func drop_item(hand:int):
 func return_item(hand:int):
 	item_held[hand].global_position = last_pos[hand]
 	last_container[hand].insert_item(item_held[hand])
+	print("returned")
 	item_held[hand] = null
  
 func pickup_item(item_id):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(ItemDB.get_item(item_id)["icon"])
+	if ItemDB.get_item(item_id)["dimensions"]:
+		item.size = ItemDB.get_item(item_id)["dimensions"]
 	add_child(item)
 	item.name = item_id
 	if !grid_bkpk.insert_item_at_first_available_spot(item):
 		item.queue_free()
 		return false
 	return true
+
+func new_pickup_item(hand:int, item_id):
+	var item = item_base.instantiate()
+	item.set_meta("id", item_id)
+	item.texture = load(ItemDB.get_item(item_id)["icon"])
+	if ItemDB.get_item(item_id)["dimensions"]:
+		item.size = ItemDB.get_item(item_id)["dimensions"]
+	add_child(item)
+	
+	if !interaction.is_over_inv[hand]:
+		item.visible = false
+	item.name = item_id
+	item_held[hand] = item
+	last_container[hand] = grid_bkpk
+	last_pos[hand] = item_held[hand].global_position
+	item_offset[hand] = Vector2.ZERO
