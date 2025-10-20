@@ -1,6 +1,8 @@
 class_name Entity
 extends StaticBody3D
 
+signal on_die(bool)
+
 @onready var stance: Stance = $Stance 
 @export var interaction: PlayerInteraction
 

@@ -151,4 +151,4 @@ func new_pickup_item(hand:int, item_id):
 	item_held[hand] = item
 	last_container[hand] = grid_bkpk
 	last_pos[hand] = item_held[hand].global_position
-	item_offset[hand] = Vector2.ZERO
+	item_offset[hand] = Vector2.ZERO - item_held[hand].size/2

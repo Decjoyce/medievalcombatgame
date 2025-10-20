@@ -550,13 +550,6 @@ material_override = ExtResource("2_cxco5")
 use_collision = true
 size = Vector3(2, 0.1, 2)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall_J23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-use_collision = true
-collision_mask = 3
-size = Vector3(2, 1.7, 0.1)
-material = ExtResource("2_cxco5")
-
 [node name="Hall_End3" type="Node3D" parent="Environment"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 0, -6)
 
@@ -575,6 +568,13 @@ size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall_End3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+use_collision = true
+collision_mask = 3
+size = Vector3(2, 1.7, 0.1)
+material = ExtResource("2_cxco5")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Hall_End3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0, 5)
 use_collision = true
 collision_mask = 3
 size = Vector3(2, 1.7, 0.1)
@@ -610,6 +610,13 @@ collision_mask = 3
 size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hall_End5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7683716e-07, 0, 5)
+use_collision = true
+collision_mask = 3
+size = Vector3(2, 1.7, 0.1)
+material = ExtResource("2_cxco5")
+
 [node name="Hall_End6" type="Node3D" parent="Environment"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 0, -10)
 
@@ -628,6 +635,13 @@ size = Vector3(2, 0.1, 2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall_End6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+use_collision = true
+collision_mask = 3
+size = Vector3(2, 1.7, 0.1)
+material = ExtResource("2_cxco5")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hall_End6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 use_collision = true
 collision_mask = 3
 size = Vector3(2, 1.7, 0.1)
@@ -703,7 +717,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall5" type="Node3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -14)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -733,7 +747,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall6" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -8)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -16)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -784,7 +798,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall7" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -10)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -18)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -814,7 +828,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall8" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -12)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -20)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -844,7 +858,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J3" type="Node3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, -6)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -14)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -867,7 +881,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J4" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, -14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -890,7 +904,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J5" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0, -14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -913,7 +927,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_End4" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6, 0, -4)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -12)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_End4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -927,13 +941,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 material_override = ExtResource("2_cxco5")
 use_collision = true
 size = Vector3(2, 0.1, 2)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Hall_End4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-use_collision = true
-collision_mask = 3
-size = Vector3(2, 1.7, 0.1)
-material = ExtResource("2_cxco5")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hall_End4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -950,7 +957,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_M2" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -966,7 +973,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M6" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -982,7 +989,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M7" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -998,7 +1005,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M8" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1014,7 +1021,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M9" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1031,7 +1038,7 @@ collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M11" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1048,7 +1055,7 @@ collision_mask = 3
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M12" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1064,7 +1071,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M13" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1080,7 +1087,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_M10" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_M10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1096,7 +1103,7 @@ use_collision = true
 size = Vector3(2, 0.1, 2)
 
 [node name="Hall_J6" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8, 0, -16)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1119,7 +1126,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J8" type="Node3D" parent="Environment"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -10, 0, -16)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -4, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1142,7 +1149,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J9" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -16)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1165,7 +1172,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J18" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, 0, -14)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1188,7 +1195,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J10" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, -20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1211,7 +1218,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J13" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -22)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1234,7 +1241,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J14" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8, 0, -22)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1257,7 +1264,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J20" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -18, 0, -26)
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -12, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J20"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1280,7 +1287,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J21" type="Node3D" parent="Environment"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -20, 0, -28)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -14, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J21"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1303,7 +1310,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J22" type="Node3D" parent="Environment"]
-transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, -14, 0, -28)
+transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, -8, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J22"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1326,7 +1333,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J25" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, -18, 0, -38)
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, -12, 0, -46)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J25"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1349,7 +1356,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J24" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, -20, 0, -32)
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, -14, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J24"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1372,7 +1379,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J15" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -20)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1395,7 +1402,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J16" type="Node3D" parent="Environment"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -2, 0, -18)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 4, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1418,7 +1425,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J17" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -10, 0, -18)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1441,7 +1448,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J11" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0, -20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1464,7 +1471,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J12" type="Node3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, -20)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1487,7 +1494,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_J7" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -16)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_J7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1510,7 +1517,7 @@ size = Vector3(2, 1.7, 0.1)
 material = ExtResource("2_cxco5")
 
 [node name="Hall9" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -6, 0, -18)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1540,7 +1547,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall30" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -14, 0, -30)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -8, 0, -38)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall30"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1570,7 +1577,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall31" type="Node3D" parent="Environment"]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -16, 0, -32)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -10, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall31"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1600,7 +1607,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall10" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -12, 0, -18)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1630,7 +1637,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall16" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -14, 0, -18)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1660,7 +1667,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall17" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -18)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1690,7 +1697,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall18" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -20)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -28)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1720,7 +1727,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall19" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -16, 0, -24)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10, 0, -32)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1750,7 +1757,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall26" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -34)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -42)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall26"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1780,7 +1787,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall32" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -22, 0, -32)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -16, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall32"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1810,7 +1817,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall27" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -36)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -44)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall27"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1840,7 +1847,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall33" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -24, 0, -34)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -42)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall33"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1870,7 +1877,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall23" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -20, 0, -30)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14, 0, -38)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall23"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1900,7 +1907,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall25" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, -30)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -38)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall25"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1930,7 +1937,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall24" type="Node3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, 0, -28)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall24"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1960,7 +1967,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall20" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -24)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -32)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall20"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -1990,7 +1997,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall21" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -26)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall21"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2020,7 +2027,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall22" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, -28)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall22"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2050,7 +2057,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall28" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2, 0, -30)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 4, 0, -38)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall28"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2080,7 +2087,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall29" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -16, 0, -38)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10, 0, -46)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall29"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2110,7 +2117,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall35" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -20, 0, -38)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -14, 0, -46)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall35"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2140,7 +2147,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall11" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, -18)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 6, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2170,7 +2177,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall12" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, -18)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 8, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2200,7 +2207,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall13" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, -18)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 10, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2230,7 +2237,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall14" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, 0, -16)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2260,7 +2267,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall15" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 8, 0, -14)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 14, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2290,7 +2297,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R2" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2320,7 +2327,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R6" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 0, -18)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2350,7 +2357,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R7" type="Node3D" parent="Environment"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 6, 0, -14)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 12, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2380,7 +2387,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R8" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 12, 0, -12)
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 18, 0, -20)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2410,7 +2417,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R9" type="Node3D" parent="Environment"]
-transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 12, 0, -16)
+transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 18, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2440,7 +2447,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R10" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 10, 0, -16)
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 16, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2470,7 +2477,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R11" type="Node3D" parent="Environment"]
-transform = Transform3D(-3.93403e-07, 0, 1, 0, 1, 0, -1, 0, -3.93403e-07, 10, 0, -12)
+transform = Transform3D(-3.93403e-07, 0, 1, 0, 1, 0, -1, 0, -3.93403e-07, 16, 0, -20)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2500,7 +2507,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R3" type="Node3D" parent="Environment"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -22)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2530,7 +2537,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R4" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -10, 0, -22)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -4, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2560,7 +2567,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R17" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -6, 0, -28)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2590,7 +2597,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R18" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -1.98419e-09, 0, 1, 0, 1.98419e-09, 0, -1, -2, 0, -28)
+transform = Transform3D(-1, 0, -1.98419e-09, 0, 1, 0, 1.98419e-09, 0, -1, 4, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2620,7 +2627,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R5" type="Node3D" parent="Environment"]
-transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -10, 0, -14)
+transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -4, 0, -22)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2650,7 +2657,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R12" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -16, 0, -18)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -10, 0, -26)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2680,7 +2687,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R13" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -1.7683e-07, 0, 1, 0, 1.7683e-07, 0, -1, -16, 0, -16)
+transform = Transform3D(-1, 0, -1.7683e-07, 0, 1, 0, 1.7683e-07, 0, -1, -10, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2710,7 +2717,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R14" type="Node3D" parent="Environment"]
-transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -18, 0, -16)
+transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -12, 0, -24)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2740,7 +2747,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R15" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -18, 0, -22)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -12, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2770,7 +2777,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R19" type="Node3D" parent="Environment"]
-transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -20, 0, -26)
+transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -14, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2800,7 +2807,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R20" type="Node3D" parent="Environment"]
-transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -18, 0, -28)
+transform = Transform3D(-1.33118e-07, 0, 1, 0, 1, 0, -1, 0, -1.33118e-07, -12, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R20"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2830,7 +2837,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R21" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -1.7683e-07, 0, 1, 0, 1.7683e-07, 0, -1, -14, 0, -26)
+transform = Transform3D(-1, 0, -1.7683e-07, 0, 1, 0, 1.7683e-07, 0, -1, -8, 0, -34)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R21"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2860,7 +2867,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R24" type="Node3D" parent="Environment"]
-transform = Transform3D(3.95387e-07, 0, -1, 0, 1, 0, 1, 0, 3.95387e-07, -14, 0, -32)
+transform = Transform3D(3.95387e-07, 0, -1, 0, 1, 0, 1, 0, 3.95387e-07, -8, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R24"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2890,7 +2897,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R27" type="Node3D" parent="Environment"]
-transform = Transform3D(-4.8281e-07, 0, 1, 0, 1, 0, -1, 0, -4.8281e-07, -24, 0, -32)
+transform = Transform3D(-4.8281e-07, 0, 1, 0, 1, 0, -1, 0, -4.8281e-07, -18, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R27"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2920,7 +2927,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R28" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 4.39098e-07, 0, 1, 0, -4.39098e-07, 0, 1, -24, 0, -36)
+transform = Transform3D(1, 0, 4.39098e-07, 0, 1, 0, -4.39098e-07, 0, 1, -18, 0, -44)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R28"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2950,7 +2957,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R29" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -5.26521e-07, 0, 1, 0, 5.26521e-07, 0, -1, -22, 0, -36)
+transform = Transform3D(-1, 0, -5.26521e-07, 0, 1, 0, 5.26521e-07, 0, -1, -16, 0, -44)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R29"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -2980,7 +2987,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R30" type="Node3D" parent="Environment"]
-transform = Transform3D(1, 0, 4.39098e-07, 0, 1, 0, -4.39098e-07, 0, 1, -22, 0, -38)
+transform = Transform3D(1, 0, 4.39098e-07, 0, 1, 0, -4.39098e-07, 0, 1, -16, 0, -46)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R30"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -3010,7 +3017,7 @@ size = Vector3(0.1, 1.7, 2)
 material = ExtResource("2_cxco5")
 
 [node name="Hall_C_R16" type="Node3D" parent="Environment"]
-transform = Transform3D(-1, 0, -1.9842e-09, 0, 1, 0, 1.9842e-09, 0, -1, -16, 0, -22)
+transform = Transform3D(-1, 0, -1.9842e-09, 0, 1, 0, 1.9842e-09, 0, -1, -10, 0, -30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Hall_C_R16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
@@ -3084,7 +3091,19 @@ light_color = Color(0.9965945, 0.47654963, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 can_interact = false
 
+[node name="Door2" parent="." instance=ExtResource("15_m0t0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.1)
+can_interact = false
+
 [node name="TorchScont" parent="." instance=ExtResource("15_yb6aq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.85, -0.007, 0)
 
+[node name="TorchScont2" parent="." instance=ExtResource("15_yb6aq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.8469625, 0, -14)
+
+[node name="TorchScont3" parent="." instance=ExtResource("15_yb6aq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7945075, 0, -15.749412)
+visible = false
+
+[connection signal="on_die" from="Enemies/Enemy" to="Door2" method="toggle_door"]
 [connection signal="on_interact_begin" from="TorchScont" to="Door" method="toggle_door"]

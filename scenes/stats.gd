@@ -12,6 +12,8 @@ extends Node
 
 @export var audio_death: PackedScene
 
+signal on_death(bool)
+
 func take_damage(amount: int) -> bool:
 	current_health -= amount
 	temp_flash()
@@ -29,6 +31,7 @@ func heal(amount: int) -> void:
 		current_health = max_health
 
 func die() -> void:
+	get_parent().on_die.emit(true)
 	var d = audio_death.instantiate()
 	get_parent().get_parent().add_child(d)
 	d.global_position = get_parent().global_position

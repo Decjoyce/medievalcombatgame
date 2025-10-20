@@ -145,7 +145,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("reset"): 
 		get_tree().reload_current_scene()
 	
-	if Input.is_action_just_pressed("inv_toggle"):
+	if interacting and Input.is_action_just_pressed("inv_toggle"):
 		inv.toggle_inventory()
 
 @onready var inv: Inventory = $Inventory
@@ -226,6 +226,8 @@ func int_enter_interactmode() -> void:
 	#cam.fov = 95
 
 func int_exit_interactmode() -> void:
+	inv.is_opened = false
+	inv.visible = false
 	interacting = false
 	ui_int.visible = false
 	ui_stance.visible = true
