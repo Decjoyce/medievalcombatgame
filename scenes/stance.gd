@@ -27,6 +27,10 @@ enum stance_slots {RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT, TOP
 
 signal enemy_entered_range(enemy: Entity)
 
+signal on_little_block
+signal on_block_full
+signal on_hit
+
 func _ready() -> void:
 	occupy_slot(0, 0)
 	occupy_slot(4, 1) 
@@ -110,14 +114,16 @@ func on_attacked(attack_dirs: String, equipment: Equipment) -> void:
 				
 				if damage_done > 0: # If the attack broke through the threshold, take some damage
 					stats.take_damage(damage_done)
+					on_little_block.emit()
 					prints("Not So Ouch!", damage_done)
 				else: # If it doesnt, dont. 
 					print("HAHA, SUCKER")
-					
+					on_block_full.emit()
 				audio_player_miss.play()
 			else: # You have nothing to block with, take the full damage
 				stats.take_damage(equipment.offense_rating)
 				print("Ouch!!!!!!")
+				on_hit.emit()
 				audio_player_hit.play()
 
 ## Make the slot thats being occupied white on the octagon ui

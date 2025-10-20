@@ -39,8 +39,27 @@ var can_interact: bool = true
 var current_interact: Interactable
 @onready var interact_text: Label = $label_interact
 
+
 func _ready() -> void:
 	ray_north.collide_with_areas = true
+	stance.on_block_full.connect(me_blocky_full)
+	stance.on_little_block.connect(on_little_block)
+	stance.on_hit.connect(on_hit)
+
+var shake_strength: float
+var decay_rate: float = 1
+
+func shake_me(strength: float) -> void:
+	shake_strength = strength
+
+func me_blocky_full() -> void:
+	shake_me(0.02)
+
+func on_little_block() -> void:
+	shake_me(0.0)
+
+func on_hit() -> void:
+	shake_me(0.01)
 
 ## Controls the which slots to occupy
 func joystick_movement() -> void:
@@ -147,6 +166,22 @@ func _process(delta: float) -> void:
 	
 	if interacting and Input.is_action_just_pressed("inv_toggle"):
 		inv.toggle_inventory()
+	
+	shake_strength = lerp(shake_strength, 0.0, decay_rate * delta)
+	
+	cam.h_offset = get_random_offset().x
+	cam.v_offset = get_random_offset().y
+
+var camera_offset: Vector2
+
+func get_random_offset() -> Vector2:
+	ran = RandomNumberGenerator.new()
+	return Vector2(
+		ran.randf_range(-shake_strength, shake_strength),
+		ran.randf_range(-shake_strength, shake_strength)
+	)
+
+var ran: RandomNumberGenerator
 
 @onready var inv: Inventory = $Inventory
 

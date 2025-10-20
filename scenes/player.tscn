@@ -454,7 +454,7 @@ stream = ExtResource("9_f1ej7")
 
 [node name="temp_hit_effect" type="TextureRect" parent="."]
 visible = false
-modulate = Color(0.839216, 0.0784314, 0, 0.47451)
+modulate = Color(0.8392157, 0.078431375, 0, 0.7411765)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
