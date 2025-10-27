@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fo4hgq772cwm"]
+
+[ext_resource type="PackedScene" uid="uid://b2iu7mfrhit5" path="res://assets/TestForAaron/3.glb" id="1_0av1q"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="3" parent="." instance=ExtResource("1_0av1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06616223, 0, 0.35632634)
